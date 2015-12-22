@@ -1,0 +1,3 @@
+[submodule "submodule/xcsoar-exp"]
+	path = submodule/xcsoar-exp
+	url = git@github.com:Exadios/xcsoar-exp.git
