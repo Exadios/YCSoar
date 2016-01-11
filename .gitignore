@@ -30,3 +30,6 @@
 # Generated files
 out/*
 Makefile
+
+# Misc and tmp files
+.*.swp
