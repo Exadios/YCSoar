@@ -1,5 +1,6 @@
-set(XCSOAR ../submodule/xcsoar-exp)
+set(XCSOAR ${CMAKE_HOME_DIRECTORY}/submodule/xcsoar-exp)
 set(XCSOAR_SRC ${XCSOAR}/src)
+set(OUTPUT_INCLUDE ${YCSoar_BINARY_DIR}/include)
 
 
 include_directories(${XCSOAR_SRC})
@@ -40,4 +41,20 @@ set(GEO_SRCS ${GEO_DIR}/ConvexHull/GrahamScan.cpp
 	           ${GEO_DIR}/UTM.cpp)
 include_directories(${XCSOAR_SRC} ${GEO_DIR})
 add_library(Geo ${GEO_SRCS})
+
+set(MATH_DIR ${XCSOAR_SRC}/Math)
+set(MATH_SRCS ${MATH_DIR}/Angle.cpp
+              ${MATH_DIR}/ARange.cpp
+              ${MATH_DIR}/FastMath.cpp
+              ${MATH_DIR}/FastTrig.cpp
+              ${MATH_DIR}/FastRotation.cpp
+              ${MATH_DIR}/fixed.cpp
+              ${MATH_DIR}/LeastSquares.cpp
+              ${MATH_DIR}/DiffFilter.cpp
+              ${MATH_DIR}/Filter.cpp
+              ${MATH_DIR}/ZeroFinder.cpp
+              ${MATH_DIR}/KalmanFilter1d.cpp
+              ${MATH_DIR}/SelfTimingKalmanFilter1d.cpp)
+include_directories(${XCSOAR_SRC} ${MATH_DIR} ${OUTPUT_INCLUDE})
+add_library(Math ${MATH_SRCS})
 
