@@ -80,3 +80,10 @@ set(IO_SRCS ${IO_DIR}/FileTransaction.cpp
             ${IO_DIR}/TextWriter.cpp)
 include_directories(${XCSOAR_SRC} ${IO_DIR})
 add_library(Io ${IO_SRCS})
+
+set(WAYPOINT_DIR ${XCSOAR_SRC}/Engine/Waypoint)
+set(WAYPOINT_SRCS ${WAYPOINT_DIR}/WaypointVisitor.cpp
+                  ${WAYPOINT_DIR}/Waypoints.cpp
+                  ${WAYPOINT_DIR}/Waypoint.cpp)
+include_directories(${XCSOAR_SRC} ${WAYPOINT_DIR})
+add_library(Waypoint ${WAYPOINT_SRCS})
