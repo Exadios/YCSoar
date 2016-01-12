@@ -4,6 +4,8 @@ set(OUTPUT_INCLUDE ${YCSoar_BINARY_DIR}/include)
 
 
 include_directories(${XCSOAR_SRC})
+add_definitions(-DHAVE_POSIX) # For POSIX only
+add_definitions(-DZLIB_CONST) # Make some of zlib const.
 
 set(UTIL_DIR ${XCSOAR_SRC}/Util)
 set(UTIL_SRCS ${UTIL_DIR}/CRC.cpp
@@ -58,3 +60,23 @@ set(MATH_SRCS ${MATH_DIR}/Angle.cpp
 include_directories(${XCSOAR_SRC} ${MATH_DIR} ${OUTPUT_INCLUDE})
 add_library(Math ${MATH_SRCS})
 
+set(IO_DIR ${XCSOAR_SRC}/IO)
+set(IO_SRCS ${IO_DIR}/FileTransaction.cpp
+            ${IO_DIR}/FileCache.cpp
+            ${IO_DIR}/FileSource.cpp
+            ${IO_DIR}/ZipSource.cpp
+            ${IO_DIR}/InflateSource.cpp
+            ${IO_DIR}/LineSplitter.cpp
+            ${IO_DIR}/ConvertLineReader.cpp
+            ${IO_DIR}/FileLineReader.cpp
+            ${IO_DIR}/KeyValueFileReader.cpp
+            ${IO_DIR}/KeyValueFileWriter.cpp
+            ${IO_DIR}/ZipLineReader.cpp
+            ${IO_DIR}/InflateLineReader.cpp
+            ${IO_DIR}/TextFile.cpp
+            ${IO_DIR}/CSVLine.cpp
+            ${IO_DIR}/BatchTextWriter.cpp
+            ${IO_DIR}/BinaryWriter.cpp
+            ${IO_DIR}/TextWriter.cpp)
+include_directories(${XCSOAR_SRC} ${IO_DIR})
+add_library(Io ${IO_SRCS})
