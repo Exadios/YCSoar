@@ -216,3 +216,29 @@ set(TASK_SRCS ${TASK_DIR}/Shapes/FAITriangleSettings.cpp
               ${TASK_DIR}/Stats/StartStats.cpp)
 include_directories(${XCSOAR_SRC} ${TASK_DIR})
 add_library(Task ${TASK_SRCS})
+
+set(AIRSPACE_DIR ${XCSOAR_SRC}/Engine/Airspace)
+set(ENGINE_DIR   ${XCSOAR_SRC}/Engine)
+set(AIRSPACE_SRCS ${ENGINE_DIR}/Util/AircraftStateFilter.cpp
+                  ${AIRSPACE_DIR}/AirspacesTerrain.cpp
+                  ${AIRSPACE_DIR}/Airspace.cpp
+                  ${AIRSPACE_DIR}/AirspaceAltitude.cpp
+                  ${AIRSPACE_DIR}/AirspaceAircraftPerformance.cpp
+                  ${AIRSPACE_DIR}/AbstractAirspace.cpp
+                  ${AIRSPACE_DIR}/AirspaceCircle.cpp
+                  ${AIRSPACE_DIR}/AirspacePolygon.cpp
+                  ${AIRSPACE_DIR}/Airspaces.cpp
+                  ${AIRSPACE_DIR}/AirspaceIntersectSort.cpp
+                  ${AIRSPACE_DIR}/SoonestAirspace.cpp
+                  ${AIRSPACE_DIR}/Predicate/AirspacePredicate.cpp
+                  ${AIRSPACE_DIR}/Predicate/AirspacePredicateAircraftInside.cpp
+                  ${AIRSPACE_DIR}/Predicate/AirspacePredicateHeightRange.cpp
+                  ${AIRSPACE_DIR}/Predicate/OutsideAirspacePredicate.cpp
+                  ${AIRSPACE_DIR}/AirspaceVisitor.cpp
+                  ${AIRSPACE_DIR}/AirspaceIntersectionVisitor.cpp
+                  ${AIRSPACE_DIR}/AirspaceWarningConfig.cpp
+                  ${AIRSPACE_DIR}/AirspaceWarningManager.cpp
+                  ${AIRSPACE_DIR}/AirspaceWarning.cpp
+                  ${AIRSPACE_DIR}/AirspaceSorter.cpp)
+include_directories(${XCSOAR_SRC} ${AIRSPACE_DIR})
+add_library(Airspace ${AIRSPACE_SRCS})
