@@ -112,3 +112,26 @@ set(GLIDE_SRCS ${GLIDE_DIR}/GlideSettings.cpp
                ${GLIDE_DIR}/MacCready.cpp)
 include_directories(${XCSOAR_SRC} ${GLIDE_DIR})
 add_library(Glide ${GLIDE_SRCS})
+
+set(CONTEST_DIR ${XCSOAR_SRC}/Engine/Contest)
+set(CONTEST_SRCS ${CONTEST_DIR}/Settings.cpp
+                 ${CONTEST_DIR}/ContestManager.cpp
+                 ${CONTEST_DIR}/Solvers/Contests.cpp
+                 ${CONTEST_DIR}/Solvers/AbstractContest.cpp
+                 ${CONTEST_DIR}/Solvers/TraceManager.cpp
+                 ${CONTEST_DIR}/Solvers/ContestDijkstra.cpp
+                 ${CONTEST_DIR}/Solvers/DMStQuad.cpp
+                 ${CONTEST_DIR}/Solvers/OLCLeague.cpp
+                 ${CONTEST_DIR}/Solvers/OLCSprint.cpp
+                 ${CONTEST_DIR}/Solvers/OLCClassic.cpp
+                 ${CONTEST_DIR}/Solvers/OLCTriangle.cpp
+                 ${CONTEST_DIR}/Solvers/OLCFAI.cpp
+                 ${CONTEST_DIR}/Solvers/OLCPlus.cpp
+                 ${CONTEST_DIR}/Solvers/DMStQuad.cpp
+                 ${CONTEST_DIR}/Solvers/XContestFree.cpp
+                 ${CONTEST_DIR}/Solvers/XContestTriangle.cpp
+                 ${CONTEST_DIR}/Solvers/OLCSISAT.cpp
+                 ${CONTEST_DIR}/Solvers/NetCoupe.cpp
+                 ${CONTEST_DIR}/Solvers/Retrospective.cpp)
+include_directories(${XCSOAR_SRC} ${CONTEST_DIR})
+add_library(Contest ${CONTEST_SRCS})
