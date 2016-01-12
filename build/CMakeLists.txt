@@ -101,3 +101,14 @@ set(ROUTE_SRCS ${ROUTE_DIR}/Config.cpp
                ${ROUTE_DIR}/ReachFan.cpp)
 include_directories(${XCSOAR_SRC} ${ROUTE_DIR} ${XCSOAR_SRC}/Engine)
 add_library(Route ${ROUTE_SRCS})
+
+set(GLIDE_DIR ${XCSOAR_SRC}/Engine/GlideSolvers)
+set(GLIDE_SRCS ${GLIDE_DIR}/GlideSettings.cpp
+               ${GLIDE_DIR}/GlideState.cpp
+               ${GLIDE_DIR}/GlueGlideState.cpp
+               ${GLIDE_DIR}/GlidePolar.cpp
+               ${GLIDE_DIR}/PolarCoefficients.cpp
+               ${GLIDE_DIR}/GlideResult.cpp
+               ${GLIDE_DIR}/MacCready.cpp)
+include_directories(${XCSOAR_SRC} ${GLIDE_DIR})
+add_library(Glide ${GLIDE_SRCS})
