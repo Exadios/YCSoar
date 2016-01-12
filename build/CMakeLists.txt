@@ -87,3 +87,17 @@ set(WAYPOINT_SRCS ${WAYPOINT_DIR}/WaypointVisitor.cpp
                   ${WAYPOINT_DIR}/Waypoint.cpp)
 include_directories(${XCSOAR_SRC} ${WAYPOINT_DIR})
 add_library(Waypoint ${WAYPOINT_SRCS})
+
+set(ROUTE_DIR ${XCSOAR_SRC}/Engine/Route)
+set(ROUTE_SRCS ${ROUTE_DIR}/Config.cpp
+               ${ROUTE_DIR}/RoutePlanner.cpp
+               ${ROUTE_DIR}/AirspaceRoute.cpp
+               ${ROUTE_DIR}/TerrainRoute.cpp
+               ${ROUTE_DIR}/RouteLink.cpp
+               ${ROUTE_DIR}/RoutePolar.cpp
+               ${ROUTE_DIR}/RoutePolars.cpp
+               ${ROUTE_DIR}/FlatTriangleFan.cpp
+               ${ROUTE_DIR}/FlatTriangleFanTree.cpp
+               ${ROUTE_DIR}/ReachFan.cpp)
+include_directories(${XCSOAR_SRC} ${ROUTE_DIR} ${XCSOAR_SRC}/Engine)
+add_library(Route ${ROUTE_SRCS})
