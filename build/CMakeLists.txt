@@ -347,3 +347,15 @@ set(DRIVER_SRCS ${VOLKSLOGGER_SRCS}
                 ${OTHER_SRCS})
 include_directories(${XCSOAR_SRC} ${DRIVER_DIR})
 add_library(Driver ${DRIVER_SRCS})
+
+set(SHAPE_DIR ${XCSOAR_SRC}/Topography/shapelib)
+set(SHAPE_SRCS ${SHAPE_DIR}/mapstring.c
+               ${SHAPE_DIR}/mapbits.c
+               ${SHAPE_DIR}/mapfile.c
+               ${SHAPE_DIR}/mapprimitive.c
+               ${SHAPE_DIR}/mapsearch.c
+               ${SHAPE_DIR}/mapshape.c
+               ${SHAPE_DIR}/maptree.c
+               ${SHAPE_DIR}/mapxbase.c)
+include_directories(${XCSOAR_SRC} ${SHAPE_DIR})
+add_library(Shape ${SHAPE_SRCS})
