@@ -1,0 +1,24 @@
+PreFilght:
+
+o - Task planning including fallback tasks.
+o - Download and setup airspace data.
+o - Download and setup waypoint data.
+o - Download and setup map data.
+o - Setup plane.
+o - Setup flight.
+o - Setup and verify devices.
+o - Map and screen configuration.
+o - Verification of setup.
+
+Flight:
+
+o - Moving map with 'What's Here' etc.
+o - Task dynamic turnpoint control.
+o - Selection of a fallback task.
+
+PostFlight:
+
+o - Display of IGC file.
+o - Display of flight stats.
+o - Upload of IGC file.
+
