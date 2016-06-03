@@ -359,3 +359,5 @@ set(SHAPE_SRCS ${SHAPE_DIR}/mapstring.c
                ${SHAPE_DIR}/mapxbase.c)
 include_directories(${XCSOAR_SRC} ${SHAPE_DIR})
 add_library(Shape ${SHAPE_SRCS})
+
+add_subdirectory(src)
