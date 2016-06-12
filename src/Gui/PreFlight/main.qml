@@ -1,57 +1,34 @@
-import QtQuick 2.3
-import QtQuick.Controls 1.2
+import QtQuick 2.0
 
-ApplicationWindow
-  {
-  visible: true
-  width: 640
-  height: 480
-  title: qsTr("Pre Flight")
+Rectangle {
+    width: 480
+    height: 640
 
-  menuBar: MenuBar
-    {
-    Menu
-      {
-      title: qsTr("File")
-      MenuItem 
-        {
-        text: qsTr("&Open")
-        onTriggered: console.log("Open action triggered");
-        }
-      MenuItem 
-        {
-        text: qsTr("Exit")
-        onTriggered: Qt.quit();
-        }
-      }
-    Menu
-      {
-      title: qsTr("Edit")
-      MenuItem
-        {
-        text: qsTr("Task ...")
-        TaskPage
-          {
-          style: Qt.ScrollBarAsNeeded
-          }
-        }
-      MenuSeparator
-        {
-        }
-      MenuItem
-        {
-        text: qsTr("Preferences")
-        onTriggered: console.log("Preferences action triggered")
-        }
-      }
-    Menu
-      {
-      title: qsTr("Tools")
-      MenuItem
-        {
-        text: qsTr("Download Map")
-        onTriggered: console.log("Download Map action triggered")
-        }
-      }
+    Text {
+        id: preflight
+        x: 220
+        y: 168
+        width: 57
+        height: 12
+        text: qsTr("Pre Flight")
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        font.pixelSize: 18
     }
-  }
+
+    Text {
+        id: ycsoartitle
+        x: 204
+        y: 89
+        color: "#0000ff"
+        text: qsTr("YCSoar")
+        font.italic: true
+        font.strikeout: false
+        font.underline: false
+        font.bold: true
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        styleColor: "#90691d"
+        font.pixelSize: 25
+    }
+}
