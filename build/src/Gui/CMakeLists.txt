@@ -7,6 +7,8 @@ set(FLIGHT_BINARY ${YCSoar_BINARY_DIR}/build/src/Gui/Flight)
 set(POSTFLIGHT_BINARY ${YCSoar_BINARY_DIR}/build/src/Gui/PostFlight)
 
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt5Widgets REQUIRED)

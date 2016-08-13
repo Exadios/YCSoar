@@ -1,18 +1,27 @@
 #include <QApplication>
-#include <QQmlApplicationEngine>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
 #include <iostream>
 
+#include "MainWindow.hpp"
+
 int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
+  {
+  QApplication app(argc, argv);
 
-    QQmlApplicationEngine engine;
-    engine.load(QUrl("qml:/main.qml"));
+  QCoreApplication::setOrganizationName("YCSoar");
+  QCoreApplication::setApplicationName("Pre Filght Tool");
+  QCoreApplication::setApplicationVersion("V0.00");
+  QCommandLineParser parser;
+  parser.setApplicationDescription(QCoreApplication::applicationName());
+  parser.addHelpOption();
+  parser.addVersionOption();
+  parser.addPositionalArgument("file", "The file to open.");
+  parser.process(app);
 
-    if (engine.rootObjects().isEmpty())
-      {
-      std::cerr << "No root objects!" << std::endl;
-      return -1;
-      }
-    return app.exec();
-}
+  MainWindow mainWindow;
+  if (!parser.positionalArguments().isEmpty())
+    mainWindow.loadFile(parser.positionalArguments().first());
+  mainWindow.show();
+  return app.exec();
+  }
