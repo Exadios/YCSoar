@@ -22,3 +22,10 @@ add_subdirectory(PreFlight)
 add_subdirectory(Flight)
 add_subdirectory(PostFlight)
 
+add_custom_target(gui-linux-32 
+                  DEPENDS preflight-linux-32-debug
+                          preflight-linux-32-release)
+add_custom_target(gui-linux DEPENDS gui-linux-32)
+add_custom_target(gui DEPENDS gui-linux)
+add_custom_target(gui-debug DEPENDS preflight-linux-32-debug)
+add_custom_target(gui-release DEPENDS preflight-linux-32-release)

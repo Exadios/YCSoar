@@ -28,83 +28,39 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef __MAINWINDOW_H
-#define __MAINWINDOW_H
+#ifndef __TASKWIZARD
+#define __TASKWIZARD
 
-#include <QMainWindow>
-
-class QAction;
-class QMenu;
-class QPlainTextEdit;
+class QWizard;
 class QWizardPage;
-class QSessionManager;
 
 /**
- * The PreFlight main window.
+ * A wizard to create or edit a task.
  */
-class MainWindow : public QMainWindow
+class TaskWizard
   {
-  Q_OBJECT
-
 public:
   /**
    * Ctor.
    */
-  MainWindow();
+  TaskWizard();
 
   /**
-   * Load a file and launch proceedure based on type.
-   * @param fileName The name of the file of a certain type.
+   * Dtor. Destroy the pages.
    */
-  void loadFile(const QString &fileName);
+  ~TaskWizard();
 
 protected:
-  /**
-   * This window is to close.
-   * @param event The event.
-   */
-  void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
-
-private slots:
-  void newFile();
-  void open();
-  bool save();
-  bool saveAs();
-  void about();
-  void documentWasModified();
 
 private:
-  void createActions();
-  void createMenus();
-  void createToolBars();
-  void createStatusBar();
-  void readSettings();
-  void writeSettings();
-  bool maybeSave();
-  bool saveFile(const QString &fileName);
-  void setCurrentFile(const QString &fileName);
-  QString strippedName(const QString &fullFileName);
+  void createRulesPage();
+  void createTurpointPage();
+  void createFinalPage();
 
-  QPlainTextEdit *textEdit;
-  QWizardPage *wizard;
-  QString curFile;
-
-  QMenu *fileMenu;
-  QMenu *editMenu;
-  QMenu *helpMenu;
-  QToolBar *fileToolBar;
-  QToolBar *editToolBar;
-  QAction *newAct;
-  QAction *openAct;
-  QAction *saveAct;
-  QAction *saveAsAct;
-  QAction *exitAct;
-  QAction *cutAct;
-  QAction *copyAct;
-  QAction *pasteAct;
-  QAction *aboutAct;
-  QAction *aboutQtAct;
+  QWizard *wizard;
+  QWizardPage *rulesPage;
+  QWizardPage *turpointPage;
+  QWizardPage *finalPage;
   };
 
-#endif  // __MAINWINDOW_H
-
+#endif  // __TASKWIZARD
