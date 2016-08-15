@@ -359,3 +359,18 @@ set(SHAPE_SRCS ${SHAPE_DIR}/mapstring.c
 include_directories(${XCSOAR_SRC} ${SHAPE_DIR})
 add_library(Shape-${T} ${SHAPE_SRCS})
 
+add_custom_target(xcsoar-${T}
+                  DEPENDS Airspace-${T}
+                          Contest-${T}
+                          Driver-${T}
+                          Geo-${T}
+                          Glide-${T}
+                          Io-${T}
+                          Math-${T}
+                          Route-${T}
+                          Shape-${T}
+                          Task-${T}
+                          Util-${T}
+                          Waypoint-${T})
+
+
