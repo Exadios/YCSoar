@@ -359,6 +359,9 @@ set(SHAPE_SRCS ${SHAPE_DIR}/mapstring.c
 include_directories(${XCSOAR_SRC} ${SHAPE_DIR})
 add_library(Shape-${T} ${SHAPE_SRCS})
 
+set(MAIN_SRCS ${XCSOAR_SRC}/LocalPath.cpp)
+include_directories(${XCSOAR_SRC})
+add_library(XCSoarMain-${T} ${MATH_SRCS})
 add_custom_target(xcsoar-${T}
                   DEPENDS Airspace-${T}
                           Contest-${T}
