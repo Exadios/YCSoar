@@ -374,6 +374,7 @@ add_custom_target(xcsoar-${T}
                           Shape-${T}
                           Task-${T}
                           Util-${T}
-                          Waypoint-${T})
+                          Waypoint-${T}
+                          XCSoarMain-${T})
 
 
