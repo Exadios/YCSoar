@@ -1,4 +1,4 @@
-set(XCSOAR ${CMAKE_HOME_DIRECTORY}/submodule/xcsoar-exp)
+set(XCSOAR ${YCSoar_SOURCE_DIR}/submodule/xcsoar-exp)
 set(XCSOAR_SRC ${XCSOAR}/src)
 set(OUTPUT_INCLUDE ${YCSoar_BINARY_DIR}/include)
 
@@ -359,9 +359,25 @@ set(SHAPE_SRCS ${SHAPE_DIR}/mapstring.c
 include_directories(${XCSOAR_SRC} ${SHAPE_DIR})
 add_library(Shape-${T} ${SHAPE_SRCS})
 
+set(OS_DIR ${XCSOAR_SRC}/OS)
+set(OS_SRCS ${OS_DIR}/Clock.cpp
+            ${OS_DIR}/FileDescriptor.cxx
+            ${OS_DIR}/FileMapping.cpp
+            ${OS_DIR}/FileUtil.cpp
+            ${OS_DIR}/RunFile.cpp
+            ${OS_DIR}/PathName.cpp
+            ${OS_DIR}/Process.cpp
+            ${OS_DIR}/SystemLoad.cpp)
+if(HAVE_POSIX)
+  set(OS_SRCS ${OS_SRCS} ${OS_DIR}/Poll.cpp ${OS_DIR}/EventPipe.cpp)
+endif(HAVE_POSIX)
+add_library(Os-${T} ${OS_SRCS})
+
 set(MAIN_SRCS ${XCSOAR_SRC}/LocalPath.cpp)
 include_directories(${XCSOAR_SRC})
-add_library(XCSoarMain-${T} ${MATH_SRCS})
+add_library(XCSoarMain-${T} ${MAIN_SRCS})
+target_link_libraries(XCSoarMain-${T} Os-${T} Util-${T})
+
 add_custom_target(xcsoar-${T}
                   DEPENDS Airspace-${T}
                           Contest-${T}
@@ -375,6 +391,7 @@ add_custom_target(xcsoar-${T}
                           Task-${T}
                           Util-${T}
                           Waypoint-${T}
+                          Os-${T}
                           XCSoarMain-${T})
 
 
