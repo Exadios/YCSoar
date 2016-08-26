@@ -419,7 +419,7 @@ LOOKUP_CACHE_SIZE      = 0
 # normally produced when WARNINGS is set to YES.
 # The default value is: NO.
 
-EXTRACT_ALL            = NO
+EXTRACT_ALL            = YES
 
 # If the EXTRACT_PRIVATE tag is set to YES all private members of a class will
 # be included in the documentation.
@@ -1984,7 +1984,7 @@ ENABLE_PREPROCESSING   = YES
 # The default value is: NO.
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
-MACRO_EXPANSION        = NO
+MACRO_EXPANSION        = YES
 
 # If the EXPAND_ONLY_PREDEF and MACRO_EXPANSION tags are both set to YES then
 # the macro expansion is limited to the macros specified with the PREDEFINED and
@@ -1992,7 +1992,7 @@ MACRO_EXPANSION        = NO
 # The default value is: NO.
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
-EXPAND_ONLY_PREDEF     = NO
+EXPAND_ONLY_PREDEF     = YES
 
 # If the SEARCH_INCLUDES tag is set to YES the includes files in the
 # INCLUDE_PATH will be searched if a #include is found.
@@ -2024,7 +2024,35 @@ INCLUDE_FILE_PATTERNS  =
 # recursively expanded use the := operator instead of the = operator.
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
-PREDEFINED             = 
+PREDEFINED             = __attribute__(x)= \
+                         gcc_const \
+                         gcc_deprecated \
+                         gcc_may_alias \
+                         gcc_noreturn \
+                         gcc_printf(a,b) \
+                         gcc_pure \
+                         gcc_sentinel \
+                         gcc_unused \
+                         gcc_warn_unused_result \
+                         gcc_nonnull(...) \
+                         gcc_nonnull_all \
+                         gcc_likely(x) \
+                         gcc_unlikely(x) \
+                         gcc_aligned(n) \
+                         gcc_visibility_hidden \
+                         gcc_visibility_default \
+                         gcc_always_inline \
+                         gcc_hot \
+                         gcc_cold \
+                         gcc_flatten \
+                         gcc_packed \
+                         gcc_malloc \
+                         gcc_restrict \
+                         gcc_alignas(T, fallback) \
+                         gcc_unused_field \
+                         gcc_unreachable() \
+                         __cplusplus \
+                         __has_feature(x)
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The
@@ -2400,4 +2428,4 @@ GENERATE_LEGEND        = YES
 # The default value is: YES.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-DOT_CLEANUP            = YES
+DOT_CLEANUP            = NO
