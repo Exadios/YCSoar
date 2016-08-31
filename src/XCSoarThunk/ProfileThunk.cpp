@@ -2,7 +2,7 @@
 Copyright_License {
 
   G-Meter INU.
-  Copyright (C) 2013-2016 Peter F Bradshaw
+  Copyright (C) 2013-2015 Peter F Bradshaw
   A detailed list of copyright holders can be found in the file "AUTHORS".
 
   This program is free software; you can redistribute it and/or
@@ -21,3 +21,21 @@ Copyright_License {
 }
 */
 
+#include "ProfileThunk.hpp"
+
+#include "Profile/Profile.hpp"
+
+#include <QString>
+
+//------------------------------------------------------------------------------
+ProfileThunk::ProfileThunk()
+  {
+  Profile::Load();
+  }
+
+//------------------------------------------------------------------------------
+QString
+ProfileThunk::Path() const
+  {
+  return Profile::GetPath();
+  }

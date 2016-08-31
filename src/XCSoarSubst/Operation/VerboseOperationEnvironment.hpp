@@ -1,6 +1,6 @@
 /*
  * G-Meter INU.
- * Copyright (C) 2013-2015 Peter F Bradshaw
+ * Copyright (C) 2013-2016 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -28,47 +28,24 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef __TASKWIZARD
-#define __TASKWIZARD
+#ifndef __VERBOSEOPERATIONENVIRONMENT_HPP
+#define __VERBOSEOPERATIONENVIRONMENT_HPP
 
-#include <QWizard>
-
-class QWizardPage;
+#include "Operation/Operation.hpp"
+#include "unix/tchar.h"
 
 /**
- * A wizard to create or edit a task.
+ * Some sort of Dialog enviroment. Basically NOPed here.
+ * \todo Implement as much of the inheritance chain from Operation to here
+ *       as necessary.
  */
-class TaskWizard : public QWizard
+class VerboseOperationEnvironment : public NullOperationEnvironment
   {
-  Q_OBJECT
-
-public:
-  /**
-   * Ctor.
-   */
-  TaskWizard();
-
-  /**
-   * Dtor. Destroy the pages.
-   */
-  ~TaskWizard();
-
-protected:
-
-private slots:
-  // TODO Return a selected file.
-  void browseOrNew();
-
-private:
-  void createFilePage();
-  void createRulesPage();
-  void createTurpointPage();
-  void createFinalPage();
-
-  QWizardPage *filePage;
-  QWizardPage *rulesPage;
-  QWizardPage *turpointPage;
-  QWizardPage *finalPage;
+  void UpdateLayout();
+  void Hide();
+  void SetText(const TCHAR *);
+  void SetProgressRange(unsigned);
+  void SetProgressPosition(unsigned);
   };
 
-#endif  // __TASKWIZARD
+#endif  // __VERBOSEOPERATIONENVIRONMENT_HPP

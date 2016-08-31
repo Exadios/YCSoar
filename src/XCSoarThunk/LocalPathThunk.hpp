@@ -28,47 +28,38 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef __TASKWIZARD
-#define __TASKWIZARD
+#ifndef __LOCALPATHTHUNK_HPP
+#define __LOCALPATHTHUNK_HPP
 
-#include <QWizard>
+#include "LocalPath.hpp"
+#include "Util/NonCopyable.hpp"
 
-class QWizardPage;
+class QString;
 
 /**
- * A wizard to create or edit a task.
+ * This class wraps and makes a singleton of XCSoar's LocalPathThunk.
  */
-class TaskWizard : public QWizard
+class LocalPathThunk : public NonCopyable
   {
-  Q_OBJECT
-
 public:
   /**
-   * Ctor.
+   * Instantiate the singleton object of this type.
+   * @return The singleton;
    */
-  TaskWizard();
+  static LocalPathThunk& Instance()
+    {
+    static LocalPathThunk self;
+    return self;
+    }
 
   /**
-   * Dtor. Destroy the pages.
+   * Give the local path.
+   * @return The device dependant data path for XCSoar's use.
    */
-  ~TaskWizard();
-
-protected:
-
-private slots:
-  // TODO Return a selected file.
-  void browseOrNew();
+  QString PrimaryDataPath() const;
 
 private:
-  void createFilePage();
-  void createRulesPage();
-  void createTurpointPage();
-  void createFinalPage();
-
-  QWizardPage *filePage;
-  QWizardPage *rulesPage;
-  QWizardPage *turpointPage;
-  QWizardPage *finalPage;
+  LocalPathThunk();
   };
 
-#endif  // __TASKWIZARD
+#endif  // __LOCALPATH_HPP

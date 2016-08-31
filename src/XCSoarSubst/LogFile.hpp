@@ -1,6 +1,6 @@
 /*
  * G-Meter INU.
- * Copyright (C) 2013-2015 Peter F Bradshaw
+ * Copyright (C) 2013-2016 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -28,47 +28,40 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef __TASKWIZARD
-#define __TASKWIZARD
+#ifndef __LOGFILE_HPP
+#define __LOGFILE_HPP
 
-#include <QWizard>
+#include "Compiler.h"
 
-class QWizardPage;
+#ifdef _UNICODE
+#include <tchar.h>
+#endif
 
 /**
- * A wizard to create or edit a task.
+ * Write a formatted line to the log file.
+ *
+ * @param fmt the format string, which must not contain newline or
+ * carriage return characters
  */
-class TaskWizard : public QWizard
-  {
-  Q_OBJECT
+gcc_printf(1, 2)
+void
+LogFormat(const char *fmt, ...);
 
-public:
-  /**
-   * Ctor.
-   */
-  TaskWizard();
+#ifdef _UNICODE
+void
+LogFormat(const TCHAR *fmt, ...);
+#endif
 
-  /**
-   * Dtor. Destroy the pages.
-   */
-  ~TaskWizard();
+#if !defined(NDEBUG) && !defined(GNAV)
 
-protected:
+#define LogDebug(...) LogFormat(__VA_ARGS__)
 
-private slots:
-  // TODO Return a selected file.
-  void browseOrNew();
+#else /* NDEBUG */
 
-private:
-  void createFilePage();
-  void createRulesPage();
-  void createTurpointPage();
-  void createFinalPage();
+/* not using an empty inline function here because we don't want to
+   evaluate the parameters */
+#define LogDebug(...)
 
-  QWizardPage *filePage;
-  QWizardPage *rulesPage;
-  QWizardPage *turpointPage;
-  QWizardPage *finalPage;
-  };
+#endif /* NDEBUG */
 
-#endif  // __TASKWIZARD
+#endif  // __LOGFILE_HPP

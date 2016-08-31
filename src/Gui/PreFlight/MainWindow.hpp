@@ -36,8 +36,9 @@
 class QAction;
 class QMenu;
 class QPlainTextEdit;
-class QWizardPage;
+class QWizard;
 class QSessionManager;
+class QGroupBox;
 
 /**
  * The PreFlight main window.
@@ -72,8 +73,11 @@ private slots:
   bool saveAs();
   void about();
   void documentWasModified();
+  void taskAction();
+  void aircraftAction();
 
 private:
+  void createCommands();
   void createActions();
   void createMenus();
   void createToolBars();
@@ -85,8 +89,10 @@ private:
   void setCurrentFile(const QString &fileName);
   QString strippedName(const QString &fullFileName);
 
-  QPlainTextEdit *textEdit;
-  QWizardPage *wizard;
+  QGroupBox *selectorBox;
+  QGroupBox *inputBox;
+  QGroupBox *mainBox;
+  QWizard *wizard;
   QString curFile;
 
   QMenu *fileMenu;

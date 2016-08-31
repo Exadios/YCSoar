@@ -28,47 +28,41 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef __TASKWIZARD
-#define __TASKWIZARD
+#ifndef __PROFILETHUNK_H
+#define __PROFILETHUNK_H
 
-#include <QWizard>
+//#include "Profile.hpp"
+#include "Util/NonCopyable.hpp"
 
-class QWizardPage;
+class QString;
 
 /**
- * A wizard to create or edit a task.
+ * This class wraps the XCSoar Profile namespace.
  */
-class TaskWizard : public QWizard
-  {
-  Q_OBJECT
 
+class ProfileThunk : public NonCopyable
+  {
 public:
   /**
-   * Ctor.
+   * Instantiate the singleton object of this type.
+   * @return The singleton;
    */
-  TaskWizard();
+  static ProfileThunk& Instance()
+    {
+    static ProfileThunk self;
+    return self;
+    }
 
   /**
-   * Dtor. Destroy the pages.
+   * Give the path of the profile.
+   * @return The path of the profile file.
    */
-  ~TaskWizard();
-
-protected:
-
-private slots:
-  // TODO Return a selected file.
-  void browseOrNew();
+  QString Path() const;
 
 private:
-  void createFilePage();
-  void createRulesPage();
-  void createTurpointPage();
-  void createFinalPage();
-
-  QWizardPage *filePage;
-  QWizardPage *rulesPage;
-  QWizardPage *turpointPage;
-  QWizardPage *finalPage;
+  ProfileThunk();
   };
 
-#endif  // __TASKWIZARD
+
+
+#endif  // __PROFILETHUNK_H

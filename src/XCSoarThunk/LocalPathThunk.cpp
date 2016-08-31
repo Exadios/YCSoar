@@ -2,7 +2,7 @@
 Copyright_License {
 
   G-Meter INU.
-  Copyright (C) 2013-2016 Peter F Bradshaw
+  Copyright (C) 2013-2015 Peter F Bradshaw
   A detailed list of copyright holders can be found in the file "AUTHORS".
 
   This program is free software; you can redistribute it and/or
@@ -21,3 +21,22 @@ Copyright_License {
 }
 */
 
+#include "LocalPathThunk.hpp"
+
+#include <QString>
+
+extern TCHAR *gcc_restrict data_path;
+extern size_t data_path_length;
+
+//------------------------------------------------------------------------------
+QString
+LocalPathThunk::PrimaryDataPath() const
+  {
+  return ::GetPrimaryDataPath();
+  }
+
+//------------------------------------------------------------------------------
+LocalPathThunk::LocalPathThunk()
+  {
+  ::InitialiseDataPath();
+  }

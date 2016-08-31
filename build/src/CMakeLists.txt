@@ -1,3 +1,18 @@
+set(GUI ${YCSoar_SOURCE_DIR}/src/Gui)
+set(XCSOARTHUNK ${YCSoar_SOURCE_DIR}/src/XCSoarThunk)
+set(XCSOARSUBST ${YCSoar_SOURCE_DIR}/src/XCSoarSubst)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Qml REQUIRED)
+find_package(Qt5 COMPONENTS Quick Core Network)
+
+add_subdirectory(XCSoarSubst)
+add_subdirectory(XCSoarThunk)
 add_subdirectory(Gui)
 
 set(SRC ${YCSoar_SOURCE_DIR}/src)

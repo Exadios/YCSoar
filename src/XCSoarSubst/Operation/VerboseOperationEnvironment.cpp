@@ -21,3 +21,34 @@ Copyright_License {
 }
 */
 
+#include "VerboseOperationEnvironment.hpp"
+
+//------------------------------------------------------------------------------
+void
+VerboseOperationEnvironment::UpdateLayout()
+  {
+  }
+
+//------------------------------------------------------------------------------
+void
+VerboseOperationEnvironment::Hide()
+  {
+  }
+
+//------------------------------------------------------------------------------
+void
+VerboseOperationEnvironment::SetText(const TCHAR *)
+  {
+  }
+
+//------------------------------------------------------------------------------
+void
+VerboseOperationEnvironment::SetProgressRange(unsigned)
+  {
+  }
+
+//------------------------------------------------------------------------------
+void
+VerboseOperationEnvironment::SetProgressPosition(unsigned)
+  {
+  }

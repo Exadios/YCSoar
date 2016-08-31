@@ -23,22 +23,37 @@ Copyright_License {
 
 #include <QtWidgets>
 #include <QWizardPage>
+#include <QGroupBox>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QCommandLinkButton>
+#include <QString>
 
 #include "MainWindow.hpp"
+#include "TaskWizard.hpp"
+
+#include "ProfileThunk.hpp"
+//#include "Profile/Current.hpp"
+//#include "Profile/Settings.hpp"
+
+#include <iostream>
 
 //------------------------------------------------------------------------------
 MainWindow::MainWindow()
   {
-//  this->textEdit = new QPlainTextEdit;
-//  setCentralWidget(this->textEdit);
-  this->wizard = new QWizardPage;
-  this->wizard->setTitle("Test Page");
-  QLabel *label = new QLabel("This is a test.");
-  label->setWordWrap(true);
-  QVBoxLayout *layout = new QVBoxLayout;
-  layout->addWidget(label);
-  this->wizard->setLayout(layout);
-  setCentralWidget(this->wizard);
+  this->wizard                = new TaskWizard;
+  this->mainBox               = new QGroupBox;
+  this->inputBox              = new QGroupBox;
+  QVBoxLayout *mainLayout     = new QVBoxLayout;
+  QHBoxLayout *inputLayout    = new QHBoxLayout;
+  this->createCommands();
+  mainLayout->addWidget(selectorBox);
+  mainLayout->addWidget(inputBox);
+
+  this->inputBox->setLayout(inputLayout);
+  this->mainBox->setLayout(mainLayout);
+
+  setCentralWidget(this->mainBox);
 
   this->createActions();
   this->createMenus();
@@ -47,13 +62,9 @@ MainWindow::MainWindow()
 
   this->readSettings();
 
-//  connect(this->textEdit->document(),
-//          SIGNAL(this->contentsChanged()),
-//          this,
-//          SLOT(this->documentWasModified()));
-
   this->setCurrentFile("");
   this->setUnifiedTitleAndToolBarOnMac(true);
+//  ProfileThunk *ProfileThunk = &ProfileThunk::Instance();
   }
 
 //------------------------------------------------------------------------------
@@ -131,6 +142,37 @@ void MainWindow::about()
 void MainWindow::documentWasModified()
   {
 //  this->setWindowModified(textEdit->document()->isModified());
+  }
+
+//------------------------------------------------------------------------------
+void
+MainWindow::createCommands()
+  {
+  this->selectorBox           = new QGroupBox;
+  QHBoxLayout *selectorLayout = new QHBoxLayout;
+  QCommandLinkButton *taskCommand  = new QCommandLinkButton;
+  QCommandLinkButton *aircraftCommand = new QCommandLinkButton;
+  taskCommand->setText(QString("Task"));
+  aircraftCommand->setText(QString("Plane"));
+  selectorLayout->addWidget(taskCommand);
+  selectorLayout->addWidget(aircraftCommand);
+  this->selectorBox->setLayout(selectorLayout);
+  connect(taskCommand, SIGNAL(clicked()), this, SLOT(taskAction()));
+  connect(aircraftCommand, SIGNAL(clicked()), this, SLOT(aircraftAction()));
+  }
+
+//------------------------------------------------------------------------------
+void
+MainWindow::taskAction()
+  {
+  TaskWizard wizard;
+  wizard.exec();
+  }
+
+//------------------------------------------------------------------------------
+void
+MainWindow::aircraftAction()
+  {
   }
 
 //------------------------------------------------------------------------------

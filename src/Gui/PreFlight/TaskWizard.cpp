@@ -22,28 +22,95 @@ Copyright_License {
 */
 
 #include <QWidget>
-#include <QWizard>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QListView>
+#include <QPushButton>
+#include <QFileDialog>
 
 #include "TaskWizard.hpp"
+#include "LocalPathThunk.hpp"
+#include "Engine/Task/Ordered/OrderedTask.hpp"
+#include "Engine/Waypoint/Waypoints.hpp"
+#include "Terrain/RasterTerrain.hpp"
+#include "Operation/VerboseOperationEnvironment.hpp"
+#include "IO/FileCache.hpp"
+#include "Task/DefaultTask.hpp"
+#include "Waypoint/WaypointGlue.hpp"
+#include "Interface.hpp"
+
+#include "ProfileThunk.hpp"
+
+#include <iostream>
 
 //------------------------------------------------------------------------------
 TaskWizard::TaskWizard()
   {
+  this->createFilePage();
   this->createRulesPage();
   this->createTurpointPage();
   this->createFinalPage();
+  this->addPage(this->filePage);
+  this->addPage(this->rulesPage);
+  this->addPage(this->turpointPage);
+  this->addPage(this->finalPage);
   }
 
 //------------------------------------------------------------------------------
 TaskWizard::~TaskWizard()
   {
+  delete this->filePage;
   delete this->rulesPage;
   delete this->turpointPage;
   delete this->finalPage;
   }
 
+//------------------------------------------------------------------------------
+void
+TaskWizard::browseOrNew()
+  {
+  LocalPathThunk *lp;
+  lp = &LocalPathThunk::Instance();
+  QFileDialog fileSelector(this,
+                           "Task File",
+                           QString(lp->PrimaryDataPath()) + QString("/tasks"),
+                           "*.tsk;;*.*");
+  fileSelector.setFileMode(QFileDialog::AnyFile);
+  fileSelector.setViewMode(QFileDialog::Detail);
+  if (fileSelector.exec())
+    {
+    QStringList names = fileSelector.selectedFiles();
+    std::cerr << "Selected: " << names.at(0).toLocal8Bit().constData() << std::endl;
+    }
+  }
+
+//------------------------------------------------------------------------------
+void
+TaskWizard::createFilePage()
+  {
+  this->filePage = new QWizardPage;
+  this->filePage->setTitle("Task");
+  QLabel *label = new QLabel("Select current or new task");
+  label->setWordWrap(true);
+  QPushButton *newTask = new QPushButton("New or Load");
+  QVBoxLayout *layout = new QVBoxLayout;
+  layout->addWidget(label);
+  layout->addWidget(newTask);
+  connect(newTask, SIGNAL(clicked()), this, SLOT(browseOrNew()));
+
+  TCHAR path[256];  // \todo Set this length from the appropiate header!
+  LocalPath(path, _T("cache"));
+  FileCache *file_cache = new FileCache(path);
+  VerboseOperationEnvironment operation;
+  RasterTerrain *terrain = RasterTerrain::OpenTerrain(file_cache, operation);
+  Waypoints waypoints;
+  WaypointGlue::LoadWaypoints(waypoints, terrain, operation);
+  OrderedTask *defaultTask = LoadDefaultTask(CommonInterface::GetComputerSettings().task,
+                                             &waypoints);
+  defaultTask->CheckDuplicateWaypoints(waypoints);
+  waypoints.Optimise();
+  this->filePage->setLayout(layout);
+  }
 //------------------------------------------------------------------------------
 void
 TaskWizard::createRulesPage()
@@ -55,17 +122,25 @@ TaskWizard::createRulesPage()
   QVBoxLayout *layout = new QVBoxLayout;
   layout->addWidget(label);
   this->rulesPage->setLayout(layout);
+//  ProfileThunk *ProfileThunk = &ProfileThunk::Instance();
   }
 
 //------------------------------------------------------------------------------
 void
 TaskWizard::createTurpointPage()
   {
+  this->turpointPage = new QWizardPage;
+  this->turpointPage->setTitle("Turn Point");
+  QVBoxLayout *layout = new QVBoxLayout;
+  QListView *turnpointList = new QListView;
+  layout->addWidget(turnpointList);
+  this->turpointPage->setLayout(layout);
   }
 
 //------------------------------------------------------------------------------
 void
 TaskWizard::createFinalPage()
   {
+  this->finalPage = new QWizardPage;
   }
 

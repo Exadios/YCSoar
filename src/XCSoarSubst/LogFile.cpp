@@ -21,3 +21,47 @@ Copyright_License {
 }
 */
 
+#include "LogFile.hpp"
+#include "LocalPath.hpp"
+#include "Asset.hpp"
+#include "IO/TextWriter.hpp"
+#include "Formatter/TimeFormatter.hpp"
+#include "Time/BrokenDateTime.hpp"
+#include "OS/FileUtil.hpp"
+
+#include <stdio.h>
+#include <stdarg.h>
+#include <windef.h> // for MAX_PATH
+#include <iostream>
+
+//------------------------------------------------------------------------------
+void
+LogFormat(const char *fmt, ...)
+  {
+  char buf[MAX_PATH];
+  va_list ap;
+
+  va_start(ap, fmt);
+  vsprintf(buf, fmt, ap);
+  va_end(ap);
+
+  std::cerr << buf << std::endl;
+  }
+
+#ifdef _UNICODE
+
+//------------------------------------------------------------------------------
+void
+LogFormat(const TCHAR *Str, ...)
+  {
+  TCHAR buf[MAX_PATH];
+  va_list ap;
+
+  va_start(ap, Str);
+  _vstprintf(buf, Str, ap);
+  va_end(ap);
+
+  std::cerr << buf << std::endl;
+  }
+
+#endif
