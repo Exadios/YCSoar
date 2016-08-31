@@ -2,10 +2,9 @@ set(XCSOAR ${YCSoar_SOURCE_DIR}/submodule/xcsoar-exp)
 set(XCSOAR_SRC ${XCSOAR}/src)
 set(OUTPUT_INCLUDE ${YCSoar_BINARY_DIR}/include)
 
-
 include_directories(${XCSOAR_SRC})
-add_definitions(-DHAVE_POSIX) # For POSIX only
 add_definitions(-DZLIB_CONST) # Make some of zlib const.
+add_definitions(-DUSE_WGS84 -DRADIANS -DEYE_CANDY)
 
 set(UTIL_DIR ${XCSOAR_SRC}/Util)
 set(UTIL_SRCS ${UTIL_DIR}/CRC.cpp
@@ -81,167 +80,171 @@ set(IO_SRCS ${IO_DIR}/FileTransaction.cpp
 include_directories(${XCSOAR_SRC} ${IO_DIR})
 add_library(Io-${T} ${IO_SRCS})
 
-set(WAYPOINT_DIR ${XCSOAR_SRC}/Engine/Waypoint)
-set(WAYPOINT_SRCS ${WAYPOINT_DIR}/WaypointVisitor.cpp
-                  ${WAYPOINT_DIR}/Waypoints.cpp
-                  ${WAYPOINT_DIR}/Waypoint.cpp)
-include_directories(${XCSOAR_SRC} ${WAYPOINT_DIR})
-add_library(Waypoint-${T} ${WAYPOINT_SRCS})
+set(WAYPOINTENGINE_DIR ${XCSOAR_SRC}/Engine/Waypoint)
+set(WAYPOINTENGINE_SRCS ${WAYPOINTENGINE_DIR}/WaypointVisitor.cpp
+                        ${WAYPOINTENGINE_DIR}/Waypoints.cpp
+                        ${WAYPOINTENGINE_DIR}/Waypoint.cpp)
+include_directories(${XCSOAR_SRC} ${WAYPOINTENGINE_DIR})
+add_library(WaypointEngine-${T} ${WAYPOINTENGINE_SRCS})
+target_link_libraries(WaypointEngine-${T} Geo-${T} Math-${T})
 
-set(ROUTE_DIR ${XCSOAR_SRC}/Engine/Route)
-set(ROUTE_SRCS ${ROUTE_DIR}/Config.cpp
-               ${ROUTE_DIR}/RoutePlanner.cpp
-               ${ROUTE_DIR}/AirspaceRoute.cpp
-               ${ROUTE_DIR}/TerrainRoute.cpp
-               ${ROUTE_DIR}/RouteLink.cpp
-               ${ROUTE_DIR}/RoutePolar.cpp
-               ${ROUTE_DIR}/RoutePolars.cpp
-               ${ROUTE_DIR}/FlatTriangleFan.cpp
-               ${ROUTE_DIR}/FlatTriangleFanTree.cpp
-               ${ROUTE_DIR}/ReachFan.cpp)
-include_directories(${XCSOAR_SRC} ${ROUTE_DIR} ${XCSOAR_SRC}/Engine)
-add_library(Route-${T} ${ROUTE_SRCS})
+set(ROUTEENGINE_DIR ${XCSOAR_SRC}/Engine/Route)
+set(ROUTEENGINE_SRCS ${ROUTEENGINE_DIR}/Config.cpp
+                     ${ROUTEENGINE_DIR}/RoutePlanner.cpp
+                     ${ROUTEENGINE_DIR}/AirspaceRoute.cpp
+                     ${ROUTEENGINE_DIR}/TerrainRoute.cpp
+                     ${ROUTEENGINE_DIR}/RouteLink.cpp
+                     ${ROUTEENGINE_DIR}/RoutePolar.cpp
+                     ${ROUTEENGINE_DIR}/RoutePolars.cpp
+                     ${ROUTEENGINE_DIR}/FlatTriangleFan.cpp
+                     ${ROUTEENGINE_DIR}/FlatTriangleFanTree.cpp
+                     ${ROUTEENGINE_DIR}/ReachFan.cpp)
+include_directories(${XCSOAR_SRC} ${ROUTEENGINE_DIR} ${XCSOAR_SRC}/Engine)
+add_library(RouteEngine-${T} ${ROUTEENGINE_SRCS})
 
-set(GLIDE_DIR ${XCSOAR_SRC}/Engine/GlideSolvers)
-set(GLIDE_SRCS ${GLIDE_DIR}/GlideSettings.cpp
-               ${GLIDE_DIR}/GlideState.cpp
-               ${GLIDE_DIR}/GlueGlideState.cpp
-               ${GLIDE_DIR}/GlidePolar.cpp
-               ${GLIDE_DIR}/PolarCoefficients.cpp
-               ${GLIDE_DIR}/GlideResult.cpp
-               ${GLIDE_DIR}/MacCready.cpp)
-include_directories(${XCSOAR_SRC} ${GLIDE_DIR})
-add_library(Glide-${T} ${GLIDE_SRCS})
+set(GLIDEENGINE_DIR ${XCSOAR_SRC}/Engine/GlideSolvers)
+set(GLIDEENGINE_SRCS ${GLIDEENGINE_DIR}/GlideSettings.cpp
+                     ${GLIDEENGINE_DIR}/GlideState.cpp
+                     ${GLIDEENGINE_DIR}/GlueGlideState.cpp
+                     ${GLIDEENGINE_DIR}/GlidePolar.cpp
+                     ${GLIDEENGINE_DIR}/PolarCoefficients.cpp
+                     ${GLIDEENGINE_DIR}/GlideResult.cpp
+                     ${GLIDEENGINE_DIR}/MacCready.cpp)
+include_directories(${XCSOAR_SRC} ${GLIDEENGINE_DIR})
+add_library(GlideEngine-${T} ${GLIDEENGINE_SRCS})
 
-set(CONTEST_DIR ${XCSOAR_SRC}/Engine/Contest)
-set(CONTEST_SRCS ${CONTEST_DIR}/Settings.cpp
-                 ${CONTEST_DIR}/ContestManager.cpp
-                 ${CONTEST_DIR}/Solvers/Contests.cpp
-                 ${CONTEST_DIR}/Solvers/AbstractContest.cpp
-                 ${CONTEST_DIR}/Solvers/TraceManager.cpp
-                 ${CONTEST_DIR}/Solvers/ContestDijkstra.cpp
-                 ${CONTEST_DIR}/Solvers/DMStQuad.cpp
-                 ${CONTEST_DIR}/Solvers/OLCLeague.cpp
-                 ${CONTEST_DIR}/Solvers/OLCSprint.cpp
-                 ${CONTEST_DIR}/Solvers/OLCClassic.cpp
-                 ${CONTEST_DIR}/Solvers/OLCTriangle.cpp
-                 ${CONTEST_DIR}/Solvers/OLCFAI.cpp
-                 ${CONTEST_DIR}/Solvers/OLCPlus.cpp
-                 ${CONTEST_DIR}/Solvers/DMStQuad.cpp
-                 ${CONTEST_DIR}/Solvers/XContestFree.cpp
-                 ${CONTEST_DIR}/Solvers/XContestTriangle.cpp
-                 ${CONTEST_DIR}/Solvers/OLCSISAT.cpp
-                 ${CONTEST_DIR}/Solvers/NetCoupe.cpp
-                 ${CONTEST_DIR}/Solvers/Retrospective.cpp)
-include_directories(${XCSOAR_SRC} ${CONTEST_DIR})
-add_library(Contest-${T} ${CONTEST_SRCS})
+set(CONTESTENGINE_DIR ${XCSOAR_SRC}/Engine/Contest)
+set(CONTESTENGINE_SRCS ${CONTESTENGINE_DIR}/Settings.cpp
+                       ${CONTESTENGINE_DIR}/ContestManager.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/Contests.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/AbstractContest.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/TraceManager.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/ContestDijkstra.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/DMStQuad.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/OLCLeague.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/OLCSprint.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/OLCClassic.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/OLCTriangle.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/OLCFAI.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/OLCPlus.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/DMStQuad.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/XContestFree.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/XContestTriangle.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/OLCSISAT.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/NetCoupe.cpp
+                       ${CONTESTENGINE_DIR}/Solvers/Retrospective.cpp)
+include_directories(${XCSOAR_SRC} ${CONTESTENGINE_DIR})
+add_library(ContestEngine-${T} ${CONTESTENGINE_SRCS})
 
-set(TASK_DIR ${XCSOAR_SRC}/Engine/Task)
-set(TASK_SRCS ${TASK_DIR}/Shapes/FAITriangleSettings.cpp 
-              ${TASK_DIR}/Shapes/FAITriangleRules.cpp 
-              ${TASK_DIR}/Shapes/FAITriangleArea.cpp 
-              ${TASK_DIR}/Shapes/FAITriangleTask.cpp 
-              ${TASK_DIR}/Shapes/FAITrianglePointValidator.cpp 
-              ${TASK_DIR}/TaskBehaviour.cpp 
-              ${TASK_DIR}/TaskManager.cpp 
-              ${TASK_DIR}/AbstractTask.cpp 
-              ${TASK_DIR}/Ordered/StartConstraints.cpp 
-              ${TASK_DIR}/Ordered/FinishConstraints.cpp 
-              ${TASK_DIR}/Ordered/Settings.cpp 
-              ${TASK_DIR}/Ordered/OrderedTask.cpp 
-              ${TASK_DIR}/Ordered/TaskAdvance.cpp 
-              ${TASK_DIR}/Ordered/SmartTaskAdvance.cpp 
-              ${TASK_DIR}/Ordered/Points/IntermediatePoint.cpp 
-              ${TASK_DIR}/Ordered/Points/OrderedTaskPoint.cpp 
-              ${TASK_DIR}/Ordered/Points/StartPoint.cpp 
-              ${TASK_DIR}/Ordered/Points/FinishPoint.cpp 
-              ${TASK_DIR}/Ordered/Points/ASTPoint.cpp 
-              ${TASK_DIR}/Ordered/Points/AATPoint.cpp 
-              ${TASK_DIR}/Ordered/AATIsoline.cpp 
-              ${TASK_DIR}/Ordered/AATIsolineSegment.cpp 
-              ${TASK_DIR}/Unordered/UnorderedTask.cpp 
-              ${TASK_DIR}/Unordered/UnorderedTaskPoint.cpp 
-              ${TASK_DIR}/Unordered/GotoTask.cpp 
-              ${TASK_DIR}/Unordered/AbortTask.cpp 
-              ${TASK_DIR}/Unordered/AlternateTask.cpp 
-              ${TASK_DIR}/Factory/AbstractTaskFactory.cpp 
-              ${TASK_DIR}/Factory/RTTaskFactory.cpp 
-              ${TASK_DIR}/Factory/FAITaskFactory.cpp 
-              ${TASK_DIR}/Factory/FAITriangleTaskFactory.cpp 
-              ${TASK_DIR}/Factory/FAIORTaskFactory.cpp 
-              ${TASK_DIR}/Factory/FAIGoalTaskFactory.cpp 
-              ${TASK_DIR}/Factory/AATTaskFactory.cpp 
-              ${TASK_DIR}/Factory/MatTaskFactory.cpp 
-              ${TASK_DIR}/Factory/MixedTaskFactory.cpp 
-              ${TASK_DIR}/Factory/TouringTaskFactory.cpp 
-              ${TASK_DIR}/Factory/Create.cpp 
-              ${TASK_DIR}/Points/TaskPoint.cpp 
-              ${TASK_DIR}/Points/SampledTaskPoint.cpp 
-              ${TASK_DIR}/Points/ScoredTaskPoint.cpp 
-              ${TASK_DIR}/Points/TaskLeg.cpp 
-              ${TASK_DIR}/ObservationZones/Boundary.cpp 
-              ${TASK_DIR}/ObservationZones/ObservationZoneClient.cpp 
-              ${TASK_DIR}/ObservationZones/ObservationZonePoint.cpp 
-              ${TASK_DIR}/ObservationZones/CylinderZone.cpp 
-              ${TASK_DIR}/ObservationZones/SectorZone.cpp 
-              ${TASK_DIR}/ObservationZones/LineSectorZone.cpp 
-              ${TASK_DIR}/ObservationZones/SymmetricSectorZone.cpp 
-              ${TASK_DIR}/ObservationZones/KeyholeZone.cpp 
-              ${TASK_DIR}/ObservationZones/AnnularSectorZone.cpp 
-              ${TASK_DIR}/PathSolvers/TaskDijkstra.cpp 
-              ${TASK_DIR}/PathSolvers/TaskDijkstraMin.cpp 
-              ${TASK_DIR}/PathSolvers/TaskDijkstraMax.cpp 
-              ${TASK_DIR}/PathSolvers/IsolineCrossingFinder.cpp 
-              ${TASK_DIR}/Solvers/TaskMacCready.cpp 
-              ${TASK_DIR}/Solvers/TaskMacCreadyTravelled.cpp 
-              ${TASK_DIR}/Solvers/TaskMacCreadyRemaining.cpp 
-              ${TASK_DIR}/Solvers/TaskMacCreadyTotal.cpp 
-              ${TASK_DIR}/Solvers/TaskBestMc.cpp 
-              ${TASK_DIR}/Solvers/TaskSolveTravelled.cpp 
-              ${TASK_DIR}/Solvers/TaskCruiseEfficiency.cpp 
-              ${TASK_DIR}/Solvers/TaskEffectiveMacCready.cpp 
-              ${TASK_DIR}/Solvers/TaskMinTarget.cpp 
-              ${TASK_DIR}/Solvers/TaskOptTarget.cpp 
-              ${TASK_DIR}/Solvers/TaskGlideRequired.cpp 
-              ${TASK_DIR}/Solvers/TaskSolution.cpp 
-              ${TASK_DIR}/Computer/ElementStatComputer.cpp 
-              ${TASK_DIR}/Computer/DistanceStatComputer.cpp 
-              ${TASK_DIR}/Computer/IncrementalSpeedComputer.cpp 
-              ${TASK_DIR}/Computer/TaskVarioComputer.cpp 
-              ${TASK_DIR}/Computer/TaskStatsComputer.cpp 
-              ${TASK_DIR}/Computer/WindowStatsComputer.cpp 
-              ${TASK_DIR}/Stats/CommonStats.cpp 
-              ${TASK_DIR}/Stats/ElementStat.cpp 
-              ${TASK_DIR}/Stats/TaskStats.cpp
-              ${TASK_DIR}/Stats/StartStats.cpp)
-include_directories(${XCSOAR_SRC} ${TASK_DIR})
-add_library(Task-${T} ${TASK_SRCS})
+set(TASKENGINE_DIR ${XCSOAR_SRC}/Engine/Task)
+set(TASKENGINE_SRCS ${TASKENGINE_DIR}/Shapes/FAITriangleSettings.cpp
+                    ${TASKENGINE_DIR}/Shapes/FAITriangleRules.cpp
+                    ${TASKENGINE_DIR}/Shapes/FAITriangleArea.cpp
+                    ${TASKENGINE_DIR}/Shapes/FAITriangleTask.cpp
+                    ${TASKENGINE_DIR}/Shapes/FAITrianglePointValidator.cpp
+                    ${TASKENGINE_DIR}/TaskBehaviour.cpp
+                    ${TASKENGINE_DIR}/TaskManager.cpp
+                    ${TASKENGINE_DIR}/AbstractTask.cpp
+                    ${TASKENGINE_DIR}/Ordered/StartConstraints.cpp
+                    ${TASKENGINE_DIR}/Ordered/FinishConstraints.cpp
+                    ${TASKENGINE_DIR}/Ordered/Settings.cpp
+                    ${TASKENGINE_DIR}/Ordered/OrderedTask.cpp
+                    ${TASKENGINE_DIR}/Ordered/TaskAdvance.cpp
+                    ${TASKENGINE_DIR}/Ordered/SmartTaskAdvance.cpp
+                    ${TASKENGINE_DIR}/Ordered/Points/IntermediatePoint.cpp
+                    ${TASKENGINE_DIR}/Ordered/Points/OrderedTaskPoint.cpp
+                    ${TASKENGINE_DIR}/Ordered/Points/StartPoint.cpp
+                    ${TASKENGINE_DIR}/Ordered/Points/FinishPoint.cpp
+                    ${TASKENGINE_DIR}/Ordered/Points/ASTPoint.cpp
+                    ${TASKENGINE_DIR}/Ordered/Points/AATPoint.cpp
+                    ${TASKENGINE_DIR}/Ordered/AATIsoline.cpp
+                    ${TASKENGINE_DIR}/Ordered/AATIsolineSegment.cpp
+                    ${TASKENGINE_DIR}/Unordered/UnorderedTask.cpp
+                    ${TASKENGINE_DIR}/Unordered/UnorderedTaskPoint.cpp
+                    ${TASKENGINE_DIR}/Unordered/GotoTask.cpp
+                    ${TASKENGINE_DIR}/Unordered/AbortTask.cpp
+                    ${TASKENGINE_DIR}/Unordered/AlternateTask.cpp
+                    ${TASKENGINE_DIR}/Factory/AbstractTaskFactory.cpp
+                    ${TASKENGINE_DIR}/Factory/RTTaskFactory.cpp
+                    ${TASKENGINE_DIR}/Factory/FAITaskFactory.cpp
+                    ${TASKENGINE_DIR}/Factory/FAITriangleTaskFactory.cpp
+                    ${TASKENGINE_DIR}/Factory/FAIORTaskFactory.cpp
+                    ${TASKENGINE_DIR}/Factory/FAIGoalTaskFactory.cpp
+                    ${TASKENGINE_DIR}/Factory/AATTaskFactory.cpp
+                    ${TASKENGINE_DIR}/Factory/MatTaskFactory.cpp
+                    ${TASKENGINE_DIR}/Factory/MixedTaskFactory.cpp
+                    ${TASKENGINE_DIR}/Factory/TouringTaskFactory.cpp
+                    ${TASKENGINE_DIR}/Factory/Create.cpp
+                    ${TASKENGINE_DIR}/Points/TaskPoint.cpp
+                    ${TASKENGINE_DIR}/Points/SampledTaskPoint.cpp
+                    ${TASKENGINE_DIR}/Points/ScoredTaskPoint.cpp
+                    ${TASKENGINE_DIR}/Points/TaskLeg.cpp
+                    ${TASKENGINE_DIR}/ObservationZones/Boundary.cpp
+                    ${TASKENGINE_DIR}/ObservationZones/ObservationZoneClient.cpp
+                    ${TASKENGINE_DIR}/ObservationZones/ObservationZonePoint.cpp
+                    ${TASKENGINE_DIR}/ObservationZones/CylinderZone.cpp
+                    ${TASKENGINE_DIR}/ObservationZones/SectorZone.cpp
+                    ${TASKENGINE_DIR}/ObservationZones/LineSectorZone.cpp
+                    ${TASKENGINE_DIR}/ObservationZones/SymmetricSectorZone.cpp
+                    ${TASKENGINE_DIR}/ObservationZones/KeyholeZone.cpp
+                    ${TASKENGINE_DIR}/ObservationZones/AnnularSectorZone.cpp
+                    ${TASKENGINE_DIR}/PathSolvers/TaskDijkstra.cpp
+                    ${TASKENGINE_DIR}/PathSolvers/TaskDijkstraMin.cpp
+                    ${TASKENGINE_DIR}/PathSolvers/TaskDijkstraMax.cpp
+                    ${TASKENGINE_DIR}/PathSolvers/IsolineCrossingFinder.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskMacCready.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskMacCreadyTravelled.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskMacCreadyRemaining.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskMacCreadyTotal.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskBestMc.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskSolveTravelled.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskCruiseEfficiency.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskEffectiveMacCready.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskMinTarget.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskOptTarget.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskGlideRequired.cpp
+                    ${TASKENGINE_DIR}/Solvers/TaskSolution.cpp
+                    ${TASKENGINE_DIR}/Computer/ElementStatComputer.cpp
+                    ${TASKENGINE_DIR}/Computer/DistanceStatComputer.cpp
+                    ${TASKENGINE_DIR}/Computer/IncrementalSpeedComputer.cpp
+                    ${TASKENGINE_DIR}/Computer/TaskVarioComputer.cpp
+                    ${TASKENGINE_DIR}/Computer/TaskStatsComputer.cpp
+                    ${TASKENGINE_DIR}/Computer/WindowStatsComputer.cpp
+                    ${TASKENGINE_DIR}/Stats/CommonStats.cpp
+                    ${TASKENGINE_DIR}/Stats/ElementStat.cpp
+                    ${TASKENGINE_DIR}/Stats/TaskStats.cpp
+                    ${TASKENGINE_DIR}/Stats/StartStats.cpp)
+include_directories(${XCSOAR_SRC} ${TASKENGINE_DIR})
+add_library(TaskEngine-${T} ${TASKENGINE_SRCS})
+# TaskEngine should not depend on XCSoarMain but is made necessary because of
+# the sematics of the original XCSoar build system.
+target_link_libraries(TaskEngine-${T} GlideEngine-${T} XCSoarMain-${T})
 
-set(AIRSPACE_DIR ${XCSOAR_SRC}/Engine/Airspace)
+set(AIRSPACEENGINE_DIR ${XCSOAR_SRC}/Engine/Airspace)
 set(ENGINE_DIR   ${XCSOAR_SRC}/Engine)
-set(AIRSPACE_SRCS ${ENGINE_DIR}/Util/AircraftStateFilter.cpp
-                  ${AIRSPACE_DIR}/AirspacesTerrain.cpp
-                  ${AIRSPACE_DIR}/Airspace.cpp
-                  ${AIRSPACE_DIR}/AirspaceAltitude.cpp
-                  ${AIRSPACE_DIR}/AirspaceAircraftPerformance.cpp
-                  ${AIRSPACE_DIR}/AbstractAirspace.cpp
-                  ${AIRSPACE_DIR}/AirspaceCircle.cpp
-                  ${AIRSPACE_DIR}/AirspacePolygon.cpp
-                  ${AIRSPACE_DIR}/Airspaces.cpp
-                  ${AIRSPACE_DIR}/AirspaceIntersectSort.cpp
-                  ${AIRSPACE_DIR}/SoonestAirspace.cpp
-                  ${AIRSPACE_DIR}/Predicate/AirspacePredicate.cpp
-                  ${AIRSPACE_DIR}/Predicate/AirspacePredicateAircraftInside.cpp
-                  ${AIRSPACE_DIR}/Predicate/AirspacePredicateHeightRange.cpp
-                  ${AIRSPACE_DIR}/Predicate/OutsideAirspacePredicate.cpp
-                  ${AIRSPACE_DIR}/AirspaceVisitor.cpp
-                  ${AIRSPACE_DIR}/AirspaceIntersectionVisitor.cpp
-                  ${AIRSPACE_DIR}/AirspaceWarningConfig.cpp
-                  ${AIRSPACE_DIR}/AirspaceWarningManager.cpp
-                  ${AIRSPACE_DIR}/AirspaceWarning.cpp
-                  ${AIRSPACE_DIR}/AirspaceSorter.cpp)
-include_directories(${XCSOAR_SRC} ${AIRSPACE_DIR})
-add_library(Airspace-${T} ${AIRSPACE_SRCS})
+set(AIRSPACEENGINE_SRCS ${ENGINE_DIR}/Util/AircraftStateFilter.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspacesTerrain.cpp
+                        ${AIRSPACEENGINE_DIR}/Airspace.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspaceAltitude.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspaceAircraftPerformance.cpp
+                        ${AIRSPACEENGINE_DIR}/AbstractAirspace.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspaceCircle.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspacePolygon.cpp
+                        ${AIRSPACEENGINE_DIR}/Airspaces.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspaceIntersectSort.cpp
+                        ${AIRSPACEENGINE_DIR}/SoonestAirspace.cpp
+                        ${AIRSPACEENGINE_DIR}/Predicate/AirspacePredicate.cpp
+                        ${AIRSPACEENGINE_DIR}/Predicate/AirspacePredicateAircraftInside.cpp
+                        ${AIRSPACEENGINE_DIR}/Predicate/AirspacePredicateHeightRange.cpp
+                        ${AIRSPACEENGINE_DIR}/Predicate/OutsideAirspacePredicate.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspaceVisitor.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspaceIntersectionVisitor.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspaceWarningConfig.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspaceWarningManager.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspaceWarning.cpp
+                        ${AIRSPACEENGINE_DIR}/AirspaceSorter.cpp)
+include_directories(${XCSOAR_SRC} ${AIRSPACEENGINE_DIR})
+add_library(AirspaceEngine-${T} ${AIRSPACEENGINE_SRCS})
 
 # Device drivers
 set(DRIVER_DIR ${XCSOAR_SRC}/Device/Driver)
@@ -373,25 +376,197 @@ if(HAVE_POSIX)
 endif(HAVE_POSIX)
 add_library(Os-${T} ${OS_SRCS})
 
-set(MAIN_SRCS ${XCSOAR_SRC}/LocalPath.cpp)
+set(THREAD_DIR ${XCSOAR_SRC}/Thread)
+set(THREAD_SRCS	${XCSOAR_SRC}/Poco/RWLock.cpp
+                ${THREAD_DIR}/Thread.cpp
+                ${THREAD_DIR}/SuspensibleThread.cpp
+                ${THREAD_DIR}/RecursivelySuspensibleThread.cpp
+                ${THREAD_DIR}/WorkerThread.cpp
+                ${THREAD_DIR}/StandbyThread.cpp
+                ${THREAD_DIR}/Mutex.cpp
+                ${THREAD_DIR}/Debug.cpp)
+add_library(Thread-${T} ${THREAD_SRCS})
+target_link_libraries(Thread-${T} pthread)
+
+set(TERRAIN_DIR ${XCSOAR_SRC}/Terrain)
+set(TERRAIN_SRCS ${TERRAIN_DIR}/RasterBuffer.cpp
+                 ${TERRAIN_DIR}/RasterProjection.cpp
+                 ${TERRAIN_DIR}/RasterMap.cpp
+                 ${TERRAIN_DIR}/RasterTile.cpp
+                 ${TERRAIN_DIR}/RasterTileCache.cpp
+                 ${TERRAIN_DIR}/Intersection.cpp
+                 ${TERRAIN_DIR}/ScanLine.cpp
+                 ${TERRAIN_DIR}/RasterTerrain.cpp
+                 ${TERRAIN_DIR}/RasterWeatherStore.cpp
+                 ${TERRAIN_DIR}/RasterWeatherCache.cpp
+                 ${TERRAIN_DIR}/HeightMatrix.cpp
+                 ${TERRAIN_DIR}/RasterRenderer.cpp
+                 ${TERRAIN_DIR}/TerrainRenderer.cpp
+                 ${TERRAIN_DIR}/WeatherTerrainRenderer.cpp
+                 ${TERRAIN_DIR}/TerrainSettings.cpp)
+add_library(Terrain-${T} ${TERRAIN_SRCS})
+target_link_libraries(Terrain-${T} Jasper-${T})
+
+set(PROFILE_DIR ${XCSOAR_SRC}/Profile)
+set(PROFILE_SRCS ${PROFILE_DIR}/File.cpp
+                 ${PROFILE_DIR}/Current.cpp
+                 ${PROFILE_DIR}/Map.cpp
+                 ${PROFILE_DIR}/StringValue.cpp
+                 ${PROFILE_DIR}/NumericValue.cpp
+                 ${PROFILE_DIR}/PathValue.cpp
+                 ${PROFILE_DIR}/GeoValue.cpp
+                 ${PROFILE_DIR}/ProfileKeys.cpp
+                 ${PROFILE_DIR}/ProfileMap.cpp)
+add_library(Profile-${T} ${PROFILE_SRCS})
+target_link_libraries(Profile-${T} Io-${T})
+
+set(TIME_DIR ${XCSOAR_SRC}/Time)
+set(TIME_SRCS ${TIME_DIR}/DeltaTime.cpp
+              ${TIME_DIR}/WrapClock.cpp
+              ${TIME_DIR}/LocalTime.cpp
+              ${TIME_DIR}/BrokenTime.cpp
+              ${TIME_DIR}/BrokenDate.cpp
+              ${TIME_DIR}/BrokenDateTime.cpp)
+add_library(Time-${T} ${TIME_SRCS})
+
+set(JASPER_DIR ${XCSOAR_SRC}/Terrain/jasper)
+set(JASPER_SRCS ${JASPER_DIR}/base/jas_debug.c
+                ${JASPER_DIR}/base/jas_malloc.c
+                ${JASPER_DIR}/base/jas_seq.c
+                ${JASPER_DIR}/base/jas_stream.c
+                ${JASPER_DIR}/base/jas_string.c
+                ${JASPER_DIR}/base/jas_tvp.c
+                ${JASPER_DIR}/jp2/jp2_cod.c
+                ${JASPER_DIR}/jp2/jp2_dec.c
+                ${JASPER_DIR}/jpc/jpc_bs.c
+                ${JASPER_DIR}/jpc/jpc_cs.c
+                ${JASPER_DIR}/jpc/jpc_dec.c
+                ${JASPER_DIR}/jpc/jpc_math.c
+                ${JASPER_DIR}/jpc/jpc_mct.c
+                ${JASPER_DIR}/jpc/jpc_mqdec.c
+                ${JASPER_DIR}/jpc/jpc_mqcod.c
+                ${JASPER_DIR}/jpc/jpc_qmfb.c
+                ${JASPER_DIR}/jpc/jpc_rtc.cpp
+                ${JASPER_DIR}/jpc/jpc_t1dec.c
+                ${JASPER_DIR}/jpc/jpc_t1cod.c
+                ${JASPER_DIR}/jpc/jpc_t2dec.c
+                ${JASPER_DIR}/jpc/jpc_t2cod.c
+                ${JASPER_DIR}/jpc/jpc_tagtree.c
+                ${JASPER_DIR}/jpc/jpc_tsfb.c
+                ${JASPER_DIR}/jpc/jpc_util.c)
+add_library(Jasper-${T} ${JASPER_SRCS})
+#get_target_property(JASPER_INCLUDES Jasper-${T} INCLUDE_DIRECTORIES)
+#set(JASPER_INCLUDES ${JASPER_INCLUDES} ${XCSOAR_SRC}/Terrain)
+#set_target_properties(Jasper-${T}
+#                      PROPERTIES INCLUDE_DIRECTORIES ${JASPER_INCLUDES})
+include_directories(${XCSOAR_SRC}/Terrain)
+# It is an unfortunate fact that Jasper compiles with warnings. Turn off
+# the errors that would occur.
+target_compile_options(Jasper-${T}
+                       PRIVATE -Wno-error=implicit-function-declaration
+                       PRIVATE -Wno-error=unused-but-set-parameter
+                       PRIVATE -Wno-error=unused-but-set-variable)
+target_link_libraries(Jasper-${T} Zzip-${T})
+
+set(ZZIP_DIR ${XCSOAR_SRC}/zzip)
+set(ZZIP_SRCS ${ZZIP_DIR}/fetch.c
+              ${ZZIP_DIR}/file.c
+              ${ZZIP_DIR}/plugin.c
+              ${ZZIP_DIR}/zip.c
+              ${ZZIP_DIR}/stat.c)
+add_library(Zzip-${T} ${ZZIP_SRCS})
+target_link_libraries(Zzip-${T} z)
+
+set(MAIN_SRCS ${XCSOAR_SRC}/LocalPath.cpp
+              ${XCSOAR_SRC}/Profile/Profile.cpp
+              ${XCSOAR_SRC}/LogFile.cpp
+              ${XCSOAR_SRC}/Interface.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointList.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointListBuilder.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointFilter.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointGlue.cpp
+              ${XCSOAR_SRC}/Task/DefaultTask.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointList.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointListBuilder.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointFilter.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointGlue.cpp
+              ${XCSOAR_SRC}/Waypoint/SaveGlue.cpp
+              ${XCSOAR_SRC}/Waypoint/LastUsed.cpp
+              ${XCSOAR_SRC}/Waypoint/HomeGlue.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointFileType.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointReader.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointReaderBase.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointReaderOzi.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointReaderFS.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointReaderWinPilot.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointReaderSeeYou.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointReaderZander.cpp
+              ${XCSOAR_SRC}/Waypoint/WaypointReaderCompeGPS.cpp
+              ${XCSOAR_SRC}/Waypoint/CupWriter.cpp
+              ${XCSOAR_SRC}/Waypoint/Factory.cpp
+              ${XCSOAR_SRC}/Units/Units.cpp
+              ${XCSOAR_SRC}/Units/System.cpp
+              ${XCSOAR_SRC}/Task/Serialiser.cpp
+              ${XCSOAR_SRC}/Task/Deserialiser.cpp
+              ${XCSOAR_SRC}/Task/SaveFile.cpp
+              ${XCSOAR_SRC}/Task/LoadFile.cpp
+              ${XCSOAR_SRC}/Task/TaskFile.cpp
+              ${XCSOAR_SRC}/Task/TaskFileXCSoar.cpp
+              ${XCSOAR_SRC}/Task/TaskFileIGC.cpp
+              ${XCSOAR_SRC}/Task/TaskFileSeeYou.cpp
+              ${XCSOAR_SRC}/Task/DefaultTask.cpp
+              ${XCSOAR_SRC}/Task/MapTaskManager.cpp
+              ${XCSOAR_SRC}/Task/ProtectedTaskManager.cpp
+              ${XCSOAR_SRC}/Task/FileProtectedTaskManager.cpp
+              ${XCSOAR_SRC}/Task/RoutePlannerGlue.cpp
+              ${XCSOAR_SRC}/Task/ProtectedRoutePlanner.cpp
+              ${XCSOAR_SRC}/Task/TaskStore.cpp
+              ${XCSOAR_SRC}/Task/TypeStrings.cpp
+              ${XCSOAR_SRC}/Task/ValidationErrorStrings.cpp
+              ${XCSOAR_SRC}/Operation/Operation.cpp
+              ${XCSOAR_SRC}/RadioFrequency.cpp
+              ${XCSOAR_SRC}/Units/Descriptor.cpp
+              ${XCSOAR_SRC}/XML/Node.cpp
+              ${XCSOAR_SRC}/XML/Parser.cpp
+              ${XCSOAR_SRC}/XML/Writer.cpp
+              ${XCSOAR_SRC}/XML/DataNode.cpp
+              ${XCSOAR_SRC}/XML/DataNodeXML.cpp
+              ${XCSOAR_SRC}/Formatter/Units.cpp
+              ${XCSOAR_SRC}/Formatter/UserUnits.cpp
+              ${XCSOAR_SRC}/Formatter/HexColor.cpp
+              ${XCSOAR_SRC}/Formatter/GlideRatioFormatter.cpp
+              ${XCSOAR_SRC}/Formatter/GeoPointFormatter.cpp
+              ${XCSOAR_SRC}/Formatter/ByteSizeFormatter.cpp
+              ${XCSOAR_SRC}/Formatter/UserGeoPointFormatter.cpp
+              ${XCSOAR_SRC}/Formatter/TimeFormatter.cpp
+              ${XCSOAR_SRC}/Formatter/LocalTimeFormatter.cpp
+              ${XCSOAR_SRC}/Formatter/IGCFilenameFormatter.cpp
+              ${XCSOAR_SRC}/Formatter/AirspaceFormatter.cpp
+              ${XCSOAR_SRC}/Formatter/AirspaceUserUnitsFormatter.cpp
+              ${XCSOAR_SRC}/Engine/Util/Gradient.cpp
+              )
 include_directories(${XCSOAR_SRC})
 add_library(XCSoarMain-${T} ${MAIN_SRCS})
-target_link_libraries(XCSoarMain-${T} Os-${T} Util-${T})
+target_link_libraries(XCSoarMain-${T} Profile-${T} Os-${T} Util-${T})
 
 add_custom_target(xcsoar-${T}
-                  DEPENDS Airspace-${T}
-                          Contest-${T}
+                  DEPENDS AirspaceEngine-${T}
+                          ContestEngine-${T}
                           Driver-${T}
                           Geo-${T}
-                          Glide-${T}
+                          Terrain-${T}
+                          Jasper-${T}
+                          Zzip-${T}
+                          Profile-${T}
+                          GlideEngine-${T}
                           Io-${T}
                           Math-${T}
-                          Route-${T}
+                          RouteEngine-${T}
                           Shape-${T}
-                          Task-${T}
+                          TaskEngine-${T}
                           Util-${T}
-                          Waypoint-${T}
+                          Time-${T}
+                          WaypointEngine-${T}
                           Os-${T}
+                          Thread-${T}
                           XCSoarMain-${T})
-
-
