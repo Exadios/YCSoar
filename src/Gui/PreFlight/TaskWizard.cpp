@@ -38,6 +38,7 @@ Copyright_License {
 #include "Task/DefaultTask.hpp"
 #include "Waypoint/WaypointGlue.hpp"
 #include "Interface.hpp"
+#include "windef.h"
 
 #include "ProfileThunk.hpp"
 
@@ -73,7 +74,7 @@ TaskWizard::browseOrNew()
   lp = &LocalPathThunk::Instance();
   QFileDialog fileSelector(this,
                            "Task File",
-                           QString(lp->PrimaryDataPath()) + QString("/tasks"),
+                           QString(lp->primaryDataPath()) + QString("/tasks"),
                            "*.tsk;;*.*");
   fileSelector.setFileMode(QFileDialog::AnyFile);
   fileSelector.setViewMode(QFileDialog::Detail);
@@ -98,9 +99,8 @@ TaskWizard::createFilePage()
   layout->addWidget(newTask);
   connect(newTask, SIGNAL(clicked()), this, SLOT(browseOrNew()));
 
-  TCHAR path[256];  // \todo Set this length from the appropiate header!
-  LocalPath(path, _T("cache"));
-  FileCache *file_cache = new FileCache(path);
+  LocalPathThunk *lp = &LocalPathThunk::Instance();
+  FileCache *file_cache = new FileCache(lp->cacheDataPath().toUtf8().constData());
   VerboseOperationEnvironment operation;
   RasterTerrain *terrain = RasterTerrain::OpenTerrain(file_cache, operation);
   Waypoints waypoints;

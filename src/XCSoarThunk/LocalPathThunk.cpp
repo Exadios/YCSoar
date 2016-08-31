@@ -28,15 +28,27 @@ Copyright_License {
 extern TCHAR *gcc_restrict data_path;
 extern size_t data_path_length;
 
+QString LocalPathThunk::cache;
+
 //------------------------------------------------------------------------------
 QString
-LocalPathThunk::PrimaryDataPath() const
+LocalPathThunk::primaryDataPath() const
   {
   return ::GetPrimaryDataPath();
+  }
+
+//------------------------------------------------------------------------------
+QString
+LocalPathThunk::cacheDataPath() const
+  {
+  return this->cache;
   }
 
 //------------------------------------------------------------------------------
 LocalPathThunk::LocalPathThunk()
   {
   ::InitialiseDataPath();
+  ::LocalPath(this->buffer, "cache");
+  this->cache.clear();
+  this->cache.prepend(this->buffer);
   }

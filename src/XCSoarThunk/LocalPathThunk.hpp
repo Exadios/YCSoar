@@ -33,6 +33,8 @@
 
 #include "LocalPath.hpp"
 #include "Util/NonCopyable.hpp"
+#include "windef.h"
+#include "tchar.h"
 
 class QString;
 
@@ -53,13 +55,22 @@ public:
     }
 
   /**
-   * Give the local path.
+   * Give the local base data path.
    * @return The device dependant data path for XCSoar's use.
    */
-  QString PrimaryDataPath() const;
+  QString primaryDataPath() const;
+
+  /**
+   * Give the cache data path.
+   * @return The device dependant data path for XCSoar's use.
+   */
+  QString cacheDataPath() const;
 
 private:
   LocalPathThunk();
+
+  TCHAR buffer[MAX_PATH];
+  static QString cache;
   };
 
 #endif  // __LOCALPATH_HPP
