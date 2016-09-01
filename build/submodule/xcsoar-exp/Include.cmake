@@ -544,6 +544,7 @@ set(MAIN_SRCS ${XCSOAR_SRC}/LocalPath.cpp
               ${XCSOAR_SRC}/Formatter/AirspaceFormatter.cpp
               ${XCSOAR_SRC}/Formatter/AirspaceUserUnitsFormatter.cpp
               ${XCSOAR_SRC}/Engine/Util/Gradient.cpp
+              ${XCSOAR_SRC}/Renderer/OZPreviewRenderer.cpp
               )
 include_directories(${XCSOAR_SRC})
 add_library(XCSoarMain-${T} ${MAIN_SRCS})
