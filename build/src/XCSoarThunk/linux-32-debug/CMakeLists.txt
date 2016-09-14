@@ -1,4 +1,5 @@
 set(CMAKE_BUILD_TYPE Debug)
 add_definitions(-DHAVE_POSIX)
+set(B "debug")
 set(T "linux-32-debug")
 include(../Include.cmake)
