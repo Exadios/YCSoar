@@ -4,21 +4,20 @@ cmake_minimum_required(VERSION 3.0)
 enable_testing()
 
 set(warnings "-Wno-error=unused-parameter -Wall -Wextra -Wwrite-strings -Wcast-qual -Wpointer-arith -Wsign-compare -Wundef -Wmissing-declarations -Wredundant-decls -Wmissing-noreturn -Wno-unused-parameter -Wno-missing-field-initializers  -Wcast-align -Werror")
-set(defines "-DUSE_WGS84")
 
 #if (NOT CONFIGURED_ONCE)
-    set(CMAKE_CXX_FLAGS "${warnings} ${defines} -fno-exceptions -fno-rtti -std=gnu++0x -fno-threadsafe-statics -fmerge-all-constants -fvisibility=hidden -fpic -funwind-tables -finput-charset=utf-8"
+    set(CMAKE_CXX_FLAGS "${warnings} -fno-exceptions -fno-rtti -std=gnu++0x -fno-threadsafe-statics -fmerge-all-constants -fvisibility=hidden -fpic -funwind-tables -finput-charset=utf-8"
         CACHE STRING "Flags used by the compiler during all build types." FORCE)
-    set(CMAKE_C_FLAGS   "${warnings} ${defines}"
+    set(CMAKE_C_FLAGS   "${warnings}"
         CACHE STRING "Flags used by the compiler during all build types." FORCE)
 #endif()
 
-#include_directories(./submoldule/xcsoar-exp/src)
-
+add_definitions(-DRADIANS # Do everything in radians.
+                -DUSE_WGS84 # And on WGS84.
+               )
 add_subdirectory(./tools)
 add_subdirectory(./generate)
 add_subdirectory(./build)
-#add_subdirectory(./src)
 
 set(CONFIGURED_ONCE TRUE CACHE INTERNAL
     "A flag showing that CMake has configured at least once.")
