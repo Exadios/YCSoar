@@ -14,6 +14,7 @@ find_package(Qt5 COMPONENTS Quick Core Network)
 add_subdirectory(XCSoarSubst)
 add_subdirectory(XCSoarThunk)
 add_subdirectory(Gui)
+add_subdirectory(Experiment)
 
 add_custom_target(ycsoar-debug
                   DEPENDS gui-debug

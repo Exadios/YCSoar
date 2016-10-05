@@ -429,6 +429,17 @@ set(TIME_SRCS ${TIME_DIR}/DeltaTime.cpp
               ${TIME_DIR}/BrokenDateTime.cpp)
 add_library(Time-${T} ${TIME_SRCS})
 
+set(SCREEN_DIR ${XCSOAR_SRC}/Screen)
+set(SCREEN_SRCS ${SCREEN_DIR}/Debug.cpp
+#                ${SCREEN_DIR}/Custom/Cache.cpp
+#                ${SCREEN_DIR}/FreeType/Font.cpp
+#                ${SCREEN_DIR}/FreeType/Init.cpp
+   )
+add_library(Screen-${T} ${SCREEN_SRCS})
+target_link_libraries(Screen-${T} pthread freetype)
+target_include_directories(Screen-${T} SYSTEM PUBLIC
+                           /usr/include/freetype2)  # For Font.cpp
+
 set(JASPER_DIR ${XCSOAR_SRC}/Terrain/jasper)
 set(JASPER_SRCS ${JASPER_DIR}/base/jas_debug.c
                 ${JASPER_DIR}/base/jas_malloc.c
