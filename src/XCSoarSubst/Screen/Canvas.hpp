@@ -60,7 +60,7 @@ QT_END_NAMESPACE
  * Base drawable canvas class for Qt.
  *
  * This is a drop in replacement of XCSoar's Canvas class.
- * 
+ * \todo Inherit from QGraphicsView or QGraphicsWidget.
  */
 class Canvas : public QWidget
   {
@@ -620,7 +620,7 @@ public:
    * @param dest_width
    * @param dest_height
    * @param texture
-   * \todo Is this used? If so figure out what is does and implement.
+   * \todo Implement this after Qt 5.4.
    */
   void Stretch(int dest_x, int dest_y,
                unsigned dest_width, unsigned dest_height,
@@ -634,7 +634,7 @@ public:
    * @param src
    * @param src_x
    * @param src_y
-   * \todo Implement.
+   * \todo Implement this after Qt 5.4.
    */
   void Copy(int dest_x, int dest_y,
             unsigned dest_width, unsigned dest_height,
@@ -648,7 +648,7 @@ public:
 
   /**
    * @param src
-   * \todo Is this used? If so figure out what is does and implement.
+   * \todo this after Qt 5.4.
    */
   void StretchNot(const Bitmap &src);
 
@@ -660,7 +660,7 @@ public:
    * @param src
    * @param src_x
    * @param src_y
-   * \todo Is this used? If so figure out what is does and implement.
+   * \todo Implement this after Qt 5.4.
    */
   void Stretch(int dest_x, int dest_y,
                unsigned dest_width, unsigned dest_height,
@@ -689,7 +689,7 @@ public:
    * @param src_y
    * @param fg_color draw this color instead of "black"
    * @param bg_color draw this color instead of "white"
-   * \todo Is this used? If so figure out what is does and implement.
+   * \todo Implement this after Qt 5.4.
    */
   void StretchMono(int dest_x, int dest_y,
                    unsigned dest_width, unsigned dest_height,
