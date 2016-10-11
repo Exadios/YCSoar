@@ -27,8 +27,11 @@ add_custom_target(ycsoar-release
 
 set(SRC ${YCSoar_SOURCE_DIR}/src)
 set(OUTPUT_DIR ${YCSoar_SOURCE_DIR}/out/doc/ycsoar/)
+add_custom_command(OUTPUT ${OUTPUT_DIR}
+                   COMMAND mkdir -p ${OUTPUT_DIR})
 add_custom_target(ycsoar_doc
                   COMMAND rm -fr ${OUTPUT_DIR}/html
                   COMMAND rm -fr ${OUTPUT_DIR}/doxygen_sqlite3.db
                   COMMAND doxygen
+                  DEPENDS ${OUTPUT_DIR}
                   WORKING_DIRECTORY ${SRC})
