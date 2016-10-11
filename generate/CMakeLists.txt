@@ -10,3 +10,4 @@ set_source_files_properties(${TOOLS_BIN}/generatesinetables
 add_custom_target(generate ALL
                   DEPENDS ${OUTPUT_INCLUDE}/MathTables.h
                  )
+add_dependencies(generate generatesinetables)
