@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.0)
 
 enable_testing()
 
+set_property(GLOBAL PROPERTY JOB_POOLS compile_pool=4)
+set_property(GLOBAL PROPERTY JOB_POOL_COMPILE compile_pool)
+
 set(warnings "-Wno-error=unused-parameter -Wall -Wextra -Wwrite-strings -Wcast-qual -Wpointer-arith -Wsign-compare -Wundef -Wmissing-declarations -Wredundant-decls -Wmissing-noreturn -Wno-unused-parameter -Wno-missing-field-initializers  -Wcast-align -Werror")
 
 #if (NOT CONFIGURED_ONCE)
