@@ -1,7 +1,7 @@
 /*
 Copyright_License {
 
-  G-Meter INU.
+  YCSoar Glide Computer.
   Copyright (C) 2013-2015 Peter F Bradshaw
   A detailed list of copyright holders can be found in the file "AUTHORS".
 
