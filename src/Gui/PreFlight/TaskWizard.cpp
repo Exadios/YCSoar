@@ -38,6 +38,7 @@ Copyright_License {
 #include "Task/DefaultTask.hpp"
 #include "Waypoint/WaypointGlue.hpp"
 #include "Interface.hpp"
+#include "UIState.hpp"
 #include "windef.h"
 
 #include "ProfileThunk.hpp"
@@ -99,6 +100,10 @@ TaskWizard::createFilePage()
   layout->addWidget(newTask);
   connect(newTask, SIGNAL(clicked()), this, SLOT(browseOrNew()));
 
+  CommonInterface::SetUISettings().SetDefaults();
+  CommonInterface::SetSystemSettings().SetDefaults();
+  CommonInterface::SetComputerSettings().SetDefaults();
+  CommonInterface::SetUIState().Clear();
   LocalPathThunk *lp = &LocalPathThunk::Instance();
   FileCache *file_cache = new FileCache(lp->cacheDataPath().toUtf8().constData());
   VerboseOperationEnvironment operation;
