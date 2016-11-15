@@ -28,6 +28,10 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * \addtogroup XCSoarThunk
+ * @{
+ */
 #ifndef __LOCALPATHTHUNK_HPP
 #define __LOCALPATHTHUNK_HPP
 
@@ -74,3 +78,6 @@ private:
   };
 
 #endif  // __LOCALPATH_HPP
+/**
+ * @}
+ */

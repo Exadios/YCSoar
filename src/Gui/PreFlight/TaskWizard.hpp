@@ -27,7 +27,10 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+/**
+ * \addtogroup PreFlight
+ * @{
+ */
 #ifndef __TASKWIZARD
 #define __TASKWIZARD
 
@@ -72,3 +75,6 @@ private:
   };
 
 #endif  // __TASKWIZARD
+/**
+ * @}
+ */
