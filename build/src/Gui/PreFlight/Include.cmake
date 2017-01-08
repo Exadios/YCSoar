@@ -7,6 +7,7 @@ set(XCSOARSUBST_SRC_DIR ${YCSoar_SOURCE_DIR}/src/XCSoarSubst)
 add_executable(preflight-${T} ${PREFLIGHT}/main.cpp
                               ${PREFLIGHT}/MainWindow.cpp
                               ${PREFLIGHT}/TaskWizard.cpp
+                              ${PREFLIGHT}/ConfigWindow.cpp
                               ${PREFLIGHT}/PreFlight.qrc)
 target_link_libraries(preflight-${T} Qt5::Widgets Qt5::Qml
                       -L${XCSOARSUBST_BIN_DIR} xcsoarmain-subst-${T}

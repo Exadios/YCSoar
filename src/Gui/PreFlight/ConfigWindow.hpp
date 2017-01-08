@@ -1,6 +1,6 @@
 /*
  * YCSoar Glide Computer.
- * Copyright (C) 2013-2015 Peter F Bradshaw
+ * Copyright (C) 2013-2016 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -31,50 +31,42 @@
  * \addtogroup PreFlight
  * @{
  */
-#ifndef __TASKWIZARD
-#define __TASKWIZARD
+#ifndef __CONFIGWINDOW_HPP
+#define __CONFIGWINDOW_HPP
 
-#include <QWizard>
+#include <QDialog>
 
-class QWizardPage;
+class QTreeView;
+class QItemSelection;
+class ConfigModel;
 
-/**
- * A wizard to create or edit a task.
- */
-class TaskWizard : public QWizard
+class ConfigWindow : public QDialog
   {
   Q_OBJECT
 
 public:
   /**
    * Ctor.
+   * 
    */
-  TaskWizard();
+  ConfigWindow();
 
   /**
-   * Dtor. Destroy the pages.
+   * Dtor.
    */
-  ~TaskWizard();
+  ~ConfigWindow();
 
 protected:
 
 private slots:
-  // \todo Return a selected file.
-  void browseOrNew();
+    void selectionChangedSlot(const QItemSelection & newSelection, const QItemSelection & oldSelection);
 
 private:
-  void createFilePage();
-  void createRulesPage();
-  void createTurpointPage();
-  void createFinalPage();
-
-  QWizardPage *filePage;
-  QWizardPage *rulesPage;
-  QWizardPage *turpointPage;
-  QWizardPage *finalPage;
+  QTreeView *view;
+  ConfigModel *model;
   };
 
-#endif  // __TASKWIZARD
+#endif  // __CONFIGWINDOW_HPP
 /**
  * @}
  */

@@ -27,7 +27,10 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+/**
+ * \addtogroup PreFlight
+ * @{
+ */
 #ifndef __MAINWINDOW_H
 #define __MAINWINDOW_H
 
@@ -73,6 +76,7 @@ private slots:
   bool saveAs();
   void about();
   void documentWasModified();
+  void configAction();
   void taskAction();
   void aircraftAction();
 
@@ -113,4 +117,6 @@ private:
   };
 
 #endif  // __MAINWINDOW_H
-
+/**
+ * @}
+ */

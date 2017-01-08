@@ -56,6 +56,7 @@ TaskWizard::TaskWizard()
   this->addPage(this->rulesPage);
   this->addPage(this->turpointPage);
   this->addPage(this->finalPage);
+  this->setWindowTitle("Task Definition");
   }
 
 //------------------------------------------------------------------------------
@@ -84,6 +85,7 @@ TaskWizard::browseOrNew()
     QStringList names = fileSelector.selectedFiles();
     std::cerr << "Selected: " << names.at(0).toLocal8Bit().constData() << std::endl;
     }
+  // \todo Return a filename.
   }
 
 //------------------------------------------------------------------------------
