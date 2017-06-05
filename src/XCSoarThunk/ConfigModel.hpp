@@ -426,14 +426,15 @@ public:
    */
   QModelIndex index(int row,
                     int column,
-                    const QModelIndex &parent = QModelIndex()) const;
+                    const QModelIndex &parent = QModelIndex()) const
+                                                               Q_DECL_OVERRIDE;
 
   /**
    * Implements QAbstractItemModel::parent().
    * @param index The index of the item being queried.
    * @return The parent index.
    */
-  QModelIndex parent(const QModelIndex &index) const;
+  QModelIndex parent(const QModelIndex &index) const Q_DECL_OVERRIDE;
 
   /**
    * Implements QAbstractItemModel::rowCount().
@@ -441,14 +442,14 @@ public:
    * @return The number of children of parent - 0 if this index is not a
    *         parent node.
    */
-  int rowCount(const QModelIndex &parent) const;
+  int rowCount(const QModelIndex &parent) const Q_DECL_OVERRIDE;
 
   /**
    * Implements QAbstractItemModel::columnCount().
    * @param parent Irrelevent.
    * @return In all cases - 0.
    */
-  int columnCount(const QModelIndex &parent) const;
+  int columnCount(const QModelIndex &parent) const Q_DECL_OVERRIDE;
 
   /**
    * Implements QAbstractItemModel::data().
@@ -457,7 +458,8 @@ public:
    * @return The data item corresponding to the index. If index is invalid
    *         then the QVariant returned will be QVariant::Invalid.
    */
-  QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+  QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) 
+                 const Q_DECL_OVERRIDE;
 
 protected:
   /**
