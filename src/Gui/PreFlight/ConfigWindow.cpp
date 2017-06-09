@@ -36,6 +36,7 @@ ConfigWindow::ConfigWindow()
   this->model = new ConfigModel;
   this->view = new QTreeView;
   this->view->setModel(this->model);
+  this->view->show();
   QItemSelectionModel *sm = this->view->selectionModel();
   connect(sm,
           SIGNAL(selectionChanged(const QItemSelection &,
@@ -77,9 +78,8 @@ void
 ConfigWindow::selectionChangedSlot(const QItemSelection & /*newSelection*/,
                                    const QItemSelection & /*oldSelection*/)
   {
-#if 0
   //get the text of the selected item
-  const QModelIndex index = treeView->selectionModel()->currentIndex();
+  const QModelIndex index = this->view->selectionModel()->currentIndex();
   QString selectedText = index.data(Qt::DisplayRole).toString();
   //find out the hierarchy level of the selected item
   int hierarchyLevel=1;
@@ -91,6 +91,5 @@ ConfigWindow::selectionChangedSlot(const QItemSelection & /*newSelection*/,
     }
   QString showString = QString("%1, Level %2").arg(selectedText).arg(hierarchyLevel);
   setWindowTitle(showString);
-#endif
   }
 
