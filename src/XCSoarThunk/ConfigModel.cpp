@@ -24,14 +24,15 @@ Copyright_License {
 #include "ConfigModel.hpp"
 #include "Computer/Settings.hpp"
 #include <QStandardItem>
+#include <QString>
 
 //------------------------------------------------------------------------------
 ConfigModel::ConfigModel()
   {
-  QStandardItemModel *standardModel = new QStandardItemModel;
-  QStandardItem *rootNode = standardModel->invisibleRootItem(); 
+  QStandardItem *rootNode = this->invisibleRootItem(); 
 
-  QStandardItem *filesNode      = new QStandardItem("Files Node");
+  QStandardItem *filesNode      = new QStandardItem("Site Files");
+  filesNode->setText("Files Node");
   rootNode->appendRow(filesNode);
     {
     QStandardItem *dbNode         = new QStandardItem("Map Database");
@@ -483,37 +484,14 @@ ConfigModel::Logger()
   }
 
 //------------------------------------------------------------------------------
-QModelIndex
-ConfigModel::index(int row, int column, const QModelIndex &parent) const
-  {
-  return QModelIndex(); // Invalid index.
-  }
-
-//------------------------------------------------------------------------------
-QModelIndex
-ConfigModel::parent(const QModelIndex &index) const
-  {
-  return QModelIndex(); // Invalid index.
-  }
-
-//------------------------------------------------------------------------------
-int
-ConfigModel::rowCount(const QModelIndex &parent) const
-  {
-  return 0;
-  }
-
-//------------------------------------------------------------------------------
-int
-ConfigModel::columnCount(const QModelIndex &parent) const
-  {
-  return 0; // Always for this class.
-  }
-
-//------------------------------------------------------------------------------
 QVariant
 ConfigModel::data(const QModelIndex &index, int role) const
   {
+  if (role == Qt::DisplayRole)
+    {
+    return QString("Row%1, Column%2").arg(index.row() + 1).arg(index.column() +
+                                                               1);
+    }
   return QVariant(QVariant::Invalid); // Invalid.
   }
 

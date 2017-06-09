@@ -76,7 +76,7 @@
 #ifndef __CONFIGMODEL_HPP
 #define __CONFIGMODEL_HPP
 
-#include <QAbstractItemModel>
+#include <QStandardItemModel>
 #include "Computer/Settings.hpp"
 
 struct ComputerSettings;
@@ -401,7 +401,7 @@ struct ComputerSettings;
  * \todo Finish this class.
  */
 
-class ConfigModel : public QAbstractItemModel
+class ConfigModel : public QStandardItemModel
   {
   Q_OBJECT
 
@@ -415,41 +415,6 @@ public:
    * Dtor.
    */
   ~ConfigModel();
-
-  /**
-   * Implements QAbstractItemModel::index().
-   * @param row Row of the index.
-   * @param column Column of the index.
-   * @param parent Parent node of this index if it exist, invalid index 
-   *               otherwise
-   * @return The index of the item.
-   */
-  QModelIndex index(int row,
-                    int column,
-                    const QModelIndex &parent = QModelIndex()) const
-                                                               Q_DECL_OVERRIDE;
-
-  /**
-   * Implements QAbstractItemModel::parent().
-   * @param index The index of the item being queried.
-   * @return The parent index.
-   */
-  QModelIndex parent(const QModelIndex &index) const Q_DECL_OVERRIDE;
-
-  /**
-   * Implements QAbstractItemModel::rowCount().
-   * @param parent The index - possibly representing a parent node.
-   * @return The number of children of parent - 0 if this index is not a
-   *         parent node.
-   */
-  int rowCount(const QModelIndex &parent) const Q_DECL_OVERRIDE;
-
-  /**
-   * Implements QAbstractItemModel::columnCount().
-   * @param parent Irrelevent.
-   * @return In all cases - 0.
-   */
-  int columnCount(const QModelIndex &parent) const Q_DECL_OVERRIDE;
 
   /**
    * Implements QAbstractItemModel::data().
