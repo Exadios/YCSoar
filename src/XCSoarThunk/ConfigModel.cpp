@@ -31,17 +31,17 @@ ConfigModel::ConfigModel()
   {
   QStandardItem *rootNode = this->invisibleRootItem(); 
 
-  QStandardItem *r1 = new QStandardItem("Site Files");
+  ConfigItem *r1 = new ConfigItem("Site Files");
   r1->setToolTip("Site Files");
   rootNode->appendRow(r1);
     {
-    QStandardItem *n1 = new QStandardItem("Map Database");
-    QStandardItem *n2 = new QStandardItem("Waypoints");
-    QStandardItem *n3 = new QStandardItem("Additional Waypoints");
-    QStandardItem *n4 = new QStandardItem("Watched Waypoints");
-    QStandardItem *n5 = new QStandardItem("Airspaces");
-    QStandardItem *n6 = new QStandardItem("Additional Airspaces");
-    QStandardItem *n7 = new QStandardItem("Waypoint Details");
+    ConfigItem *n1 = new ConfigItem("Map Database");
+    ConfigItem *n2 = new ConfigItem("Waypoints");
+    ConfigItem *n3 = new ConfigItem("Additional Waypoints");
+    ConfigItem *n4 = new ConfigItem("Watched Waypoints");
+    ConfigItem *n5 = new ConfigItem("Airspaces");
+    ConfigItem *n6 = new ConfigItem("Additional Airspaces");
+    ConfigItem *n7 = new ConfigItem("Waypoint Details");
     r1->appendRow(n1);
     r1->appendRow(n2);
     r1->appendRow(n3);
@@ -50,19 +50,19 @@ ConfigModel::ConfigModel()
     r1->appendRow(n6);
     r1->appendRow(n7);
     }
-  QStandardItem *r2 = new QStandardItem("Map Display");
+  ConfigItem *r2 = new ConfigItem("Map Display");
   rootNode->appendRow(r2);
     {
-    QStandardItem *i1 = new QStandardItem("Orientation");
+    ConfigItem *i1 = new ConfigItem("Orientation");
     r2->appendRow(i1);
       {
-      QStandardItem *n1 = new QStandardItem("Cruise");
-      QStandardItem *n2 = new QStandardItem("Circling");
-      QStandardItem *n3 = new QStandardItem("Circling Zoom");
-      QStandardItem *n4 = new QStandardItem("Map Shift Reference");
-      QStandardItem *n5 = new QStandardItem("Glider Position Offset");
-      QStandardItem *n6 = new QStandardItem("Max Auto Zoom");
-      QStandardItem *n7 = new QStandardItem("Distinct Page Zoom");
+      ConfigItem *n1 = new ConfigItem("Cruise");
+      ConfigItem *n2 = new ConfigItem("Circling");
+      ConfigItem *n3 = new ConfigItem("Circling Zoom");
+      ConfigItem *n4 = new ConfigItem("Map Shift Reference");
+      ConfigItem *n5 = new ConfigItem("Glider Position Offset");
+      ConfigItem *n6 = new ConfigItem("Max Auto Zoom");
+      ConfigItem *n7 = new ConfigItem("Distinct Page Zoom");
       i1->appendRow(n1);
       i1->appendRow(n2);
       i1->appendRow(n3);
@@ -71,18 +71,18 @@ ConfigModel::ConfigModel()
       i1->appendRow(n6);
       i1->appendRow(n7);
       }
-    QStandardItem *i2 = new QStandardItem("Elements");
+    ConfigItem *i2 = new ConfigItem("Elements");
     r2->appendRow(i2);
       {
-      QStandardItem *n1 = new QStandardItem("Ground track");
-      QStandardItem *n2 = new QStandardItem("FLARM traffic");
-      QStandardItem *n3 = new QStandardItem("Trail length");
-      QStandardItem *n4 = new QStandardItem("Trail drift");
-      QStandardItem *n5 = new QStandardItem("Trail type");
-      QStandardItem *n6 = new QStandardItem("Trail scaled");
-      QStandardItem *n7 = new QStandardItem("Detour cost markers");
-      QStandardItem *n8 = new QStandardItem("Aircraft symbol");
-      QStandardItem *n9 = new QStandardItem("Wind arrow");
+      ConfigItem *n1 = new ConfigItem("Ground track");
+      ConfigItem *n2 = new ConfigItem("FLARM traffic");
+      ConfigItem *n3 = new ConfigItem("Trail length");
+      ConfigItem *n4 = new ConfigItem("Trail drift");
+      ConfigItem *n5 = new ConfigItem("Trail type");
+      ConfigItem *n6 = new ConfigItem("Trail scaled");
+      ConfigItem *n7 = new ConfigItem("Detour cost markers");
+      ConfigItem *n8 = new ConfigItem("Aircraft symbol");
+      ConfigItem *n9 = new ConfigItem("Wind arrow");
       i2->appendRow(n1);
       i2->appendRow(n2);
       i2->appendRow(n3);
@@ -94,17 +94,17 @@ ConfigModel::ConfigModel()
       i2->appendRow(n8);
       i2->appendRow(n9);
       }
-    QStandardItem *i3 = new QStandardItem("Waypoints");
+    ConfigItem *i3 = new ConfigItem("Waypoints");
     r2->appendRow(i3);
       {
-      QStandardItem *n1 = new QStandardItem("Label format");
-      QStandardItem *n2 = new QStandardItem("Label style");
-      QStandardItem *n3 = new QStandardItem("Label visibilty");
-      QStandardItem *n4 = new QStandardItem("Arrival height");
-      QStandardItem *n5 = new QStandardItem("Landable symbols");
-      QStandardItem *n6 = new QStandardItem("Detailed landables");
-      QStandardItem *n7 = new QStandardItem("Landable size");
-      QStandardItem *n8 = new QStandardItem("Scale runway length");
+      ConfigItem *n1 = new ConfigItem("Label format");
+      ConfigItem *n2 = new ConfigItem("Label style");
+      ConfigItem *n3 = new ConfigItem("Label visibilty");
+      ConfigItem *n4 = new ConfigItem("Arrival height");
+      ConfigItem *n5 = new ConfigItem("Landable symbols");
+      ConfigItem *n6 = new ConfigItem("Detailed landables");
+      ConfigItem *n7 = new ConfigItem("Landable size");
+      ConfigItem *n8 = new ConfigItem("Scale runway length");
       i3->appendRow(n1);
       i3->appendRow(n2);
       i3->appendRow(n3);
@@ -114,26 +114,26 @@ ConfigModel::ConfigModel()
       i3->appendRow(n7);
       i3->appendRow(n8);
       }
-    QStandardItem *i4 = new QStandardItem("Terrain");
+    ConfigItem *i4 = new ConfigItem("Terrain");
     r2->appendRow(i4);
       {
-      QStandardItem *n1 = new QStandardItem("Terrain display");
-      QStandardItem *n2 = new QStandardItem("Topography display");
+      ConfigItem *n1 = new ConfigItem("Terrain display");
+      ConfigItem *n2 = new ConfigItem("Topography display");
       i4->appendRow(n1);
       i4->appendRow(n2);
       }
-    QStandardItem *i5 = new QStandardItem("Airspace");
+    ConfigItem *i5 = new ConfigItem("Airspace");
     r2->appendRow(i5);
       {
-      QStandardItem *n1 = new QStandardItem("Airspace display");
-      QStandardItem *n2 = new QStandardItem("Label visibility");
-      QStandardItem *n3 = new QStandardItem("Warnings");
-      QStandardItem *n4 = new QStandardItem("Warnings dialog");
-      QStandardItem *n5 = new QStandardItem("Warning time");
-      QStandardItem *n6 = new QStandardItem("Repetitive sound");
-      QStandardItem *n7 = new QStandardItem("Acknowledge time");
-      QStandardItem *n8 = new QStandardItem("Use black outline");
-      QStandardItem *n9 = new QStandardItem("Airspace fill node");
+      ConfigItem *n1 = new ConfigItem("Airspace display");
+      ConfigItem *n2 = new ConfigItem("Label visibility");
+      ConfigItem *n3 = new ConfigItem("Warnings");
+      ConfigItem *n4 = new ConfigItem("Warnings dialog");
+      ConfigItem *n5 = new ConfigItem("Warning time");
+      ConfigItem *n6 = new ConfigItem("Repetitive sound");
+      ConfigItem *n7 = new ConfigItem("Acknowledge time");
+      ConfigItem *n8 = new ConfigItem("Use black outline");
+      ConfigItem *n9 = new ConfigItem("Airspace fill node");
       i5->appendRow(n1);
       i5->appendRow(n2);
       i5->appendRow(n3);
@@ -145,19 +145,19 @@ ConfigModel::ConfigModel()
       i5->appendRow(n9);
       }
     }
-  QStandardItem *r3 = new QStandardItem("Glide Computer");
+  ConfigItem *r3 = new ConfigItem("Glide Computer");
   rootNode->appendRow(r3);
     {
-    QStandardItem *i1 = new QStandardItem("Safety Factors");
+    ConfigItem *i1 = new ConfigItem("Safety Factors");
     r3->appendRow(i1);
       {
-      QStandardItem *n1 = new QStandardItem("Arrival height");
-      QStandardItem *n2 = new QStandardItem("Terrain height");
-      QStandardItem *n3 = new QStandardItem("Alternates mode");
-      QStandardItem *n4 = new QStandardItem("Polar degradation");
-      QStandardItem *n5 = new QStandardItem("Auto bugs");
-      QStandardItem *n6 = new QStandardItem("Safety MC");
-      QStandardItem *n7 = new QStandardItem("STF risk factor");
+      ConfigItem *n1 = new ConfigItem("Arrival height");
+      ConfigItem *n2 = new ConfigItem("Terrain height");
+      ConfigItem *n3 = new ConfigItem("Alternates mode");
+      ConfigItem *n4 = new ConfigItem("Polar degradation");
+      ConfigItem *n5 = new ConfigItem("Auto bugs");
+      ConfigItem *n6 = new ConfigItem("Safety MC");
+      ConfigItem *n7 = new ConfigItem("STF risk factor");
       i1->appendRow(n1);
       i1->appendRow(n2);
       i1->appendRow(n3);
@@ -166,16 +166,16 @@ ConfigModel::ConfigModel()
       i1->appendRow(n6);
       i1->appendRow(n7);
       }
-    QStandardItem *i2 = new QStandardItem("Glide Computer");
+    ConfigItem *i2 = new ConfigItem("Glide Computer");
     r3->appendRow(i2);
       {
-      QStandardItem *n1 = new QStandardItem("Auto MC mode");
-      QStandardItem *n2 = new QStandardItem("Block soeed to fly");
-      QStandardItem *n3 = new QStandardItem("Nav. by baro altitude");
-      QStandardItem *n4 = new QStandardItem("Flaps forces cruise");
-      QStandardItem *n5 = new QStandardItem("GR average period");
-      QStandardItem *n6 = new QStandardItem("Predict wind drift");
-      QStandardItem *n7 = new QStandardItem("Wave assistant");
+      ConfigItem *n1 = new ConfigItem("Auto MC mode");
+      ConfigItem *n2 = new ConfigItem("Block soeed to fly");
+      ConfigItem *n3 = new ConfigItem("Nav. by baro altitude");
+      ConfigItem *n4 = new ConfigItem("Flaps forces cruise");
+      ConfigItem *n5 = new ConfigItem("GR average period");
+      ConfigItem *n6 = new ConfigItem("Predict wind drift");
+      ConfigItem *n7 = new ConfigItem("Wave assistant");
       i2->appendRow(n1);
       i2->appendRow(n2);
       i2->appendRow(n3);
@@ -184,58 +184,58 @@ ConfigModel::ConfigModel()
       i2->appendRow(n6);
       i2->appendRow(n7);
       }
-    QStandardItem *i3 = new QStandardItem("Wind");
+    ConfigItem *i3 = new ConfigItem("Wind");
     r3->appendRow(i3);
       {
-      QStandardItem *n1 = new QStandardItem("Auto wind");
-      QStandardItem *n2 = new QStandardItem("External wind");
+      ConfigItem *n1 = new ConfigItem("Auto wind");
+      ConfigItem *n2 = new ConfigItem("External wind");
       i3->appendRow(n1);
       i3->appendRow(n2);
       }
-    QStandardItem *i4 = new QStandardItem("Route");
+    ConfigItem *i4 = new ConfigItem("Route");
     r3->appendRow(i4);
       {
-      QStandardItem *n1 = new QStandardItem("Route mode");
-      QStandardItem *n2 = new QStandardItem("Route climb");
-      QStandardItem *n3 = new QStandardItem("Route ceiling");
+      ConfigItem *n1 = new ConfigItem("Route mode");
+      ConfigItem *n2 = new ConfigItem("Route climb");
+      ConfigItem *n3 = new ConfigItem("Route ceiling");
       i4->appendRow(n1);
       i4->appendRow(n2);
       i4->appendRow(n3);
       }
-    QStandardItem *i5 = new QStandardItem("Reach");
+    ConfigItem *i5 = new ConfigItem("Reach");
     r3->appendRow(i5);
       {
-      QStandardItem *n1 = new QStandardItem("Reach mode");
-      QStandardItem *n2 = new QStandardItem("Reach polar");
-      QStandardItem *n3 = new QStandardItem("Reach display");
+      ConfigItem *n1 = new ConfigItem("Reach mode");
+      ConfigItem *n2 = new ConfigItem("Reach polar");
+      ConfigItem *n3 = new ConfigItem("Reach display");
       i5->appendRow(n1);
       i5->appendRow(n2);
       i5->appendRow(n3);
       }
-    QStandardItem *i6 = new QStandardItem("Scoring");
+    ConfigItem *i6 = new ConfigItem("Scoring");
     r3->appendRow(i6);
       {
-      QStandardItem *n1 = new QStandardItem("On-Line Contest");
-      QStandardItem *n2 = new QStandardItem("Predict contest");
-      QStandardItem *n3 = new QStandardItem("FAI triangle areas");
+      ConfigItem *n1 = new ConfigItem("On-Line Contest");
+      ConfigItem *n2 = new ConfigItem("Predict contest");
+      ConfigItem *n3 = new ConfigItem("FAI triangle areas");
       i6->appendRow(n1);
       i6->appendRow(n2);
       i6->appendRow(n3);
       }
     }
-  QStandardItem *r4 = new QStandardItem("Gauges");
+  ConfigItem *r4 = new ConfigItem("Gauges");
   rootNode->appendRow(r4);
     {
-    QStandardItem *i1 = new QStandardItem("FLARM and Other");
+    ConfigItem *i1 = new ConfigItem("FLARM and Other");
     r4->appendRow(i1);
       {
-      QStandardItem *n1 = new QStandardItem("FLARM radar");
-      QStandardItem *n2 = new QStandardItem("Auto close FLARM");
-      QStandardItem *n3 = new QStandardItem("Thermal assitant");
-      QStandardItem *n4 = new QStandardItem("Thermal band");
-      QStandardItem *n5 = new QStandardItem("Final glide bar");
-      QStandardItem *n6 = new QStandardItem("Final glide bar MC0");
-      QStandardItem *n7 = new QStandardItem("Vario bar");
+      ConfigItem *n1 = new ConfigItem("FLARM radar");
+      ConfigItem *n2 = new ConfigItem("Auto close FLARM");
+      ConfigItem *n3 = new ConfigItem("Thermal assitant");
+      ConfigItem *n4 = new ConfigItem("Thermal band");
+      ConfigItem *n5 = new ConfigItem("Final glide bar");
+      ConfigItem *n6 = new ConfigItem("Final glide bar MC0");
+      ConfigItem *n7 = new ConfigItem("Vario bar");
       i1->appendRow(n1);
       i1->appendRow(n2);
       i1->appendRow(n3);
@@ -244,16 +244,16 @@ ConfigModel::ConfigModel()
       i1->appendRow(n6);
       i1->appendRow(n7);
       }
-    QStandardItem *i2 = new QStandardItem("Vario");
+    ConfigItem *i2 = new ConfigItem("Vario");
     r4->appendRow(i2);
       {
-      QStandardItem *n1 = new QStandardItem("Speed arrows");
-      QStandardItem *n2 = new QStandardItem("Show average");
-      QStandardItem *n3 = new QStandardItem("Show MacReady");
-      QStandardItem *n4 = new QStandardItem("Show bugs");
-      QStandardItem *n5 = new QStandardItem("Show ballast");
-      QStandardItem *n6 = new QStandardItem("Show gross");
-      QStandardItem *n7 = new QStandardItem("Averager needle");
+      ConfigItem *n1 = new ConfigItem("Speed arrows");
+      ConfigItem *n2 = new ConfigItem("Show average");
+      ConfigItem *n3 = new ConfigItem("Show MacReady");
+      ConfigItem *n4 = new ConfigItem("Show bugs");
+      ConfigItem *n5 = new ConfigItem("Show ballast");
+      ConfigItem *n6 = new ConfigItem("Show gross");
+      ConfigItem *n7 = new ConfigItem("Averager needle");
       i2->appendRow(n1);
       i2->appendRow(n2);
       i2->appendRow(n3);
@@ -262,17 +262,17 @@ ConfigModel::ConfigModel()
       i2->appendRow(n6);
       i2->appendRow(n7);
       }
-    QStandardItem *i3 = new QStandardItem("Audio");
+    ConfigItem *i3 = new ConfigItem("Audio");
     r4->appendRow(i3);
       {
-      QStandardItem *n1 = new QStandardItem("Audio vario");
-      QStandardItem *n2 = new QStandardItem("Volume");
-      QStandardItem *n3 = new QStandardItem("Enable deadband");
-      QStandardItem *n4 = new QStandardItem("Min. frequency");
-      QStandardItem *n5 = new QStandardItem("Zero frequency");
-      QStandardItem *n6 = new QStandardItem("Max. frequency");
-      QStandardItem *n7 = new QStandardItem("Deadband min. lift");
-      QStandardItem *n8 = new QStandardItem("Deadband max. lift");
+      ConfigItem *n1 = new ConfigItem("Audio vario");
+      ConfigItem *n2 = new ConfigItem("Volume");
+      ConfigItem *n3 = new ConfigItem("Enable deadband");
+      ConfigItem *n4 = new ConfigItem("Min. frequency");
+      ConfigItem *n5 = new ConfigItem("Zero frequency");
+      ConfigItem *n6 = new ConfigItem("Max. frequency");
+      ConfigItem *n7 = new ConfigItem("Deadband min. lift");
+      ConfigItem *n8 = new ConfigItem("Deadband max. lift");
       i3->appendRow(n1);
       i3->appendRow(n2);
       i3->appendRow(n3);
@@ -283,18 +283,18 @@ ConfigModel::ConfigModel()
       i3->appendRow(n8);
       }
     }
-  QStandardItem *r5 = new QStandardItem("Task Defaults");
+  ConfigItem *r5 = new ConfigItem("Task Defaults");
   rootNode->appendRow(r5);
     {
-    QStandardItem *i1 = new QStandardItem("Rules");
+    ConfigItem *i1 = new ConfigItem("Rules");
     r5->appendRow(i1);
       {
-      QStandardItem *n1 = new QStandardItem("Start max. speed");
-      QStandardItem *n2 = new QStandardItem("Start max. speed margin");
-      QStandardItem *n3 = new QStandardItem("Start max. height");
-      QStandardItem *n4 = new QStandardItem("Start max. height margin");
-      QStandardItem *n5 = new QStandardItem("Start height ref.");
-      QStandardItem *n6 = new QStandardItem("Finish min. height");
+      ConfigItem *n1 = new ConfigItem("Start max. speed");
+      ConfigItem *n2 = new ConfigItem("Start max. speed margin");
+      ConfigItem *n3 = new ConfigItem("Start max. height");
+      ConfigItem *n4 = new ConfigItem("Start max. height margin");
+      ConfigItem *n5 = new ConfigItem("Start height ref.");
+      ConfigItem *n6 = new ConfigItem("Finish min. height");
       i1->appendRow(n1);
       i1->appendRow(n2);
       i1->appendRow(n3);
@@ -302,18 +302,18 @@ ConfigModel::ConfigModel()
       i1->appendRow(n5);
       i1->appendRow(n6);
       }
-    QStandardItem *i2 = new QStandardItem("Turnpoint Types");
+    ConfigItem *i2 = new ConfigItem("Turnpoint Types");
     r5->appendRow(i2);
       {
-      QStandardItem *n1 = new QStandardItem("Start line");
-      QStandardItem *n2 = new QStandardItem("Gate width");
-      QStandardItem *n3 = new QStandardItem("Finish point");
-      QStandardItem *n4 = new QStandardItem("Radius");
-      QStandardItem *n5 = new QStandardItem("Turn point");
-      QStandardItem *n6 = new QStandardItem("Radius");
-      QStandardItem *n7 = new QStandardItem("Task");
-      QStandardItem *n8 = new QStandardItem("AAT min. time");
-      QStandardItem *n9 = new QStandardItem("Optimization margin");
+      ConfigItem *n1 = new ConfigItem("Start line");
+      ConfigItem *n2 = new ConfigItem("Gate width");
+      ConfigItem *n3 = new ConfigItem("Finish point");
+      ConfigItem *n4 = new ConfigItem("Radius");
+      ConfigItem *n5 = new ConfigItem("Turn point");
+      ConfigItem *n6 = new ConfigItem("Radius");
+      ConfigItem *n7 = new ConfigItem("Task");
+      ConfigItem *n8 = new ConfigItem("AAT min. time");
+      ConfigItem *n9 = new ConfigItem("Optimization margin");
       i2->appendRow(n1);
       i2->appendRow(n2);
       i2->appendRow(n3);
@@ -325,18 +325,18 @@ ConfigModel::ConfigModel()
       i2->appendRow(n9);
       }
     }
-  QStandardItem *r6 = new QStandardItem("Look");
+  ConfigItem *r6 = new ConfigItem("Look");
   rootNode->appendRow(r6);
     {
-    QStandardItem *i1 = new QStandardItem("Language and Input");
+    ConfigItem *i1 = new ConfigItem("Language and Input");
     r6->appendRow(i1);
       {
-      QStandardItem *n1 = new QStandardItem("Text size");
-      QStandardItem *n2 = new QStandardItem("Events");
-      QStandardItem *n3 = new QStandardItem("Language");
-      QStandardItem *n4 = new QStandardItem("Menu timeout");
-      QStandardItem *n5 = new QStandardItem("Text input style");
-      QStandardItem *n6 = new QStandardItem("Haptic feedback");
+      ConfigItem *n1 = new ConfigItem("Text size");
+      ConfigItem *n2 = new ConfigItem("Events");
+      ConfigItem *n3 = new ConfigItem("Language");
+      ConfigItem *n4 = new ConfigItem("Menu timeout");
+      ConfigItem *n5 = new ConfigItem("Text input style");
+      ConfigItem *n6 = new ConfigItem("Haptic feedback");
       i1->appendRow(n1);
       i1->appendRow(n2);
       i1->appendRow(n3);
@@ -344,17 +344,17 @@ ConfigModel::ConfigModel()
       i1->appendRow(n5);
       i1->appendRow(n6);
       }
-    QStandardItem *i2 = new QStandardItem("Screen");
+    ConfigItem *i2 = new ConfigItem("Screen");
     r6->appendRow(i2);
       {
-      QStandardItem *n1 = new QStandardItem("Display orientation");
-      QStandardItem *n2 = new QStandardItem("Infobox geometry");
-      QStandardItem *n3 = new QStandardItem("FLARM display");
-      QStandardItem *n4 = new QStandardItem("Tab dialog style");
-      QStandardItem *n5 = new QStandardItem("Message display");
-      QStandardItem *n6 = new QStandardItem("Inverse infoboxes");
-      QStandardItem *n7 = new QStandardItem("Colored infoboxes");
-      QStandardItem *n8 = new QStandardItem("Infobox border");
+      ConfigItem *n1 = new ConfigItem("Display orientation");
+      ConfigItem *n2 = new ConfigItem("Infobox geometry");
+      ConfigItem *n3 = new ConfigItem("FLARM display");
+      ConfigItem *n4 = new ConfigItem("Tab dialog style");
+      ConfigItem *n5 = new ConfigItem("Message display");
+      ConfigItem *n6 = new ConfigItem("Inverse infoboxes");
+      ConfigItem *n7 = new ConfigItem("Colored infoboxes");
+      ConfigItem *n8 = new ConfigItem("Infobox border");
       i2->appendRow(n1);
       i2->appendRow(n2);
       i2->appendRow(n3);
@@ -364,30 +364,30 @@ ConfigModel::ConfigModel()
       i2->appendRow(n7);
       i2->appendRow(n8);
       }
-    QStandardItem *i3 = new QStandardItem("Pages");
+    ConfigItem *i3 = new ConfigItem("Pages");
     r6->appendRow(i3);
       {
       // \todo Implement 8 infobox selections.
       }
-    QStandardItem *i4 = new QStandardItem("Infobox Sets");
+    ConfigItem *i4 = new ConfigItem("Infobox Sets");
     r6->appendRow(i4);
       {
       // \todo Implement 8 page selections.
       }
     }
-  QStandardItem *r7 = new QStandardItem("General");
+  ConfigItem *r7 = new ConfigItem("General");
   rootNode->appendRow(r7);
     {
-    QStandardItem *i1 = new QStandardItem("Logger");
+    ConfigItem *i1 = new ConfigItem("Logger");
     r7->appendRow(i1);
       {
-      QStandardItem *n1 = new QStandardItem("Pilot name");
-      QStandardItem *n2 = new QStandardItem("Time step cruise");
-      QStandardItem *n3 = new QStandardItem("Time step circling");
-      QStandardItem *n4 = new QStandardItem("Auto logger");
-      QStandardItem *n5 = new QStandardItem("NMEA logger");
-      QStandardItem *n6 = new QStandardItem("Log book");
-      QStandardItem *n7 = new QStandardItem("Logger ID");
+      ConfigItem *n1 = new ConfigItem("Pilot name");
+      ConfigItem *n2 = new ConfigItem("Time step cruise");
+      ConfigItem *n3 = new ConfigItem("Time step circling");
+      ConfigItem *n4 = new ConfigItem("Auto logger");
+      ConfigItem *n5 = new ConfigItem("NMEA logger");
+      ConfigItem *n6 = new ConfigItem("Log book");
+      ConfigItem *n7 = new ConfigItem("Logger ID");
       i1->appendRow(n1);
       i1->appendRow(n2);
       i1->appendRow(n3);
@@ -396,20 +396,20 @@ ConfigModel::ConfigModel()
       i1->appendRow(n6);
       i1->appendRow(n7);
       }
-    QStandardItem *i2 = new QStandardItem("Units");
+    ConfigItem *i2 = new ConfigItem("Units");
     r7->appendRow(i2);
       {
-      QStandardItem *n1  = new QStandardItem("Preset");
-      QStandardItem *n2  = new QStandardItem("Aircraft/Wind speed");
-      QStandardItem *n3  = new QStandardItem("Distance");
-      QStandardItem *n4  = new QStandardItem("Lift");
-      QStandardItem *n5  = new QStandardItem("Altitude");
-      QStandardItem *n6  = new QStandardItem("Temperature");
-      QStandardItem *n7  = new QStandardItem("Task speed");
-      QStandardItem *n8  = new QStandardItem("Pressure");
-      QStandardItem *n9  = new QStandardItem("Mass");
-      QStandardItem *n10 = new QStandardItem("Wing loading");
-      QStandardItem *n11 = new QStandardItem("Lat/Lon");
+      ConfigItem *n1  = new ConfigItem("Preset");
+      ConfigItem *n2  = new ConfigItem("Aircraft/Wind speed");
+      ConfigItem *n3  = new ConfigItem("Distance");
+      ConfigItem *n4  = new ConfigItem("Lift");
+      ConfigItem *n5  = new ConfigItem("Altitude");
+      ConfigItem *n6  = new ConfigItem("Temperature");
+      ConfigItem *n7  = new ConfigItem("Task speed");
+      ConfigItem *n8  = new ConfigItem("Pressure");
+      ConfigItem *n9  = new ConfigItem("Mass");
+      ConfigItem *n10 = new ConfigItem("Wing loading");
+      ConfigItem *n11 = new ConfigItem("Lat/Lon");
       i2->appendRow(n1);
       i2->appendRow(n2);
       i2->appendRow(n3);
@@ -422,24 +422,24 @@ ConfigModel::ConfigModel()
       i2->appendRow(n10);
       i2->appendRow(n11);
       }
-    QStandardItem *i3 = new QStandardItem("Time");
+    ConfigItem *i3 = new ConfigItem("Time");
     r7->appendRow(i3);
       {
-      QStandardItem *n1 = new QStandardItem("UTC offset");
-      QStandardItem *n2 = new QStandardItem("Use GPS time");
+      ConfigItem *n1 = new ConfigItem("UTC offset");
+      ConfigItem *n2 = new ConfigItem("Use GPS time");
       i3->appendRow(n1);
       i3->appendRow(n2);
       }
-    QStandardItem *i4 = new QStandardItem("Tracking");
+    ConfigItem *i4 = new ConfigItem("Tracking");
     r7->appendRow(i4);
       {
-      QStandardItem *n1 = new QStandardItem("Skylines");
-      QStandardItem *n2 = new QStandardItem("Roaming");
-      QStandardItem *n3 = new QStandardItem("Tracking interval");
-      QStandardItem *n4 = new QStandardItem("Track friends");
-      QStandardItem *n5 = new QStandardItem("Show nearby traffic"); // 6.8.2?
-      QStandardItem *n6 = new QStandardItem("Key");
-      QStandardItem *n7 = new QStandardItem("XCSoar Cloud");  // 6.8.2?
+      ConfigItem *n1 = new ConfigItem("Skylines");
+      ConfigItem *n2 = new ConfigItem("Roaming");
+      ConfigItem *n3 = new ConfigItem("Tracking interval");
+      ConfigItem *n4 = new ConfigItem("Track friends");
+      ConfigItem *n5 = new ConfigItem("Show nearby traffic"); // 6.8.2?
+      ConfigItem *n6 = new ConfigItem("Key");
+      ConfigItem *n7 = new ConfigItem("XCSoar Cloud");  // 6.8.2?
       i4->appendRow(n1);
       i4->appendRow(n2);
       i4->appendRow(n3);
@@ -485,15 +485,10 @@ ConfigModel::Logger()
   }
 
 //------------------------------------------------------------------------------
-QVariant
-ConfigModel::data(const QModelIndex &index, int role) const
+ConfigItem::ConfigItem(QString text)
+  : QStandardItem(text)
   {
-  if (role == Qt::DisplayRole)
-    {
-    return QString("Row%1, Column%2").arg(index.row() + 1).arg(index.column() +
-                                                               1);
-    }
-  return QVariant(QVariant::Invalid); // Invalid.
+  this->setEditable(false);
   }
 
 #include <QStringList>

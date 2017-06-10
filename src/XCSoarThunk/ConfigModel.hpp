@@ -416,16 +416,6 @@ public:
    */
   ~ConfigModel();
 
-  /**
-   * Implements QAbstractItemModel::data().
-   * @param index The index of the item being requested.
-   * @param role The context of the data - Qt::DisplayRole by default.
-   * @return The data item corresponding to the index. If index is invalid
-   *         then the QVariant returned will be QVariant::Invalid.
-   */
-  QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) 
-                 const Q_DECL_OVERRIDE;
-
 protected:
   /**
    * Wind settings.
@@ -455,6 +445,19 @@ private:
   struct ComputerSettings computer;
   };
 
+/**
+ * A class used to populate ConfigModel.
+ */
+class ConfigItem : public QStandardItem
+  {
+public:
+  /**
+   * Ctor.
+   * @param text The text to display for this item.
+   */
+  ConfigItem(QString text);
+  };
+
 #include <QList>
 #include <QVariant>
 
@@ -463,25 +466,25 @@ private:
  * A container for items of data supplied by the simple tree model.
  */
 class TreeItem
-{
+  {
 public:
-    explicit TreeItem(const QList<QVariant> &data, TreeItem *parentItem = 0);
-    ~TreeItem();
+  explicit TreeItem(const QList<QVariant> &data, TreeItem *parentItem = 0);
+  ~TreeItem();
 
-    void appendChild(TreeItem *child);
+  void appendChild(TreeItem *child);
 
-    TreeItem *child(int row);
-    int childCount() const;
-    int columnCount() const;
-    QVariant data(int column) const;
-    int row() const;
-    TreeItem *parentItem();
+  TreeItem *child(int row);
+  int childCount() const;
+  int columnCount() const;
+  QVariant data(int column) const;
+  int row() const;
+  TreeItem *parentItem();
 
 private:
-    QList<TreeItem*> child_items;
-    QList<QVariant> item_data;
-    TreeItem *parent_item;
-};
+  QList<TreeItem*> child_items;
+  QList<QVariant> item_data;
+  TreeItem *parent_item;
+  };
 
 #endif  // __CONFIGMODEL_HPP
 /**
