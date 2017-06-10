@@ -31,354 +31,355 @@ ConfigModel::ConfigModel()
   {
   QStandardItem *rootNode = this->invisibleRootItem(); 
 
-  QStandardItem *filesNode      = new QStandardItem("Site Files");
-  filesNode->setText("Files Node");
-  rootNode->appendRow(filesNode);
+  QStandardItem *r1 = new QStandardItem("Site Files");
+  r1->setToolTip("Site Files");
+  rootNode->appendRow(r1);
     {
-    QStandardItem *dbNode         = new QStandardItem("Map Database");
-    QStandardItem *waypointsNode  = new QStandardItem("Waypoints");
-    QStandardItem *moreNode       = new QStandardItem("Additional Waypoints");
-    QStandardItem *watchedNode    = new QStandardItem("Watched Waypoints");
-    QStandardItem *airspacesNode  = new QStandardItem("Airspaces");
-    QStandardItem *additionalNode = new QStandardItem("Additional Airspaces");
-    QStandardItem *detailsNode    = new QStandardItem("Waypoint Details");
-    filesNode->appendRow(dbNode);
-    filesNode->appendRow(waypointsNode);
-    filesNode->appendRow(moreNode);
-    filesNode->appendRow(watchedNode);
-    filesNode->appendRow(airspacesNode);
-    filesNode->appendRow(additionalNode);
-    filesNode->appendRow(detailsNode);
+    QStandardItem *n1 = new QStandardItem("Map Database");
+    QStandardItem *n2 = new QStandardItem("Waypoints");
+    QStandardItem *n3 = new QStandardItem("Additional Waypoints");
+    QStandardItem *n4 = new QStandardItem("Watched Waypoints");
+    QStandardItem *n5 = new QStandardItem("Airspaces");
+    QStandardItem *n6 = new QStandardItem("Additional Airspaces");
+    QStandardItem *n7 = new QStandardItem("Waypoint Details");
+    r1->appendRow(n1);
+    r1->appendRow(n2);
+    r1->appendRow(n3);
+    r1->appendRow(n4);
+    r1->appendRow(n5);
+    r1->appendRow(n6);
+    r1->appendRow(n7);
     }
-  QStandardItem *mapNode         = new QStandardItem("Map Display");
-  rootNode->appendRow(mapNode);
+  QStandardItem *r2 = new QStandardItem("Map Display");
+  rootNode->appendRow(r2);
     {
-    QStandardItem *orientationNode = new QStandardItem("Orientation");
-    mapNode->appendRow(orientationNode);
+    QStandardItem *i1 = new QStandardItem("Orientation");
+    r2->appendRow(i1);
       {
-      QStandardItem *cruiseNode       = new QStandardItem("Cruise");
-      QStandardItem *circlingNode     = new QStandardItem("Circling");
-      QStandardItem *circlingzoomNode = new QStandardItem("Circling Zoom");
-      QStandardItem *mapshiftNode     = new QStandardItem("Map Shift Reference");
-      QStandardItem *offsetNode       = new QStandardItem("Glider Position Offset");
-      QStandardItem *maxzoomNode      = new QStandardItem("Max Auto Zoom");
-      QStandardItem *distinctscaleNode = new QStandardItem("Distinct Page Zoom");
-      orientationNode->appendRow(cruiseNode);
-      orientationNode->appendRow(circlingNode);
-      orientationNode->appendRow(circlingzoomNode);
-      orientationNode->appendRow(mapshiftNode);
-      orientationNode->appendRow(offsetNode);
-      orientationNode->appendRow(maxzoomNode);
-      orientationNode->appendRow(distinctscaleNode);
+      QStandardItem *n1 = new QStandardItem("Cruise");
+      QStandardItem *n2 = new QStandardItem("Circling");
+      QStandardItem *n3 = new QStandardItem("Circling Zoom");
+      QStandardItem *n4 = new QStandardItem("Map Shift Reference");
+      QStandardItem *n5 = new QStandardItem("Glider Position Offset");
+      QStandardItem *n6 = new QStandardItem("Max Auto Zoom");
+      QStandardItem *n7 = new QStandardItem("Distinct Page Zoom");
+      i1->appendRow(n1);
+      i1->appendRow(n2);
+      i1->appendRow(n3);
+      i1->appendRow(n4);
+      i1->appendRow(n5);
+      i1->appendRow(n6);
+      i1->appendRow(n7);
       }
-    QStandardItem *elementsNode    = new QStandardItem("Elements");
-    mapNode->appendRow(elementsNode);
+    QStandardItem *i2 = new QStandardItem("Elements");
+    r2->appendRow(i2);
       {
-      QStandardItem *trackNode       = new QStandardItem("Ground track");
-      QStandardItem *flarmNode       = new QStandardItem("FLARM traffic");
-      QStandardItem *trailLengthNode = new QStandardItem("Trail length");
-      QStandardItem *trailDriftNode  = new QStandardItem("Trail drift");
-      QStandardItem *trailTypeNode   = new QStandardItem("Trail type");
-      QStandardItem *trailScaledNode = new QStandardItem("Trail scaled");
-      QStandardItem *detourNode      = new QStandardItem("Detour cost markers");
-      QStandardItem *aircraftNode    = new QStandardItem("Aircraft symbol");
-      QStandardItem *windNode        = new QStandardItem("Wind arrow");
-      elementsNode->appendRow(trackNode);
-      elementsNode->appendRow(flarmNode);
-      elementsNode->appendRow(trailLengthNode);
-      elementsNode->appendRow(trailDriftNode);
-      elementsNode->appendRow(trailScaledNode);
-      elementsNode->appendRow(trailTypeNode);
-      elementsNode->appendRow(detourNode);
-      elementsNode->appendRow(aircraftNode);
-      elementsNode->appendRow(windNode);
+      QStandardItem *n1 = new QStandardItem("Ground track");
+      QStandardItem *n2 = new QStandardItem("FLARM traffic");
+      QStandardItem *n3 = new QStandardItem("Trail length");
+      QStandardItem *n4 = new QStandardItem("Trail drift");
+      QStandardItem *n5 = new QStandardItem("Trail type");
+      QStandardItem *n6 = new QStandardItem("Trail scaled");
+      QStandardItem *n7 = new QStandardItem("Detour cost markers");
+      QStandardItem *n8 = new QStandardItem("Aircraft symbol");
+      QStandardItem *n9 = new QStandardItem("Wind arrow");
+      i2->appendRow(n1);
+      i2->appendRow(n2);
+      i2->appendRow(n3);
+      i2->appendRow(n4);
+      i2->appendRow(n5);
+      i2->appendRow(n6);
+      i2->appendRow(n7);
+      i2->appendRow(n7);
+      i2->appendRow(n8);
+      i2->appendRow(n9);
       }
-    QStandardItem *waypointsNode   = new QStandardItem("Waypoints");
-    mapNode->appendRow(waypointsNode);
+    QStandardItem *i3 = new QStandardItem("Waypoints");
+    r2->appendRow(i3);
       {
-      QStandardItem *formatNode    = new QStandardItem("Label format");
-      QStandardItem *styleNode     = new QStandardItem("Label style");
-      QStandardItem *visibiltyNode = new QStandardItem("Label visibilty");
-      QStandardItem *arrivalNode   = new QStandardItem("Arrival height");
-      QStandardItem *symbolsNode   = new QStandardItem("Landable symbols");
-      QStandardItem *landablesNode = new QStandardItem("Detailed landables");
-      QStandardItem *sizeNode      = new QStandardItem("Landable size");
-      QStandardItem *scaleNode     = new QStandardItem("Scale runway length");
-      waypointsNode->appendRow(formatNode);
-      waypointsNode->appendRow(styleNode);
-      waypointsNode->appendRow(visibiltyNode);
-      waypointsNode->appendRow(arrivalNode);
-      waypointsNode->appendRow(symbolsNode);
-      waypointsNode->appendRow(landablesNode);
-      waypointsNode->appendRow(sizeNode);
-      waypointsNode->appendRow(scaleNode);
+      QStandardItem *n1 = new QStandardItem("Label format");
+      QStandardItem *n2 = new QStandardItem("Label style");
+      QStandardItem *n3 = new QStandardItem("Label visibilty");
+      QStandardItem *n4 = new QStandardItem("Arrival height");
+      QStandardItem *n5 = new QStandardItem("Landable symbols");
+      QStandardItem *n6 = new QStandardItem("Detailed landables");
+      QStandardItem *n7 = new QStandardItem("Landable size");
+      QStandardItem *n8 = new QStandardItem("Scale runway length");
+      i3->appendRow(n1);
+      i3->appendRow(n2);
+      i3->appendRow(n3);
+      i3->appendRow(n4);
+      i3->appendRow(n5);
+      i3->appendRow(n6);
+      i3->appendRow(n7);
+      i3->appendRow(n8);
       }
-    QStandardItem *terrainNode     = new QStandardItem("Terrain");
-    mapNode->appendRow(terrainNode);
+    QStandardItem *i4 = new QStandardItem("Terrain");
+    r2->appendRow(i4);
       {
-      QStandardItem *displayNode = new QStandardItem("Terrain display");
-      QStandardItem *topographyNode = new QStandardItem("Topography display");
-      terrainNode->appendRow(displayNode);
-      terrainNode->appendRow(topographyNode);
+      QStandardItem *n1 = new QStandardItem("Terrain display");
+      QStandardItem *n2 = new QStandardItem("Topography display");
+      i4->appendRow(n1);
+      i4->appendRow(n2);
       }
-    QStandardItem *airspaceNode    = new QStandardItem("Airspace");
-    mapNode->appendRow(airspaceNode);
+    QStandardItem *i5 = new QStandardItem("Airspace");
+    r2->appendRow(i5);
       {
-      QStandardItem *displayNode     = new QStandardItem("Airspace display");
-      QStandardItem *labelNode       = new QStandardItem("Label visibility");
-      QStandardItem *warningsNode    = new QStandardItem("Warnings");
-      QStandardItem *dialogNode      = new QStandardItem("Warnings dialog");
-      QStandardItem *timeNode        = new QStandardItem("Warning time");
-      QStandardItem *repetitiveNode  = new QStandardItem("Repetitive sound");
-      QStandardItem *acknowledgeNode = new QStandardItem("Acknowledge time");
-      QStandardItem *outlineNode     = new QStandardItem("Use black outline");
-      QStandardItem *modeNode        = new QStandardItem("Airspace fill node");
-      airspaceNode->appendRow(displayNode);
-      airspaceNode->appendRow(labelNode);
-      airspaceNode->appendRow(warningsNode);
-      airspaceNode->appendRow(dialogNode);
-      airspaceNode->appendRow(timeNode);
-      airspaceNode->appendRow(repetitiveNode);
-      airspaceNode->appendRow(acknowledgeNode);
-      airspaceNode->appendRow(outlineNode);
-      airspaceNode->appendRow(modeNode);
-      }
-    }
-  QStandardItem *computerNode = new QStandardItem("Glide Computer");
-  rootNode->appendRow(computerNode);
-    {
-    QStandardItem *safetyNode   = new QStandardItem("Safety Factors");
-    computerNode->appendRow(safetyNode);
-      {
-      QStandardItem *arrivalNode     = new QStandardItem("Arrival height");
-      QStandardItem *terrainNode     = new QStandardItem("Terrain height");
-      QStandardItem *alternatesNode  = new QStandardItem("Alternates mode");
-      QStandardItem *degradationNode = new QStandardItem("Polar degradation");
-      QStandardItem *bugsNode        = new QStandardItem("Auto bugs");
-      QStandardItem *mcNode          = new QStandardItem("Safety MC");
-      QStandardItem *riskNode        = new QStandardItem("STF risk factor");
-      safetyNode->appendRow(arrivalNode);
-      safetyNode->appendRow(terrainNode);
-      safetyNode->appendRow(alternatesNode);
-      safetyNode->appendRow(degradationNode);
-      safetyNode->appendRow(bugsNode);
-      safetyNode->appendRow(mcNode);
-      safetyNode->appendRow(riskNode);
-      }
-    QStandardItem *glideNode    = new QStandardItem("Glide Computer");
-    computerNode->appendRow(glideNode);
-      {
-      QStandardItem *autoNode    = new QStandardItem("Auto MC mode");
-      QStandardItem *speedNode   = new QStandardItem("Block soeed to fly");
-      QStandardItem *baroNode    = new QStandardItem("Nav. by baro altitude");
-      QStandardItem *flapsNode   = new QStandardItem("Flaps forces cruise");
-      QStandardItem *averageNode = new QStandardItem("GR average period");
-      QStandardItem *windNode    = new QStandardItem("Predict wind drift");
-      QStandardItem *waveNode    = new QStandardItem("Wave assistant");
-      glideNode->appendRow(autoNode);
-      glideNode->appendRow(speedNode);
-      glideNode->appendRow(baroNode);
-      glideNode->appendRow(flapsNode);
-      glideNode->appendRow(averageNode);
-      glideNode->appendRow(windNode);
-      glideNode->appendRow(waveNode);
-      }
-    QStandardItem *windNode     = new QStandardItem("Wind");
-    computerNode->appendRow(windNode);
-      {
-      QStandardItem *autoNode     = new QStandardItem("Auto wind");
-      QStandardItem *externalNode = new QStandardItem("External wind");
-      windNode->appendRow(autoNode);
-      windNode->appendRow(externalNode);
-      }
-    QStandardItem *routeNode    = new QStandardItem("Route");
-    computerNode->appendRow(routeNode);
-      {
-      QStandardItem *modeNode    = new QStandardItem("Route mode");
-      QStandardItem *climbNode   = new QStandardItem("Route climb");
-      QStandardItem *ceilingNode = new QStandardItem("Route ceiling");
-      routeNode->appendRow(modeNode);
-      routeNode->appendRow(climbNode);
-      routeNode->appendRow(ceilingNode);
-      }
-    QStandardItem *reachNode    = new QStandardItem("Reach");
-    computerNode->appendRow(reachNode);
-      {
-      QStandardItem *modeNode    = new QStandardItem("Reach mode");
-      QStandardItem *polarNode   = new QStandardItem("Reach polar");
-      QStandardItem *displayNode = new QStandardItem("Reach display");
-      reachNode->appendRow(modeNode);
-      reachNode->appendRow(polarNode);
-      reachNode->appendRow(displayNode);
-      }
-    QStandardItem *scoringNode  = new QStandardItem("Scoring");
-    computerNode->appendRow(scoringNode);
-      {
-      QStandardItem *olcNode      = new QStandardItem("On-Line Contest");
-      QStandardItem *predictNode  = new QStandardItem("Predict contest");
-      QStandardItem *triangleNode = new QStandardItem("FAI triangle areas");
-      scoringNode->appendRow(olcNode);
-      scoringNode->appendRow(predictNode);
-      scoringNode->appendRow(triangleNode);
+      QStandardItem *n1 = new QStandardItem("Airspace display");
+      QStandardItem *n2 = new QStandardItem("Label visibility");
+      QStandardItem *n3 = new QStandardItem("Warnings");
+      QStandardItem *n4 = new QStandardItem("Warnings dialog");
+      QStandardItem *n5 = new QStandardItem("Warning time");
+      QStandardItem *n6 = new QStandardItem("Repetitive sound");
+      QStandardItem *n7 = new QStandardItem("Acknowledge time");
+      QStandardItem *n8 = new QStandardItem("Use black outline");
+      QStandardItem *n9 = new QStandardItem("Airspace fill node");
+      i5->appendRow(n1);
+      i5->appendRow(n2);
+      i5->appendRow(n3);
+      i5->appendRow(n4);
+      i5->appendRow(n5);
+      i5->appendRow(n6);
+      i5->appendRow(n7);
+      i5->appendRow(n8);
+      i5->appendRow(n9);
       }
     }
-  QStandardItem *gaugesNode   = new QStandardItem("Gauges");
-  rootNode->appendRow(gaugesNode);
+  QStandardItem *r3 = new QStandardItem("Glide Computer");
+  rootNode->appendRow(r3);
     {
-    QStandardItem *flarmNode    = new QStandardItem("FLARM and Other");
-    gaugesNode->appendRow(flarmNode);
+    QStandardItem *i1 = new QStandardItem("Safety Factors");
+    r3->appendRow(i1);
       {
-      QStandardItem *radarNode     = new QStandardItem("FLARM radar");
-      QStandardItem *autoNode      = new QStandardItem("Auto close FLARM");
-      QStandardItem *assistantNode = new QStandardItem("Thermal assitant");
-      QStandardItem *bandNode      = new QStandardItem("Thermal band");
-      QStandardItem *finalNode     = new QStandardItem("Final glide bar");
-      QStandardItem *mc0Node       = new QStandardItem("Final glide bar MC0");
-      QStandardItem *varioNode     = new QStandardItem("Vario bar");
-      flarmNode->appendRow(radarNode);
-      flarmNode->appendRow(autoNode);
-      flarmNode->appendRow(assistantNode);
-      flarmNode->appendRow(bandNode);
-      flarmNode->appendRow(finalNode);
-      flarmNode->appendRow(mc0Node);
-      flarmNode->appendRow(varioNode);
+      QStandardItem *n1 = new QStandardItem("Arrival height");
+      QStandardItem *n2 = new QStandardItem("Terrain height");
+      QStandardItem *n3 = new QStandardItem("Alternates mode");
+      QStandardItem *n4 = new QStandardItem("Polar degradation");
+      QStandardItem *n5 = new QStandardItem("Auto bugs");
+      QStandardItem *n6 = new QStandardItem("Safety MC");
+      QStandardItem *n7 = new QStandardItem("STF risk factor");
+      i1->appendRow(n1);
+      i1->appendRow(n2);
+      i1->appendRow(n3);
+      i1->appendRow(n4);
+      i1->appendRow(n5);
+      i1->appendRow(n6);
+      i1->appendRow(n7);
       }
-    QStandardItem *varioNode    = new QStandardItem("Vario");
-    gaugesNode->appendRow(varioNode);
+    QStandardItem *i2 = new QStandardItem("Glide Computer");
+    r3->appendRow(i2);
       {
-      QStandardItem *speedNode    = new QStandardItem("Speed arrows");
-      QStandardItem *averageNode  = new QStandardItem("Show average");
-      QStandardItem *mcNode       = new QStandardItem("Show MacReady");
-      QStandardItem *bugsNode     = new QStandardItem("Show bugs");
-      QStandardItem *ballastNode  = new QStandardItem("Show ballast");
-      QStandardItem *grossNode    = new QStandardItem("Show gross");
-      QStandardItem *averagerNode = new QStandardItem("Averager needle");
-      varioNode->appendRow(speedNode);
-      varioNode->appendRow(averageNode);
-      varioNode->appendRow(mcNode);
-      varioNode->appendRow(bugsNode);
-      varioNode->appendRow(ballastNode);
-      varioNode->appendRow(grossNode);
-      varioNode->appendRow(averagerNode);
+      QStandardItem *n1 = new QStandardItem("Auto MC mode");
+      QStandardItem *n2 = new QStandardItem("Block soeed to fly");
+      QStandardItem *n3 = new QStandardItem("Nav. by baro altitude");
+      QStandardItem *n4 = new QStandardItem("Flaps forces cruise");
+      QStandardItem *n5 = new QStandardItem("GR average period");
+      QStandardItem *n6 = new QStandardItem("Predict wind drift");
+      QStandardItem *n7 = new QStandardItem("Wave assistant");
+      i2->appendRow(n1);
+      i2->appendRow(n2);
+      i2->appendRow(n3);
+      i2->appendRow(n4);
+      i2->appendRow(n5);
+      i2->appendRow(n6);
+      i2->appendRow(n7);
       }
-    QStandardItem *audioNode    = new QStandardItem("Audio");
-    gaugesNode->appendRow(audioNode);
+    QStandardItem *i3 = new QStandardItem("Wind");
+    r3->appendRow(i3);
       {
-      QStandardItem *varioNode    = new QStandardItem("Audio vario");
-      QStandardItem *volumeNode   = new QStandardItem("Volume");
-      QStandardItem *deadbandNode = new QStandardItem("Enable deadband");
-      QStandardItem *minNode      = new QStandardItem("Min. frequency");
-      QStandardItem *zeroNode     = new QStandardItem("Zero frequency");
-      QStandardItem *maxNode      = new QStandardItem("Max. frequency");
-      QStandardItem *minliftNode  = new QStandardItem("Deadband min. lift");
-      QStandardItem *maxliftNode  = new QStandardItem("Deadband max. lift");
-      audioNode->appendRow(varioNode);
-      audioNode->appendRow(volumeNode);
-      audioNode->appendRow(deadbandNode);
-      audioNode->appendRow(minNode);
-      audioNode->appendRow(zeroNode);
-      audioNode->appendRow(maxNode);
-      audioNode->appendRow(minliftNode);
-      audioNode->appendRow(maxliftNode);
+      QStandardItem *n1 = new QStandardItem("Auto wind");
+      QStandardItem *n2 = new QStandardItem("External wind");
+      i3->appendRow(n1);
+      i3->appendRow(n2);
+      }
+    QStandardItem *i4 = new QStandardItem("Route");
+    r3->appendRow(i4);
+      {
+      QStandardItem *n1 = new QStandardItem("Route mode");
+      QStandardItem *n2 = new QStandardItem("Route climb");
+      QStandardItem *n3 = new QStandardItem("Route ceiling");
+      i4->appendRow(n1);
+      i4->appendRow(n2);
+      i4->appendRow(n3);
+      }
+    QStandardItem *i5 = new QStandardItem("Reach");
+    r3->appendRow(i5);
+      {
+      QStandardItem *n1 = new QStandardItem("Reach mode");
+      QStandardItem *n2 = new QStandardItem("Reach polar");
+      QStandardItem *n3 = new QStandardItem("Reach display");
+      i5->appendRow(n1);
+      i5->appendRow(n2);
+      i5->appendRow(n3);
+      }
+    QStandardItem *i6 = new QStandardItem("Scoring");
+    r3->appendRow(i6);
+      {
+      QStandardItem *n1 = new QStandardItem("On-Line Contest");
+      QStandardItem *n2 = new QStandardItem("Predict contest");
+      QStandardItem *n3 = new QStandardItem("FAI triangle areas");
+      i6->appendRow(n1);
+      i6->appendRow(n2);
+      i6->appendRow(n3);
       }
     }
-  QStandardItem *taskNode       = new QStandardItem("Task Defaults");
-  rootNode->appendRow(taskNode);
+  QStandardItem *r4 = new QStandardItem("Gauges");
+  rootNode->appendRow(r4);
     {
-    QStandardItem *rulesNode      = new QStandardItem("Rules");
-    taskNode->appendRow(rulesNode);
+    QStandardItem *i1 = new QStandardItem("FLARM and Other");
+    r4->appendRow(i1);
       {
-      QStandardItem *maxspeedNode     = new QStandardItem("Start max. speed");
-      QStandardItem *speedmarginNode  = new QStandardItem("Start max. speed margin");
-      QStandardItem *maxheightNode    = new QStandardItem("Start max. height");
-      QStandardItem *heightmarginNode = new QStandardItem("Start max. height margin");
-      QStandardItem *heightrefNode    = new QStandardItem("Start height ref.");
-      QStandardItem *minheightNode    = new QStandardItem("Finish min. height");
-      taskNode->appendRow(maxspeedNode);
-      taskNode->appendRow(speedmarginNode);
-      taskNode->appendRow(maxheightNode);
-      taskNode->appendRow(heightmarginNode);
-      taskNode->appendRow(heightrefNode);
-      taskNode->appendRow(minheightNode);
+      QStandardItem *n1 = new QStandardItem("FLARM radar");
+      QStandardItem *n2 = new QStandardItem("Auto close FLARM");
+      QStandardItem *n3 = new QStandardItem("Thermal assitant");
+      QStandardItem *n4 = new QStandardItem("Thermal band");
+      QStandardItem *n5 = new QStandardItem("Final glide bar");
+      QStandardItem *n6 = new QStandardItem("Final glide bar MC0");
+      QStandardItem *n7 = new QStandardItem("Vario bar");
+      i1->appendRow(n1);
+      i1->appendRow(n2);
+      i1->appendRow(n3);
+      i1->appendRow(n4);
+      i1->appendRow(n5);
+      i1->appendRow(n6);
+      i1->appendRow(n7);
       }
-    QStandardItem *turnpointsNode = new QStandardItem("Turnpoint Types");
-    taskNode->appendRow(turnpointsNode);
+    QStandardItem *i2 = new QStandardItem("Vario");
+    r4->appendRow(i2);
       {
-      QStandardItem *startNode        = new QStandardItem("Start line");
-      QStandardItem *gateNode         = new QStandardItem("Gate width");
-      QStandardItem *finishNode       = new QStandardItem("Finish point");
-      QStandardItem *finishradiusNode = new QStandardItem("Radius");
-      QStandardItem *turnNode         = new QStandardItem("Turn point");
-      QStandardItem *turnradiusNode   = new QStandardItem("Radius");
-      QStandardItem *taskNode         = new QStandardItem("Task");
-      QStandardItem *timeNode         = new QStandardItem("AAT min. time");
-      QStandardItem *optimizationNode = new QStandardItem("Optimization margin");
-      turnpointsNode->appendRow(startNode);
-      turnpointsNode->appendRow(gateNode);
-      turnpointsNode->appendRow(finishNode);
-      turnpointsNode->appendRow(finishradiusNode);
-      turnpointsNode->appendRow(turnNode);
-      turnpointsNode->appendRow(turnradiusNode);
-      turnpointsNode->appendRow(taskNode);
-      turnpointsNode->appendRow(timeNode);
-      turnpointsNode->appendRow(optimizationNode);
+      QStandardItem *n1 = new QStandardItem("Speed arrows");
+      QStandardItem *n2 = new QStandardItem("Show average");
+      QStandardItem *n3 = new QStandardItem("Show MacReady");
+      QStandardItem *n4 = new QStandardItem("Show bugs");
+      QStandardItem *n5 = new QStandardItem("Show ballast");
+      QStandardItem *n6 = new QStandardItem("Show gross");
+      QStandardItem *n7 = new QStandardItem("Averager needle");
+      i2->appendRow(n1);
+      i2->appendRow(n2);
+      i2->appendRow(n3);
+      i2->appendRow(n4);
+      i2->appendRow(n5);
+      i2->appendRow(n6);
+      i2->appendRow(n7);
+      }
+    QStandardItem *i3 = new QStandardItem("Audio");
+    r4->appendRow(i3);
+      {
+      QStandardItem *n1 = new QStandardItem("Audio vario");
+      QStandardItem *n2 = new QStandardItem("Volume");
+      QStandardItem *n3 = new QStandardItem("Enable deadband");
+      QStandardItem *n4 = new QStandardItem("Min. frequency");
+      QStandardItem *n5 = new QStandardItem("Zero frequency");
+      QStandardItem *n6 = new QStandardItem("Max. frequency");
+      QStandardItem *n7 = new QStandardItem("Deadband min. lift");
+      QStandardItem *n8 = new QStandardItem("Deadband max. lift");
+      i3->appendRow(n1);
+      i3->appendRow(n2);
+      i3->appendRow(n3);
+      i3->appendRow(n4);
+      i3->appendRow(n5);
+      i3->appendRow(n6);
+      i3->appendRow(n7);
+      i3->appendRow(n8);
       }
     }
-  QStandardItem *lookNode     = new QStandardItem("Look");
-  rootNode->appendRow(lookNode);
+  QStandardItem *r5 = new QStandardItem("Task Defaults");
+  rootNode->appendRow(r5);
     {
-    QStandardItem *languageNode = new QStandardItem("Language and Input");
-    lookNode->appendRow(languageNode);
+    QStandardItem *i1 = new QStandardItem("Rules");
+    r5->appendRow(i1);
       {
-      QStandardItem *sizeNode           = new QStandardItem("Text size");
-      QStandardItem *eventsNode         = new QStandardItem("Events");
-      QStandardItem *languageSelectNode = new QStandardItem("Language");
-      QStandardItem *menuNode           = new QStandardItem("Menu timeout");
-      QStandardItem *styleNode          = new QStandardItem("Text input style");
-      QStandardItem *feedbackNode       = new QStandardItem("Haptic feedback");
-      languageNode->appendRow(sizeNode);
-      languageNode->appendRow(eventsNode);
-      languageNode->appendRow(languageSelectNode);
-      languageNode->appendRow(menuNode);
-      languageNode->appendRow(styleNode);
-      languageNode->appendRow(feedbackNode);
+      QStandardItem *n1 = new QStandardItem("Start max. speed");
+      QStandardItem *n2 = new QStandardItem("Start max. speed margin");
+      QStandardItem *n3 = new QStandardItem("Start max. height");
+      QStandardItem *n4 = new QStandardItem("Start max. height margin");
+      QStandardItem *n5 = new QStandardItem("Start height ref.");
+      QStandardItem *n6 = new QStandardItem("Finish min. height");
+      i1->appendRow(n1);
+      i1->appendRow(n2);
+      i1->appendRow(n3);
+      i1->appendRow(n4);
+      i1->appendRow(n5);
+      i1->appendRow(n6);
       }
-    QStandardItem *screenNode   = new QStandardItem("Screen");
-    lookNode->appendRow(screenNode);
+    QStandardItem *i2 = new QStandardItem("Turnpoint Types");
+    r5->appendRow(i2);
       {
-      QStandardItem *orientationNode = new QStandardItem("Display orientation");
-      QStandardItem *geometryNode    = new QStandardItem("Infobox geometry");
-      QStandardItem *flarmNode       = new QStandardItem("FLARM display");
-      QStandardItem *tabNode         = new QStandardItem("Tab dialog style");
-      QStandardItem *messageNode     = new QStandardItem("Message display");
-      QStandardItem *inverseNode     = new QStandardItem("Inverse infoboxes");
-      QStandardItem *coloredNode     = new QStandardItem("Colored infoboxes");
-      QStandardItem *borderNode      = new QStandardItem("Infobox border");
-      screenNode->appendRow(orientationNode);
-      screenNode->appendRow(geometryNode);
-      screenNode->appendRow(flarmNode);
-      screenNode->appendRow(tabNode);
-      screenNode->appendRow(messageNode);
-      screenNode->appendRow(inverseNode);
-      screenNode->appendRow(coloredNode);
-      screenNode->appendRow(borderNode);
+      QStandardItem *n1 = new QStandardItem("Start line");
+      QStandardItem *n2 = new QStandardItem("Gate width");
+      QStandardItem *n3 = new QStandardItem("Finish point");
+      QStandardItem *n4 = new QStandardItem("Radius");
+      QStandardItem *n5 = new QStandardItem("Turn point");
+      QStandardItem *n6 = new QStandardItem("Radius");
+      QStandardItem *n7 = new QStandardItem("Task");
+      QStandardItem *n8 = new QStandardItem("AAT min. time");
+      QStandardItem *n9 = new QStandardItem("Optimization margin");
+      i2->appendRow(n1);
+      i2->appendRow(n2);
+      i2->appendRow(n3);
+      i2->appendRow(n4);
+      i2->appendRow(n5);
+      i2->appendRow(n6);
+      i2->appendRow(n7);
+      i2->appendRow(n8);
+      i2->appendRow(n9);
       }
-    QStandardItem *pagesNode    = new QStandardItem("Pages");
-    lookNode->appendRow(pagesNode);
+    }
+  QStandardItem *r6 = new QStandardItem("Look");
+  rootNode->appendRow(r6);
+    {
+    QStandardItem *i1 = new QStandardItem("Language and Input");
+    r6->appendRow(i1);
+      {
+      QStandardItem *n1 = new QStandardItem("Text size");
+      QStandardItem *n2 = new QStandardItem("Events");
+      QStandardItem *n3 = new QStandardItem("Language");
+      QStandardItem *n4 = new QStandardItem("Menu timeout");
+      QStandardItem *n5 = new QStandardItem("Text input style");
+      QStandardItem *n6 = new QStandardItem("Haptic feedback");
+      i1->appendRow(n1);
+      i1->appendRow(n2);
+      i1->appendRow(n3);
+      i1->appendRow(n4);
+      i1->appendRow(n5);
+      i1->appendRow(n6);
+      }
+    QStandardItem *i2 = new QStandardItem("Screen");
+    r6->appendRow(i2);
+      {
+      QStandardItem *n1 = new QStandardItem("Display orientation");
+      QStandardItem *n2 = new QStandardItem("Infobox geometry");
+      QStandardItem *n3 = new QStandardItem("FLARM display");
+      QStandardItem *n4 = new QStandardItem("Tab dialog style");
+      QStandardItem *n5 = new QStandardItem("Message display");
+      QStandardItem *n6 = new QStandardItem("Inverse infoboxes");
+      QStandardItem *n7 = new QStandardItem("Colored infoboxes");
+      QStandardItem *n8 = new QStandardItem("Infobox border");
+      i2->appendRow(n1);
+      i2->appendRow(n2);
+      i2->appendRow(n3);
+      i2->appendRow(n4);
+      i2->appendRow(n5);
+      i2->appendRow(n6);
+      i2->appendRow(n7);
+      i2->appendRow(n8);
+      }
+    QStandardItem *i3 = new QStandardItem("Pages");
+    r6->appendRow(i3);
       {
       // \todo Implement 8 infobox selections.
       }
-    QStandardItem *infoboxNodes = new QStandardItem("Infobox Sets");
-    lookNode->appendRow(infoboxNodes);
+    QStandardItem *i4 = new QStandardItem("Infobox Sets");
+    r6->appendRow(i4);
       {
       // \todo Implement 8 page selections.
       }
     }
-  QStandardItem *generalNode  = new QStandardItem("General");
-  rootNode->appendRow(generalNode);
+  QStandardItem *r7 = new QStandardItem("General");
+  rootNode->appendRow(r7);
     {
-    QStandardItem *loggerNode   = new QStandardItem("Logger");
-    generalNode->appendRow(loggerNode);
+    QStandardItem *i1 = new QStandardItem("Logger");
+    r7->appendRow(i1);
       {
       QStandardItem *n1 = new QStandardItem("Pilot name");
       QStandardItem *n2 = new QStandardItem("Time step cruise");
@@ -387,16 +388,16 @@ ConfigModel::ConfigModel()
       QStandardItem *n5 = new QStandardItem("NMEA logger");
       QStandardItem *n6 = new QStandardItem("Log book");
       QStandardItem *n7 = new QStandardItem("Logger ID");
-      loggerNode->appendRow(n1);
-      loggerNode->appendRow(n2);
-      loggerNode->appendRow(n3);
-      loggerNode->appendRow(n4);
-      loggerNode->appendRow(n5);
-      loggerNode->appendRow(n6);
-      loggerNode->appendRow(n7);
+      i1->appendRow(n1);
+      i1->appendRow(n2);
+      i1->appendRow(n3);
+      i1->appendRow(n4);
+      i1->appendRow(n5);
+      i1->appendRow(n6);
+      i1->appendRow(n7);
       }
-    QStandardItem *unitsNode    = new QStandardItem("Units");
-    generalNode->appendRow(unitsNode);
+    QStandardItem *i2 = new QStandardItem("Units");
+    r7->appendRow(i2);
       {
       QStandardItem *n1  = new QStandardItem("Preset");
       QStandardItem *n2  = new QStandardItem("Aircraft/Wind speed");
@@ -409,28 +410,28 @@ ConfigModel::ConfigModel()
       QStandardItem *n9  = new QStandardItem("Mass");
       QStandardItem *n10 = new QStandardItem("Wing loading");
       QStandardItem *n11 = new QStandardItem("Lat/Lon");
-      unitsNode->appendRow(n1);
-      unitsNode->appendRow(n2);
-      unitsNode->appendRow(n3);
-      unitsNode->appendRow(n4);
-      unitsNode->appendRow(n5);
-      unitsNode->appendRow(n6);
-      unitsNode->appendRow(n7);
-      unitsNode->appendRow(n8);
-      unitsNode->appendRow(n9);
-      unitsNode->appendRow(n10);
-      unitsNode->appendRow(n11);
+      i2->appendRow(n1);
+      i2->appendRow(n2);
+      i2->appendRow(n3);
+      i2->appendRow(n4);
+      i2->appendRow(n5);
+      i2->appendRow(n6);
+      i2->appendRow(n7);
+      i2->appendRow(n8);
+      i2->appendRow(n9);
+      i2->appendRow(n10);
+      i2->appendRow(n11);
       }
-    QStandardItem *timeNode     = new QStandardItem("Time");
-    generalNode->appendRow(timeNode);
+    QStandardItem *i3 = new QStandardItem("Time");
+    r7->appendRow(i3);
       {
       QStandardItem *n1 = new QStandardItem("UTC offset");
       QStandardItem *n2 = new QStandardItem("Use GPS time");
-      timeNode->appendRow(n1);
-      timeNode->appendRow(n2);
+      i3->appendRow(n1);
+      i3->appendRow(n2);
       }
-    QStandardItem *trackingNode = new QStandardItem("Tracking");
-    generalNode->appendRow(trackingNode);
+    QStandardItem *i4 = new QStandardItem("Tracking");
+    r7->appendRow(i4);
       {
       QStandardItem *n1 = new QStandardItem("Skylines");
       QStandardItem *n2 = new QStandardItem("Roaming");
@@ -439,13 +440,13 @@ ConfigModel::ConfigModel()
       QStandardItem *n5 = new QStandardItem("Show nearby traffic"); // 6.8.2?
       QStandardItem *n6 = new QStandardItem("Key");
       QStandardItem *n7 = new QStandardItem("XCSoar Cloud");  // 6.8.2?
-      trackingNode->appendRow(n1);
-      trackingNode->appendRow(n2);
-      trackingNode->appendRow(n3);
-      trackingNode->appendRow(n4);
-      trackingNode->appendRow(n5);
-      trackingNode->appendRow(n6);
-      trackingNode->appendRow(n7);
+      i4->appendRow(n1);
+      i4->appendRow(n2);
+      i4->appendRow(n3);
+      i4->appendRow(n4);
+      i4->appendRow(n5);
+      i4->appendRow(n6);
+      i4->appendRow(n7);
       }
     }
   }
