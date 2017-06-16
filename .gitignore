@@ -30,7 +30,7 @@
 # Generated files
 out/*
 Makefile
-*.cmake
+#*.cmake
 src/Gui/build-Flight-Desktop-Debug/
 src/Gui/build-PreFlight-Desktop-Debug/
 src/Gui/preflight
