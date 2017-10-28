@@ -2,7 +2,7 @@
 Copyright_License {
 
   YCSoar Glide Computer.
-  Copyright (C) 2013-2016 Peter F Bradshaw
+  Copyright (C) 2013-2017 Peter F Bradshaw
   A detailed list of copyright holders can be found in the file "AUTHORS".
 
   This program is free software; you can redistribute it and/or
@@ -22,66 +22,44 @@ Copyright_License {
 */
 
 #include <QTreeView>
+#include <QFileSelector>
 #include <QPushButton>
+#include <QLabel>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QGridLayout>
+#include <QFormLayout>
+#include <QGroupBox>
 #include <QItemSelectionModel>
-#include "ConfigWindow.hpp"
-#include "../../XCSoarThunk/ConfigModel.hpp"
+#include "SystemFilesEditor.hpp"
 
 #include <iostream>
 
 //------------------------------------------------------------------------------
-ConfigWindow::ConfigWindow()
+SystemFilesEditor::SystemFilesEditor()
   {
-  this->model = new ConfigModel;
-  this->view = new QTreeView;
-  this->view->setModel(this->model);
-  QItemSelectionModel *sm = this->view->selectionModel();
-  connect(sm,
-          SIGNAL(selectionChanged(const QItemSelection &,
-                                  const QItemSelection &)),
-          this,
-          SLOT(selectionChangedSlot(const QItemSelection &,
-                                    const QItemSelection &))
-         );
-
-  QGridLayout *editorLayout = new QGridLayout;
-  editorLayout->addWidget(view, 0, 0);
+  this->mapGroup         = new QGroupBox(tr("Map"));
+  this->waypointGroup    = new QGroupBox(tr("Waypoint"));
+  this->airspaceGroup    = new QGroupBox(tr("Airspace"));
+  QFormLayout *mapLayout = new QFormLayout;
+  mapLayout->addRow(new QLabel(tr("File name here")), new QPushButton("Change"));
 
   QPushButton *closeButton = new QPushButton(tr("Close"));
   connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
   QHBoxLayout *buttonsLayout = new QHBoxLayout;
   buttonsLayout->addStretch(1);
   buttonsLayout->addWidget(closeButton);
-  
-  QVBoxLayout *mainLayout = new QVBoxLayout;
-  mainLayout->addLayout(editorLayout);
-  mainLayout->addStretch(1);
-  mainLayout->addSpacing(12);
-  mainLayout->addLayout(buttonsLayout);
 
+  QVBoxLayout *mainLayout = new QVBoxLayout;
+  mainLayout->addLayout(mapLayout);
+  mainLayout->addLayout(buttonsLayout);
   this->setLayout(mainLayout);
-  this->setWindowTitle("Configuration");
+  this->setWindowTitle("System Files");
   this->setSizeGripEnabled(true);
   }
 
 //------------------------------------------------------------------------------
-ConfigWindow::~ConfigWindow()
+SystemFilesEditor::~SystemFilesEditor()
   {
-  delete this->view;
-  delete this->model;
-  }
-
-//------------------------------------------------------------------------------
-void
-ConfigWindow::selectionChangedSlot(const QItemSelection & /*newSelection*/,
-                                   const QItemSelection & /*oldSelection*/)
-  {
-  // \todo Not happy with this implementation but it will do for now.
-  const QModelIndex index = this->view->selectionModel()->currentIndex();
-  QVariant v = index.data(ConfigItem::DispatchIndex);
-  this->model->Action(ConfigModel::ActionIndex(v.toInt()));
   }
 

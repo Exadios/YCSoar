@@ -406,6 +406,37 @@ class ConfigModel : public QStandardItemModel
   Q_OBJECT
 
 public:
+  enum ActionIndex
+   {
+   NONE,
+   SYSTEMFILES,
+   ORIENTATION,
+   ELEMENTS,
+   WAYPOINTS,
+   TERRAIN,
+   AIRSPACE,
+   SAFTEYFACTORS,
+   GLIDECOMPUTER,
+   WIND,
+   ROUTE,
+   REACH,
+   SCORING,
+   DECORATIONS,
+   VARIO,
+   AUDIO,
+   RULES,
+   TURNPOINTTYPES,
+   INPUT,
+   LAYOUT,
+   PAGES,
+   SETNAMES,
+   LOGGER,
+   UNITS,
+   TIME,
+   TRACKING,
+   ActionIndexEnd
+   };
+
   /**
    * Ctor.
    */
@@ -416,7 +447,14 @@ public:
    */
   ~ConfigModel();
 
+  /**
+   * Run up a specific dialog to read / edit the configuration.
+   * @param what Which dialog to run.
+   */
+  void Action(ConfigModel::ActionIndex what);
+
 protected:
+#if 0
   /**
    * Wind settings.
    * @return The wind settings.
@@ -440,9 +478,156 @@ protected:
    * @return The logger behaviour settings.
    */
   LoggerSettings &Logger();
+#endif
 
 private:
   struct ComputerSettings computer;
+
+    /**
+   * Manage the current system files.
+   */
+  void SystemFiles();
+
+
+  /**
+   * Manage map orientation.
+   */
+  void Orientation();
+
+  /**
+   * Manage map elements.
+   */
+  void Elements();
+
+  /**
+   * Manage map waypoints.
+   */
+  void Waypoints();
+
+  /**
+   * Manage map terrain.
+   */
+  void Terrain();
+
+  /**
+   * Manage airspace.
+   */
+  void Airspace();
+
+  /**
+   * Manage airspace filter.
+   */
+  void AirspaceFilter();
+
+  /**
+   * Manage airspace colors.
+   */
+  void AirspaceColors();
+
+  /**
+   * Manage glide computer saftey factors.
+   */
+  void SafteyFactors();
+
+  /**
+   * Manage glide computer parameters.
+   */
+  void GlideComputer();
+
+  /**
+   * Manage wind parameters.
+   */
+  void Wind();
+
+  /**
+   * Manage glide computer route.
+   */
+  void Route();
+
+  /**
+   * Manage glide computer reach parameters.
+   */
+  void Reach();
+
+  /**
+   * Manage glide computer scoring.
+   */
+  void Scoring();
+
+  /**
+   * Manage onscreen decorations.
+   */
+  void Decorations();
+
+  /**
+   * Manage onscreen vario.
+   */
+  void Vario();
+
+  /**
+   * Manage audio.
+   */
+  void Audio();
+
+  /**
+   * Manage task default rules.
+   */
+  void Rules();
+
+  /**
+   * Manage task default turnpoint types.
+   */
+  void TurnpointTypes();
+
+  /**
+   * Manage the look language and input.
+   */
+  void Input();
+
+  /**
+   * Manage look screen layout.
+   */
+  void Layout();
+
+  /**
+   * Manage look pages.
+   */
+  void Pages();
+
+  /**
+   * Manage look infobox set names
+   */
+  void SetNames();
+
+  /**
+   * Manage a look infobox set.
+   */
+  void Set();
+
+  /**
+   * Manage general logger.
+   */
+  void Logger();
+
+  /**
+   * Manage general units.
+   */
+  void Units();
+
+  /**
+   * Manage general time.
+   */
+  void Time();
+
+  /**
+   * Manage general tracking.
+   */
+  void Tracking();
+
+  /**
+   * Hangle signals corresponding to unselectable items.
+   */
+  void None();
   };
 
 /**
@@ -450,12 +635,35 @@ private:
  */
 class ConfigItem : public QStandardItem
   {
+//  Q_OBJECT
+
 public:
   /**
    * Ctor.
    * @param text The text to display for this item.
+   * @param dispatch The function that handles configuration management.
+   * @param selectable If this item is to be user selectable.
    */
-  ConfigItem(QString text);
+  ConfigItem(QString text,
+             ConfigModel::ActionIndex dispatch,
+             bool selectable = true);
+
+  /**
+   * This is the reimplementation of QStandardItem::data().
+   * @param role The data type to access.
+   * @return The data specified by role or QVariant for invalid.
+   */
+  QVariant data(int role) const;
+
+  enum Role
+    {
+    None = Qt::UserRole,
+    DispatchIndex,
+    RoleEnd
+    };
+
+private:
+  ConfigModel::ActionIndex what;
   };
 
 #include <QList>
