@@ -1,8 +1,8 @@
 PreFilght:
 
 o - Task planning including fallback tasks.
-o - Download and setup airspace data.
-o - Download and setup waypoint data.
+o - Download and setup (including mosaicing) airspace data.
+o - Download and setup (including mosaicing) waypoint data.
 o - Download and setup map data.
 o - Setup plane.
 o - Setup flight.

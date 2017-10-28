@@ -31,6 +31,7 @@ Copyright_License {
 
 #include "MainWindow.hpp"
 #include "TaskWizard.hpp"
+#include "ConfigWindow.hpp"
 
 #include "ProfileThunk.hpp"
 //#include "Profile/Current.hpp"
@@ -61,6 +62,7 @@ MainWindow::MainWindow()
   this->createStatusBar();
 
   this->readSettings();
+  this->setWindowTitle("Pre Flight");
 
   this->setCurrentFile("");
   this->setUnifiedTitleAndToolBarOnMac(true);
@@ -150,15 +152,27 @@ MainWindow::createCommands()
   {
   this->selectorBox           = new QGroupBox;
   QHBoxLayout *selectorLayout = new QHBoxLayout;
-  QCommandLinkButton *taskCommand  = new QCommandLinkButton;
+  QCommandLinkButton *configCommand   = new QCommandLinkButton;
+  QCommandLinkButton *taskCommand     = new QCommandLinkButton;
   QCommandLinkButton *aircraftCommand = new QCommandLinkButton;
+  configCommand->setText(QString("System Configuration"));
   taskCommand->setText(QString("Task"));
   aircraftCommand->setText(QString("Plane"));
+  selectorLayout->addWidget(configCommand);
   selectorLayout->addWidget(taskCommand);
   selectorLayout->addWidget(aircraftCommand);
   this->selectorBox->setLayout(selectorLayout);
+  connect(configCommand, SIGNAL(clicked()), this, SLOT(configAction()));
   connect(taskCommand, SIGNAL(clicked()), this, SLOT(taskAction()));
   connect(aircraftCommand, SIGNAL(clicked()), this, SLOT(aircraftAction()));
+  }
+
+//------------------------------------------------------------------------------
+void
+MainWindow::configAction()
+  {
+  ConfigWindow config;
+  config.exec();
   }
 
 //------------------------------------------------------------------------------

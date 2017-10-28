@@ -1,5 +1,5 @@
 set(CMAKE_BUILD_TYPE Release)
 add_definitions(-DHAVE_POSIX)
 set(B "release")
-set(T "linux-32-release")
+set(T "linux-native-release")
 include(../Include.cmake)

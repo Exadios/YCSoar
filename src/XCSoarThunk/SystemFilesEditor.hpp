@@ -1,6 +1,6 @@
 /*
  * YCSoar Glide Computer.
- * Copyright (C) 2013-2016 Peter F Bradshaw
+ * Copyright (C) 2013-2017 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -27,48 +27,46 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 /**
- * \addtogroup XCSoarSubst
+ * \addtogroup PreFlight
  * @{
  */
-#ifndef __LOGFILE_HPP
-#define __LOGFILE_HPP
+#ifndef __SYSTEMFILESEDITOR_HPP
+#define __SYSTEMFILESEDITOR_HPP
 
-#include "Compiler.h"
+#include <QDialog>
 
-#ifdef _UNICODE
-#include <tchar.h>
-#endif
+class QGroupBox;
+class QItemSelection;
 
-/**
- * Write a formatted line to the log file.
- *
- * @param fmt the format string, which must not contain newline or
- * carriage return characters
- */
-gcc_printf(1, 2)
-void
-LogFormat(const char *fmt, ...);
+class SystemFilesEditor : public QDialog
+  {
+  Q_OBJECT
 
-#ifdef _UNICODE
-void
-LogFormat(const TCHAR *fmt, ...);
-#endif
+public:
+  /**
+   * Ctor.
+   * 
+   */
+  SystemFilesEditor();
 
-#if !defined(NDEBUG) && !defined(GNAV)
+  /**
+   * Dtor.
+   */
+  ~SystemFilesEditor();
 
-#define LogDebug(...) LogFormat(__VA_ARGS__)
+protected:
 
-#else /* NDEBUG */
+private slots:
+//    void selectionChangedSlot(const QItemSelection &newSelection, const QItemSelection &oldSelection);
 
-/* not using an empty inline function here because we don't want to
-   evaluate the parameters */
-#define LogDebug(...)
+private:
+  QGroupBox *mapGroup;
+  QGroupBox *waypointGroup;
+  QGroupBox *airspaceGroup;
+  };
 
-#endif /* NDEBUG */
-
-#endif  // __LOGFILE_HPP
+#endif  // __SYSTEMFILESEDITOR_HPP
 /**
  * @}
  */

@@ -1,6 +1,6 @@
 set(CMAKE_BUILD_TYPE Release)
 set(B "release")
-set(T "linux-32-release")
+set(T "linux-native-release")
 add_definitions(-DHAVE_POSIX
                 -DHAVE_STDINT_H
                 -DHAVE_UNISTD_H

@@ -29,46 +29,11 @@
  */
 
 /**
- * \addtogroup XCSoarSubst
- * @{
- */
-#ifndef __LOGFILE_HPP
-#define __LOGFILE_HPP
-
-#include "Compiler.h"
-
-#ifdef _UNICODE
-#include <tchar.h>
-#endif
-
-/**
- * Write a formatted line to the log file.
+ * \defgroup XCSoarSubst
  *
- * @param fmt the format string, which must not contain newline or
- * carriage return characters
- */
-gcc_printf(1, 2)
-void
-LogFormat(const char *fmt, ...);
-
-#ifdef _UNICODE
-void
-LogFormat(const TCHAR *fmt, ...);
-#endif
-
-#if !defined(NDEBUG) && !defined(GNAV)
-
-#define LogDebug(...) LogFormat(__VA_ARGS__)
-
-#else /* NDEBUG */
-
-/* not using an empty inline function here because we don't want to
-   evaluate the parameters */
-#define LogDebug(...)
-
-#endif /* NDEBUG */
-
-#endif  // __LOGFILE_HPP
-/**
- * @}
+ * Substitution of various XCSoar classes for use by YCSoar.
+ *
+ * It is important that the headers of this module be included before XCSoar
+ * headers. Likewise it is importatant that the objects produced by this module
+ * be linked before the XCSoar objects are linked.
  */

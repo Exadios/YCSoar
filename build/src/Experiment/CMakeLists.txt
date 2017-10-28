@@ -23,4 +23,5 @@ find_package(Qt5Qml REQUIRED)
 find_package(Qt5 COMPONENTS Quick Core Network)
 
 add_subdirectory(Screen)
+add_subdirectory(ModelView)
 

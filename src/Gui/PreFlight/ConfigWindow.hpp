@@ -27,48 +27,46 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 /**
- * \addtogroup XCSoarSubst
+ * \addtogroup PreFlight
  * @{
  */
-#ifndef __LOGFILE_HPP
-#define __LOGFILE_HPP
+#ifndef __CONFIGWINDOW_HPP
+#define __CONFIGWINDOW_HPP
 
-#include "Compiler.h"
+#include <QDialog>
 
-#ifdef _UNICODE
-#include <tchar.h>
-#endif
+class QTreeView;
+class QItemSelection;
+class ConfigModel;
 
-/**
- * Write a formatted line to the log file.
- *
- * @param fmt the format string, which must not contain newline or
- * carriage return characters
- */
-gcc_printf(1, 2)
-void
-LogFormat(const char *fmt, ...);
+class ConfigWindow : public QDialog
+  {
+  Q_OBJECT
 
-#ifdef _UNICODE
-void
-LogFormat(const TCHAR *fmt, ...);
-#endif
+public:
+  /**
+   * Ctor.
+   * 
+   */
+  ConfigWindow();
 
-#if !defined(NDEBUG) && !defined(GNAV)
+  /**
+   * Dtor.
+   */
+  ~ConfigWindow();
 
-#define LogDebug(...) LogFormat(__VA_ARGS__)
+protected:
 
-#else /* NDEBUG */
+private slots:
+    void selectionChangedSlot(const QItemSelection & newSelection, const QItemSelection & oldSelection);
 
-/* not using an empty inline function here because we don't want to
-   evaluate the parameters */
-#define LogDebug(...)
+private:
+  QTreeView *view;
+  ConfigModel *model;
+  };
 
-#endif /* NDEBUG */
-
-#endif  // __LOGFILE_HPP
+#endif  // __CONFIGWINDOW_HPP
 /**
  * @}
  */

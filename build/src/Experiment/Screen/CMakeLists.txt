@@ -1,2 +1,2 @@
-add_subdirectory(linux-32-debug)
-add_subdirectory(linux-32-release)
+add_subdirectory(linux-native-debug)
+add_subdirectory(linux-native-release)

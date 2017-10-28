@@ -38,6 +38,7 @@ Copyright_License {
 #include "Task/DefaultTask.hpp"
 #include "Waypoint/WaypointGlue.hpp"
 #include "Interface.hpp"
+#include "UIState.hpp"
 #include "windef.h"
 
 #include "ProfileThunk.hpp"
@@ -55,6 +56,7 @@ TaskWizard::TaskWizard()
   this->addPage(this->rulesPage);
   this->addPage(this->turpointPage);
   this->addPage(this->finalPage);
+  this->setWindowTitle("Task Definition");
   }
 
 //------------------------------------------------------------------------------
@@ -83,6 +85,7 @@ TaskWizard::browseOrNew()
     QStringList names = fileSelector.selectedFiles();
     std::cerr << "Selected: " << names.at(0).toLocal8Bit().constData() << std::endl;
     }
+  // \todo Return a filename.
   }
 
 //------------------------------------------------------------------------------
@@ -99,6 +102,10 @@ TaskWizard::createFilePage()
   layout->addWidget(newTask);
   connect(newTask, SIGNAL(clicked()), this, SLOT(browseOrNew()));
 
+  CommonInterface::SetUISettings().SetDefaults();
+  CommonInterface::SetSystemSettings().SetDefaults();
+  CommonInterface::SetComputerSettings().SetDefaults();
+  CommonInterface::SetUIState().Clear();
   LocalPathThunk *lp = &LocalPathThunk::Instance();
   FileCache *file_cache = new FileCache(lp->cacheDataPath().toUtf8().constData());
   VerboseOperationEnvironment operation;

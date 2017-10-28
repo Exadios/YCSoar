@@ -98,7 +98,8 @@ set(ROUTEENGINE_SRCS ${ROUTEENGINE_DIR}/Config.cpp
                      ${ROUTEENGINE_DIR}/RoutePolars.cpp
                      ${ROUTEENGINE_DIR}/FlatTriangleFan.cpp
                      ${ROUTEENGINE_DIR}/FlatTriangleFanTree.cpp
-                     ${ROUTEENGINE_DIR}/ReachFan.cpp)
+                     ${ROUTEENGINE_DIR}/ReachFan.cpp
+                     ${ROUTEENGINE_DIR}/Config.cpp)
 include_directories(${XCSOAR_SRC} ${ROUTEENGINE_DIR} ${XCSOAR_SRC}/Engine)
 add_library(RouteEngine-${T} ${ROUTEENGINE_SRCS})
 
@@ -218,7 +219,9 @@ include_directories(${XCSOAR_SRC} ${TASKENGINE_DIR})
 add_library(TaskEngine-${T} ${TASKENGINE_SRCS})
 # TaskEngine should not depend on XCSoarMain but is made necessary because of
 # the sematics of the original XCSoar build system.
-target_link_libraries(TaskEngine-${T} GlideEngine-${T} XCSoarMain-${T})
+target_link_libraries(TaskEngine-${T} GlideEngine-${T} 
+                                      RouteEngine-${T}
+                                      XCSoarMain-${T})
 
 set(AIRSPACEENGINE_DIR ${XCSOAR_SRC}/Engine/Airspace)
 set(ENGINE_DIR   ${XCSOAR_SRC}/Engine)
@@ -556,10 +559,37 @@ set(MAIN_SRCS ${XCSOAR_SRC}/LocalPath.cpp
               ${XCSOAR_SRC}/Formatter/AirspaceUserUnitsFormatter.cpp
               ${XCSOAR_SRC}/Engine/Util/Gradient.cpp
               ${XCSOAR_SRC}/Renderer/OZPreviewRenderer.cpp
+              ${XCSOAR_SRC}/UIState.cpp
+              ${XCSOAR_SRC}/UISettings.cpp
+              ${XCSOAR_SRC}/SystemSettings.cpp
+              ${XCSOAR_SRC}/Computer/Settings.cpp
+              ${XCSOAR_SRC}/PageState.cpp
+              ${XCSOAR_SRC}/DisplaySettings.cpp
+              ${XCSOAR_SRC}/MapSettings.cpp
+              ${XCSOAR_SRC}/InfoBoxes/InfoBoxSettings.cpp
+              ${XCSOAR_SRC}/Gauge/VarioSettings.cpp
+              ${XCSOAR_SRC}/Audio/VarioSettings.cpp
+              ${XCSOAR_SRC}/PageSettings.cpp
+              ${XCSOAR_SRC}/Gauge/TrafficSettings.cpp
+              ${XCSOAR_SRC}/Dialogs/DialogSettings.cpp
+              ${XCSOAR_SRC}/Audio/Settings.cpp
+              ${XCSOAR_SRC}/Renderer/AirspaceRendererSettings.cpp
+              ${XCSOAR_SRC}/Tracking/TrackingSettings.cpp
+              ${XCSOAR_SRC}/Logger/Settings.cpp
+              ${XCSOAR_SRC}/Airspace/AirspaceComputerSettings.cpp
+              ${XCSOAR_SRC}/Audio/VegaVoiceSettings.cpp
+              ${XCSOAR_SRC}/TeamCode/Settings.cpp
+              ${XCSOAR_SRC}/Computer/Wind/Settings.cpp
+              ${XCSOAR_SRC}/Device/Config.cpp
+              ${XCSOAR_SRC}/Units/Settings.cpp
               )
 include_directories(${XCSOAR_SRC})
 add_library(XCSoarMain-${T} ${MAIN_SRCS})
-target_link_libraries(XCSoarMain-${T} Profile-${T} Os-${T} Util-${T})
+target_link_libraries(XCSoarMain-${T} Profile-${T}
+                                      Os-${T}
+                                      Util-${T}
+                                      ContestEngine-${T}
+                                      AirspaceEngine-${T})
 
 add_custom_target(xcsoar-${T}
                   DEPENDS AirspaceEngine-${T}

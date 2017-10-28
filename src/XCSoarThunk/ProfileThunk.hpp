@@ -28,6 +28,10 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * \addtogroup XCSoarThunk
+ * @{
+ */
 #ifndef __PROFILETHUNK_H
 #define __PROFILETHUNK_H
 
@@ -66,3 +70,6 @@ private:
 
 
 #endif  // __PROFILETHUNK_H
+/**
+ * @}
+ */
