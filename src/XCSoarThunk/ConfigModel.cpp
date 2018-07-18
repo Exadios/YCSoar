@@ -23,7 +23,6 @@ Copyright_License {
 
 #include "ConfigModel.hpp"
 #include "Computer/Settings.hpp"
-#include "SystemFilesEditor.hpp"
 #include <QStandardItem>
 #include <QString>
 
@@ -34,8 +33,16 @@ ConfigModel::ConfigModel()
   {
   QStandardItem *rootNode = this->invisibleRootItem(); 
 
-  ConfigItem *r1 = new ConfigItem("Site Files", ConfigModel::SYSTEMFILES);
+  ConfigItem *r1 = new ConfigItem("Site Files", ConfigModel::NONE);
   rootNode->appendRow(r1);
+    {
+    ConfigItem *i1 = new ConfigItem("Map database", ConfigModel::MAPDATABASE);
+    ConfigItem *i2 = new ConfigItem("Waypoints", ConfigModel::WAYPOINTS);
+    ConfigItem *i3 = new ConfigItem("Airspaces", ConfigModel::AIRSPACES);
+    r1->appendRow(i1);
+    r1->appendRow(i2);
+    r1->appendRow(i3);
+    }
   ConfigItem *r2 = new ConfigItem("Map Display", ConfigModel::NONE, false);
   rootNode->appendRow(r2);
     {
@@ -218,6 +225,24 @@ ConfigModel::Action(ConfigModel::ActionIndex what)
     }
   }
 
+//------------------------------------------------------------------------------
+bool
+ConfigModel::setData(const QModelIndex & index,
+                     const QVariant &value,
+                     int role)
+  {
+  if (role == Qt::EditRole)
+    emit this->editCompleted(value.toString());
+  return true;
+  }
+
+//------------------------------------------------------------------------------
+Qt::ItemFlags
+ConfigModel::flags(const QModelIndex &index) const
+  {
+  return /*Qt::ItemIsEditable |*/ QStandardItemModel::flags(index);
+  }
+
 #if 0
 //------------------------------------------------------------------------------
 WindSettings &
@@ -253,13 +278,6 @@ void
 ConfigModel::SystemFiles()
   {
   std::cout << "ConfigModel::SystemFiles" << std::endl;
-#if 0
-  SystemFilesEditor *s = new SystemFilesEditor;
-  s->exec();
-#else
-  SystemFilesEditor s;
-  s.exec();
-#endif
   }
 
 //------------------------------------------------------------------------------

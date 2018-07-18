@@ -88,10 +88,7 @@ struct ComputerSettings;
  *  Site Files
  *             - Map Database
  *             - Waypoints
- *             - Additional Waypoints
- *             - Watched Waypoints
  *             - Airspaces
- *             - Additional Airspaces
  *             - Waypoint Details
  *
  *  Map Display 
@@ -410,6 +407,8 @@ public:
    {
    NONE,
    SYSTEMFILES,
+   MAPDATABASE,
+   AIRSPACES,
    ORIENTATION,
    ELEMENTS,
    WAYPOINTS,
@@ -452,6 +451,23 @@ public:
    * @param what Which dialog to run.
    */
   void Action(ConfigModel::ActionIndex what);
+
+  /**
+   * This function overloads the base setData() in order to enable editing.
+   * @param index The item index.
+   * @param value The new value of the item.
+   * @return If successful true, false otherwise.
+   */
+  virtual bool setData(const QModelIndex &index,
+                       const QVariant &value,
+                       int role = Qt::EditRole) Q_DECL_OVERRIDE;
+
+  /**
+   * This function overloads the base flags() in order to enable editing.
+   * @param index The item index.
+   * @return The flags which are a property of the item.
+   */
+  virtual Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
 
 protected:
 #if 0
@@ -628,6 +644,9 @@ private:
    * Hangle signals corresponding to unselectable items.
    */
   void None();
+
+signals:
+  void editCompleted(const QString &);
   };
 
 /**
