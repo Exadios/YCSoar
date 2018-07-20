@@ -1,13 +1,13 @@
 set(XCSOAR_LIB_DIR ${YCSoar_BINARY_DIR}/build/submodule/xcsoar-exp/${T})
 set(INCLUDE_PATH ${YCSoar_SOURCE_DIR}/submodule/xcsoar-exp/src)
 set(XCSOAR_SRC ${INCLUDE_PATH})
-add_library(xcsoarmain-subst-${T} ${XCSOARSUBST}/LogFile.cpp
-                                  ${XCSOARSUBST}/Operation/VerboseOperationEnvironment.cpp
-                                  ${XCSOARSUBST}/Screen/Canvas.cpp
-                                  ${XCSOARSUBST}/Screen/Pen.cpp
-                                  ${XCSOARSUBST}/Screen/Font.cpp
-                                  ${XCSOARSUBST}/Screen/Brush.cpp
-                                  ${XCSOARSUBST}/Screen/RenderObject.cpp
+add_library(xcsoarmain-subst-${T} ${XCSOARSUBST_SRC_DIR}/LogFile.cpp
+                                  ${XCSOARSUBST_SRC_DIR}/Operation/VerboseOperationEnvironment.cpp
+                                  ${XCSOARSUBST_SRC_DIR}/Screen/Canvas.cpp
+                                  ${XCSOARSUBST_SRC_DIR}/Screen/Pen.cpp
+                                  ${XCSOARSUBST_SRC_DIR}/Screen/Font.cpp
+                                  ${XCSOARSUBST_SRC_DIR}/Screen/Brush.cpp
+                                  ${XCSOARSUBST_SRC_DIR}/Screen/RenderObject.cpp
            )
 target_link_libraries(xcsoarmain-subst-${T} Qt5::Widgets Qt5::Qml
                       -L${XCSOAR_LIB_DIR} XCSoarMain-${T}
@@ -22,8 +22,8 @@ include_directories(./
 set(TestRunner "${CMAKE_CURRENT_BINARY_DIR}/run-test.cpp")
 add_custom_command(OUTPUT ${TestRunner}
                    COMMAND cxxtestgen -o ${TestRunner} --error-printer Suite.test.hpp
-                   MAIN_DEPENDENCY ${XCSOARSUBST}/Screen/Suite.test.hpp
-                   WORKING_DIRECTORY "${XCSOARSUBST}/Screen"
+                   MAIN_DEPENDENCY ${XCSOARSUBST_SRC_DIR}/Screen/Suite.test.hpp
+                   WORKING_DIRECTORY "${XCSOARSUBST_SRC_DIR}/Screen"
                   )
 add_executable(run-test-${T} ${TestRunner})
 target_link_libraries(run-test-${T} xcsoarmain-subst-${T})

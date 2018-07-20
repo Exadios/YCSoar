@@ -1,6 +1,7 @@
 set(GUI ${YCSoar_SOURCE_DIR}/src/Gui)
-set(XCSOARTHUNK ${YCSoar_SOURCE_DIR}/src/XCSoarThunk)
-set(XCSOARSUBST ${YCSoar_SOURCE_DIR}/src/XCSoarSubst)
+set(XCSOARTHUNK_SRC_DIR ${YCSoar_SOURCE_DIR}/src/XCSoarThunk)
+set(XCSOARSUBST_SRC_DIR ${YCSoar_SOURCE_DIR}/src/XCSoarSubst)
+set(XCSOAR_SRC_DIR ${YCSoar_SOURCE_DIR}/submodule/xcsoar-exp/src)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
