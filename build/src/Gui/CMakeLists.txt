@@ -23,5 +23,9 @@ add_custom_target(gui-linux-native
                           preflight-linux-native-release)
 add_custom_target(gui-linux DEPENDS gui-linux-native)
 add_custom_target(gui DEPENDS gui-linux)
-add_custom_target(gui-debug DEPENDS preflight-linux-native-debug)
-add_custom_target(gui-release DEPENDS preflight-linux-native-release)
+add_custom_target(gui-debug 
+                  DEPENDS preflight-linux-native-debug
+                          flight-linux-native-debug)
+add_custom_target(gui-release 
+                  DEPENDS preflight-linux-native-release
+                          flight-linux-native-release)
