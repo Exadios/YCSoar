@@ -1,7 +1,14 @@
 set(XCSOARTHUNK_BIN_DIR ${YCSoar_BINARY_DIR}/build/src/XCSoarThunk/${T})
 set(XCSOARSUBST_BIN_DIR ${YCSoar_BINARY_DIR}/build/src/XCSoarSubst/${T})
 set(XCSOAR_BIN_DIR ${YCSoar_BINARY_DIR}/build/submodule/xcsoar-exp/${T})
-add_executable(flight-${T} ${FLIGHT}/main.cpp)
+add_executable(flight-${T} ${FLIGHT}/main.cpp
+                           ${FLIGHT}/Main.cpp
+                           ${FLIGHT}/XCSoarThread.cpp
+                           ${FLIGHT}/XCSoar.cpp
+                           ${FLIGHT}/Process/ProcessFactory.cpp
+                           ${FLIGHT}/Process/Process.cpp
+                           ${FLIGHT}/Process/OneSecTick.cpp
+                           ${FLIGHT}/MainWindow.cpp)
 target_link_libraries(flight-${T} Qt5::Widgets Qt5::Qml
                       -L${XCSOARSUBST_BIN_DIR} xcsoarmain-subst-${T}
                       -L${XCSOARTHUNK_BIN_DIR} xcsoarthunk-${T}
@@ -11,7 +18,9 @@ target_link_libraries(flight-${T} Qt5::Widgets Qt5::Qml
                       -L${XCSOAR_BIN_DIR} Thread-${T}
                       -L${XCSOAR_BIN_DIR} WaypointEngine-${T}
                       -L${XCSOAR_BIN_DIR} TaskEngine-${T}
-                      -L${XCSOAR_BIN_DIR} Time-${T})
+                      -L${XCSOAR_BIN_DIR} Time-${T}
+                      boost_system
+                      boost_thread)
 target_include_directories(flight-${T} PRIVATE ${XCSOARSUBST_SRC_DIR}
                                                ${XCSOARTHUNK_SRC_DIR}
                                                ${XCSOAR_SRC_DIR})

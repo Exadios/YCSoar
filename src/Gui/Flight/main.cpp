@@ -1,12 +1,17 @@
 #include <QGuiApplication>
-#include <QQmlApplicationEngine>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
+#include <QThread>
+#include <iostream>
+
+#include "Main.hpp"
 
 int main(int argc, char *argv[])
   {
-  QGuiApplication app(argc, argv);
+  QCoreApplication app(argc, argv);
+  Main program(argc, argv);
 
-  QQmlApplicationEngine engine;
-  engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+  program.run();
 
   return app.exec();
   }
