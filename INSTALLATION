@@ -10,3 +10,6 @@ mkdir out
 cd out
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -G "Ninja" -C ../Init.cmake ..
 ninja
+
+To run Infer:
+infer run --compilation-database compile_commands.json
