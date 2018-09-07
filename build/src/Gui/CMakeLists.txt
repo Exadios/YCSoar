@@ -18,9 +18,14 @@ add_subdirectory(PreFlight)
 add_subdirectory(Flight)
 add_subdirectory(PostFlight)
 
+# Patch panel.
 add_custom_target(gui-linux-native 
                   DEPENDS preflight-linux-native-debug
-                          preflight-linux-native-release)
+                          preflight-linux-native-release
+                          preflight-linux-native-sanitize
+                          flight-linux-native-debug
+                          flight-linux-native-release
+                          flight-linux-native-sanitize)
 add_custom_target(gui-linux DEPENDS gui-linux-native)
 add_custom_target(gui DEPENDS gui-linux)
 add_custom_target(gui-debug 
@@ -29,3 +34,6 @@ add_custom_target(gui-debug
 add_custom_target(gui-release 
                   DEPENDS preflight-linux-native-release
                           flight-linux-native-release)
+add_custom_target(gui-sanitize 
+                  DEPENDS preflight-linux-native-sanitize
+                          flight-linux-native-sanitize)

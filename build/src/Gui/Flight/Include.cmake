@@ -9,7 +9,7 @@ add_executable(flight-${T} ${FLIGHT}/main.cpp
                            ${FLIGHT}/Process/Process.cpp
                            ${FLIGHT}/Process/OneSecTick.cpp
                            ${FLIGHT}/MainWindow.cpp)
-target_link_libraries(flight-${T} Qt5::Widgets Qt5::Qml
+set(LINK_LIBS Qt5::Widgets Qt5::Qml
                       -L${XCSOARSUBST_BIN_DIR} xcsoarmain-subst-${T}
                       -L${XCSOARTHUNK_BIN_DIR} xcsoarthunk-${T}
                       -L${XCSOAR_BIN_DIR} XCSoarMain-${T}
@@ -20,7 +20,12 @@ target_link_libraries(flight-${T} Qt5::Widgets Qt5::Qml
                       -L${XCSOAR_BIN_DIR} TaskEngine-${T}
                       -L${XCSOAR_BIN_DIR} Time-${T}
                       boost_system
-                      boost_thread)
+                      boost_thread
+   )
+if(T STREQUAL "linux-native-sanitize")
+set(LINK_LIBS ${LINK_LIBS} asan tsan lsan)
+endif(T STREQUAL "linux-native-sanitize")
+target_link_libraries(flight-${T} ${LINK_LIBS})
 target_include_directories(flight-${T} PRIVATE ${XCSOARSUBST_SRC_DIR}
                                                ${XCSOARTHUNK_SRC_DIR}
                                                ${XCSOAR_SRC_DIR})

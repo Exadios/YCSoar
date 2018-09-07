@@ -19,6 +19,7 @@ include_directories(./
                     ${INCLUDE_PATH}/Screen/Memory)
 
 # Test harness
+if(true)
 set(TestRunner "${CMAKE_CURRENT_BINARY_DIR}/run-test.cpp")
 add_custom_command(OUTPUT ${TestRunner}
                    COMMAND cxxtestgen -o ${TestRunner} --error-printer Suite.test.hpp
@@ -26,9 +27,13 @@ add_custom_command(OUTPUT ${TestRunner}
                    WORKING_DIRECTORY "${XCSOARSUBST_SRC_DIR}/Screen"
                   )
 add_executable(run-test-${T} ${TestRunner})
-target_link_libraries(run-test-${T} xcsoarmain-subst-${T})
+target_link_libraries(run-test-${T} xcsoarmain-subst-${T} asan tsan lsan)
 add_test(NAME xcsoarsubst-test COMMAND run-test-${T})
+else(true)
+add_custom_target(run-test-${T} COMMAND "/bin/true")
+endif(true)
 
+# Patch panel
 add_custom_target(xcsoarsubst-${B}
                   DEPENDS xcsoarmain-subst-${T}
                           run-test-${T})

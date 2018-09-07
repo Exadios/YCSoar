@@ -9,16 +9,21 @@ add_executable(preflight-${T} ${PREFLIGHT}/main.cpp
                               ${PREFLIGHT}/TaskWizard.cpp
                               ${PREFLIGHT}/ConfigWindow.cpp
                               ${PREFLIGHT}/PreFlight.qrc)
-target_link_libraries(preflight-${T} Qt5::Widgets Qt5::Qml
-                      -L${XCSOARSUBST_BIN_DIR} xcsoarmain-subst-${T}
-                      -L${XCSOARTHUNK_BIN_DIR} xcsoarthunk-${T}
-                      -L${XCSOAR_BIN_DIR} XCSoarMain-${T}
-                      -L${XCSOAR_BIN_DIR} Io-${T}
-                      -L${XCSOAR_BIN_DIR} Terrain-${T}
-                      -L${XCSOAR_BIN_DIR} Thread-${T}
-                      -L${XCSOAR_BIN_DIR} WaypointEngine-${T}
-                      -L${XCSOAR_BIN_DIR} TaskEngine-${T}
-                      -L${XCSOAR_BIN_DIR} Time-${T})
+set(LINK_LIBS Qt5::Widgets Qt5::Qml
+              -L${XCSOARSUBST_BIN_DIR} xcsoarmain-subst-${T}
+              -L${XCSOARTHUNK_BIN_DIR} xcsoarthunk-${T}
+              -L${XCSOAR_BIN_DIR} XCSoarMain-${T}
+              -L${XCSOAR_BIN_DIR} Io-${T}
+              -L${XCSOAR_BIN_DIR} Terrain-${T}
+              -L${XCSOAR_BIN_DIR} Thread-${T}
+              -L${XCSOAR_BIN_DIR} WaypointEngine-${T}
+              -L${XCSOAR_BIN_DIR} TaskEngine-${T}
+              -L${XCSOAR_BIN_DIR} Time-${T}
+   )     
+if(T STREQUAL "linux-native-sanitize")
+set(LINK_LIBS ${LINK_LIBS} asan tsan lsan)
+endif(T STREQUAL "linux-native-sanitize") 
+target_link_libraries(preflight-${T} ${LINK_LIBS})
 target_include_directories(preflight-${T} PRIVATE ${XCSOARSUBST_SRC_DIR}
                                                   ${XCSOARTHUNK_SRC_DIR}
                                                   ${XCSOAR_SRC_DIR})

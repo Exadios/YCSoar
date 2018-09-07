@@ -17,6 +17,7 @@ add_subdirectory(XCSoarThunk)
 add_subdirectory(Gui)
 add_subdirectory(Experiment)
 
+# Patch panel.
 add_custom_target(ycsoar-debug
                   DEPENDS gui-debug
                           xcsoarthunk-debug
@@ -25,6 +26,10 @@ add_custom_target(ycsoar-release
                   DEPENDS gui-release
                           xcsoarthunk-release
                           xcsoarsubst-release)
+add_custom_target(ycsoar-sanitize
+                  DEPENDS gui-sanitize
+                          xcsoarthunk-sanitize
+                          xcsoarsubst-sanitize)
 
 set(SRC ${YCSoar_SOURCE_DIR}/src)
 set(OUTPUT_DIR ${YCSoar_SOURCE_DIR}/out/doc/ycsoar/)

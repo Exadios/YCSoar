@@ -1,0 +1,5 @@
+set(CMAKE_BUILD_TYPE Debug)
+add_definitions(-DHAVE_POSIX)
+add_definitions("-fsanitize=address,leak")
+set(T "linux-native-sanitize")
+include(../Include.cmake)

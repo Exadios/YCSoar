@@ -11,4 +11,6 @@ include_directories(${INCLUDE_PATH}
                     ${INCLUDE_PATH}/unix
                     ${INCLUDE_PATH}/Profile
                     ${INCLUDE_PATH}/Engine)
+
+# Patch panel.
 add_custom_target(xcsoarthunk-${B} DEPENDS xcsoarthunk-${T})
