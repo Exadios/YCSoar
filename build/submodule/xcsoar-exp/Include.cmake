@@ -8,12 +8,15 @@ add_definitions(-DUSE_WGS84 -DRADIANS -DEYE_CANDY)
 
 set(UTIL_DIR ${XCSOAR_SRC}/Util)
 set(UTIL_SRCS ${UTIL_DIR}/CRC.cpp
-             ${UTIL_DIR}/EscapeBackslash.cpp
-             ${UTIL_DIR}/StringUtil.cpp
-             ${UTIL_DIR}/ConvertString.cpp
-             ${UTIL_DIR}/ExtractParameters.cpp
-             ${UTIL_DIR}/UTF8.cpp
-             ${UTIL_DIR}/tstring.cpp)
+              ${UTIL_DIR}/TruncateString.cpp
+              ${UTIL_DIR}/EscapeBackslash.cpp
+              ${UTIL_DIR}/StringUtil.cpp
+              ${UTIL_DIR}/ConvertString.cpp
+              ${UTIL_DIR}/StaticString.cxx
+              ${UTIL_DIR}/AllocatedString.cxx
+              ${UTIL_DIR}/ExtractParameters.cpp
+              ${UTIL_DIR}/UTF8.cpp
+              ${UTIL_DIR}/tstring.cpp)
 include_directories(${XCSOAR_SRC} ${XCSOAR_SRC}/unix ${UTIL_DIR})
 add_library(Util-${T} ${UTIL_SRCS})
 
@@ -331,7 +334,6 @@ set(OTHER_SRCS ${DRIVER_DIR}/AltairPro.cpp
                ${DRIVER_DIR}/Generic.cpp
                ${DRIVER_DIR}/LevilAHRS_G.cpp
                ${DRIVER_DIR}/Leonardo.cpp
-               ${DRIVER_DIR}/GTAltimeter.cpp
                ${DRIVER_DIR}/NmeaOut.cpp
                ${DRIVER_DIR}/OpenVario.cpp
                ${DRIVER_DIR}/PosiGraph.cpp
@@ -397,6 +399,9 @@ set(TERRAIN_SRCS ${TERRAIN_DIR}/RasterBuffer.cpp
                  ${TERRAIN_DIR}/RasterMap.cpp
                  ${TERRAIN_DIR}/RasterTile.cpp
                  ${TERRAIN_DIR}/RasterTileCache.cpp
+                 ${TERRAIN_DIR}/ZzipStream.cpp
+                 ${TERRAIN_DIR}/Loader.cpp
+                 ${TERRAIN_DIR}/WorldFile.cpp
                  ${TERRAIN_DIR}/Intersection.cpp
                  ${TERRAIN_DIR}/ScanLine.cpp
                  ${TERRAIN_DIR}/RasterTerrain.cpp
@@ -444,19 +449,17 @@ target_include_directories(Screen-${T} SYSTEM PUBLIC
                            /usr/include/freetype2)  # For Font.cpp
 
 set(JASPER_DIR ${XCSOAR_SRC}/Terrain/jasper)
-set(JASPER_SRCS ${JASPER_DIR}/base/jas_debug.c
-                ${JASPER_DIR}/base/jas_malloc.c
+set(JASPER_SRCS ${JASPER_DIR}/base/jas_malloc.c
                 ${JASPER_DIR}/base/jas_seq.c
                 ${JASPER_DIR}/base/jas_stream.c
                 ${JASPER_DIR}/base/jas_string.c
                 ${JASPER_DIR}/base/jas_tvp.c
                 ${JASPER_DIR}/jp2/jp2_cod.c
-                ${JASPER_DIR}/jp2/jp2_dec.c
+                ${JASPER_DIR}/jpc/jpc_dec.c
                 ${JASPER_DIR}/jpc/jpc_bs.c
                 ${JASPER_DIR}/jpc/jpc_cs.c
                 ${JASPER_DIR}/jpc/jpc_dec.c
                 ${JASPER_DIR}/jpc/jpc_math.c
-                ${JASPER_DIR}/jpc/jpc_mct.c
                 ${JASPER_DIR}/jpc/jpc_mqdec.c
                 ${JASPER_DIR}/jpc/jpc_mqcod.c
                 ${JASPER_DIR}/jpc/jpc_qmfb.c
@@ -466,8 +469,7 @@ set(JASPER_SRCS ${JASPER_DIR}/base/jas_debug.c
                 ${JASPER_DIR}/jpc/jpc_t2dec.c
                 ${JASPER_DIR}/jpc/jpc_t2cod.c
                 ${JASPER_DIR}/jpc/jpc_tagtree.c
-                ${JASPER_DIR}/jpc/jpc_tsfb.c
-                ${JASPER_DIR}/jpc/jpc_util.c)
+                ${JASPER_DIR}/jpc/jpc_tsfb.c)
 add_library(Jasper-${T} ${JASPER_SRCS})
 #get_target_property(JASPER_INCLUDES Jasper-${T} INCLUDE_DIRECTORIES)
 #set(JASPER_INCLUDES ${JASPER_INCLUDES} ${XCSOAR_SRC}/Terrain)
@@ -479,7 +481,17 @@ include_directories(${XCSOAR_SRC}/Terrain)
 target_compile_options(Jasper-${T}
                        PRIVATE -Wno-error=implicit-function-declaration
                        PRIVATE -Wno-error=unused-but-set-parameter
-                       PRIVATE -Wno-error=unused-but-set-variable)
+                       PRIVATE -Wno-error=unused-but-set-variable
+                       PRIVATE -Wno-type-limits
+                       PRIVATE -Wno-shift-negative-value
+                       PRIVATE -Wno-sign-compare
+                       PRIVATE -Wno-tautological-compare
+                       PRIVATE -Wno-unused-but-set-parameter
+                       PRIVATE -Wno-unused-but-set-variable
+                       PRIVATE -Wno-error # Allow -std=c99 to be used.
+                       PRIVATE -std=c99 # This is necessary to compile some
+                                        # Jasper sources.
+                      )
 target_link_libraries(Jasper-${T} Zzip-${T})
 
 set(ZZIP_DIR ${XCSOAR_SRC}/zzip)
