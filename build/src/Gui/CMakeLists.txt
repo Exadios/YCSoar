@@ -1,5 +1,3 @@
-set(XCSOAR_HOME ${YCSoar_SOURCE_DIR}/submodule/xcsoar-exp)
-set(XCSOAR_SRC ${XCSOAR_HOME}/src)
 include_directories(${XCSOARTHUNK}
                     ${XCSOAR_SRC}/unix
                     ${XCSOAR_SRC}/Engine/Task

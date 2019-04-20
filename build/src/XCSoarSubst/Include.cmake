@@ -1,6 +1,4 @@
-set(XCSOAR_LIB_DIR ${YCSoar_BINARY_DIR}/build/submodule/xcsoar-exp/${T})
-set(INCLUDE_PATH ${YCSoar_SOURCE_DIR}/submodule/xcsoar-exp/src)
-set(XCSOAR_SRC ${INCLUDE_PATH})
+set(XCSOAR_BIN_DIR ${XCSOAR_BIN}/${T})
 add_library(xcsoarmain-subst-${T} ${XCSOARSUBST_SRC_DIR}/LogFile.cpp
                                   ${XCSOARSUBST_SRC_DIR}/Operation/VerboseOperationEnvironment.cpp
                                   ${XCSOARSUBST_SRC_DIR}/Screen/Canvas.cpp
@@ -10,13 +8,14 @@ add_library(xcsoarmain-subst-${T} ${XCSOARSUBST_SRC_DIR}/LogFile.cpp
                                   ${XCSOARSUBST_SRC_DIR}/Screen/RenderObject.cpp
            )
 target_link_libraries(xcsoarmain-subst-${T} Qt5::Widgets Qt5::Qml
-                      -L${XCSOAR_LIB_DIR} XCSoarMain-${T}
-                      -L${XCSOAR_LIB_DIR} Screen-${T})
+                      -L${XCSOAR_BIN_DIR} XCSoar-static-${T}
+                      pthread z)
 include_directories(./
-                    ${INCLUDE_PATH}
-                    ${INCLUDE_PATH}/unix
-                    ${INCLUDE_PATH}/Profile
-                    ${INCLUDE_PATH}/Screen/Memory)
+                    ${XCSOAR_SRC}
+                    ${XCSOAR_SRC}/unix
+                    ${XCSOAR_SRC}/Profile
+                    ${XCSOAR_SRC}/Screen
+                    ${XCSOAR_SRC}/Screen/Memory)
 
 # Test harness
 if(true)

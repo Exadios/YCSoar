@@ -1,6 +1,7 @@
 add_subdirectory(linux-native-debug)
 add_subdirectory(linux-native-release)
 add_subdirectory(linux-native-sanitize)
+#add_subdirectory(UnitTest)
 
 # Patch panel.
 add_custom_target(flight-linux-native

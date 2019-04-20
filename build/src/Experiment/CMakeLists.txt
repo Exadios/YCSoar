@@ -1,5 +1,3 @@
-set(XCSOAR_HOME ${YCSoar_SOURCE_DIR}/submodule/xcsoar-exp)
-set(XCSOAR_SRC ${XCSOAR_HOME}/src)
 set(XCSOARSUBST ${YCSoar_SOURCE_DIR}/src/XCSoarSubst)
 set(XCSOARTHUNK ${YCSoar_SOURCE_DIR}/src/XCSoarThunk)
 set(EXPERIMENT_SRC ${YCSoar_SOURCE_DIR}/src/Experiment)

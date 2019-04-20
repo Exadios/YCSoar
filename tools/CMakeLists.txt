@@ -6,5 +6,5 @@ set(OUTPUT_INCLUDE ${YCSoar_BINARY_DIR}/include)
 
 include_directories(${XCSOAR_SRC})
 
-add_executable(generatesinetables ${TOOLS_DIR}/GenerateSineTables.cpp)
+#add_executable(generatesinetables ${TOOLS_DIR}/GenerateSineTables.cpp)
 

@@ -1,3 +1,6 @@
 [submodule "submodule/xcsoar-exp"]
 	path = submodule/xcsoar-exp
 	url = git@github.com:Exadios/xcsoar-exp.git
+[submodule "submodule/XCSoar-the-library"]
+	path = submodule/XCSoar-the-library
+	url = git@github.com:Exadios/XCSoar-the-library.git
