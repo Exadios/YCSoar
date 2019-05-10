@@ -37,15 +37,14 @@ XCSoarThread::XCSoarThread()
 //------------------------------------------------------------------------------
 XCSoarThread::~XCSoarThread()
   {
-  this->xcsoar->stop();
+  XCSoar::instance()->stop();
   }
 
 //------------------------------------------------------------------------------
 void
 XCSoarThread::operator()()
   {
-  this->xcsoar = XCSoar::instance();
   sleep(2);
-  this->xcsoar->run();
+  XCSoar::instance()->run();
   }
 

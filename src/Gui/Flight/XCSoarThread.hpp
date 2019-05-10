@@ -59,7 +59,6 @@ public:
 
 private:
 
-  XCSoar *xcsoar;
   };
 
 #endif  // _XCSOARTHREAD_HPP
