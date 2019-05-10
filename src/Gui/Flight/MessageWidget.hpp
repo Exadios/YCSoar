@@ -1,6 +1,6 @@
 /*
  * YCSoar Glide Computer.
- * Copyright (C) 2013-2015 Peter F Bradshaw
+ * Copyright (C) 2013-2018 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -29,54 +29,74 @@
  */
 
 /**
- * \addtogroup XCSoarThunk
- * @{
- */
-#ifndef __LOCALPATHTHUNK_HPP
-#define __LOCALPATHTHUNK_HPP
+ * \class MessageWidget
+ *
+ * \author Axel Pauli
+ *
+ * \brief A dialog widget to display a question with yes and no buttons.
+ *
+ * This widget displays in a dialog a question with yes and no buttons.
+ *
+ * \date 2012
+ *
+ * \version $Id$
+ *
+*/
 
-#include "LocalPath.hpp"
-#include "Util/NonCopyable.hpp"
-#include "windef.h"
-#include "tchar.h"
+#ifndef _MESSAGE_WIDGET_HPP_
+#define _MESSAGE_WIDGET_HPP_
 
-class AllocatedPath;
+#include <QWidget>
+
+class QShowEvent;
 class QString;
+class QTextEdit;
 
 /**
- * This class wraps and makes a singleton of XCSoar's LocalPathThunk.
- */
-class LocalPathThunk : public NonCopyable
+ * \class MessageWidget
+ *
+ * \brief A dialog widget to display a question with yes and no buttons.
+ *
+ * This widget displays in a dialog a question with yes and no buttons.
+ *
+ *
+*/
+
+class MessageWidget : public QWidget
   {
-public:
-  /**
-   * Instantiate the singleton object of this type.
-   * @return The singleton;
-   */
-  static LocalPathThunk& Instance()
-    {
-    static LocalPathThunk self;
-    return self;
-    }
-
-  /**
-   * Give the local base data path.
-   * @return The device dependant data path for XCSoar's use.
-   */
-  QString primaryDataPath() const;
-
-  /**
-   * Give the cache data path.
-   * @return The device dependant data path for XCSoar's use.
-   */
-  AllocatedPath cacheDataPath() const;
+  Q_OBJECT
 
 private:
-  LocalPathThunk();
 
+  Q_DISABLE_COPY ( MessageWidget )
+
+public:
+
+  /**
+   * Ctor.
+   * @param text The question.
+   * @param parent This widget's parent.
+   */
+  MessageWidget(QString text, QWidget *parent = 0);
+
+  /**
+   * Dtor.
+   */
+  virtual ~MessageWidget();
+
+protected:
+
+  virtual void ShowEvent(QShowEvent *event);
+
+signals:
+
+  void yesClicked();
+  void noClicked();
+
+private:
+
+  QTextEdit *text;
   };
 
-#endif  // __LOCALPATHTHUNK_HPP
-/**
- * @}
- */
+#endif  // _MESSAGE_WIDGET_HPP_
+

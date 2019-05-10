@@ -27,62 +27,95 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-/**
- * \addtogroup Flight
- * @{
- */
 
-#ifndef _MAIN_HPP
-#define _MAIN_HPP
+#ifndef _WAITSCREEN_HPP_
+#define _WAITSCREEN_HPP_
 
-#include <QObject>
+#include <QWidget>
+#include <QDialog>
+#include <QLabel>
 #include <QString>
-#include <boost/thread/thread.hpp>
-
-class XCSoarThread;
+#include <QApplication>
+#include <QPixmap>
 
 /**
- * The main object. This object will launch the window system and the XCSoar
- * processes.
+ * \class WaitScreen
+ *
+ * \brief Widget to signal progress of actions.
+ *
+ * This class represents a widget to indicate what is happening
+ * to the program. It is used while loading maps for instance.
+ *
  */
-class Main : public QObject
+class WaitScreen : public QDialog
   {
   Q_OBJECT
 
 public:
-  /**
-   * Ctor.
-   * param argc Number of command line args.
-   * param argv Vector of args.
-   */
-  Main(int argc, char *argv[]);
 
-  /**
-   * Run the program.
-   */
-  void run();
+  WaitScreen(QWidget *parent=0);
 
-signals:
-  void operate(const QString &);
+  ~WaitScreen();
 
-public slots:
-  /**
-   * This is a signal received from the XCSoar thread to indicate that the
-   * thread has terminated.
-   */
-  void xcsoarTerminated();
+  void ScreenUsage(const bool arg)
+    {
+    this->screen_usage = arg;
+    };
+
+  bool ScreenUsage() const
+    {
+    return this->screen_usage;
+    };
+
 
 private:
-  /**
-   * The thread used to run the XCSoar routines.
-   */
-  boost::thread xcsoarThread;
 
-  int argc;
-  char **argv;
+  /**
+   * flush all data out.
+   */
+  void flush();
+
+public slots:
+
+  /**
+   * This slot is used to set the main text,
+   * such as "Loading maps..."
+   */
+  void slot_SetText1(const QString& text);
+
+  /**
+   * This slot is used to set the secondary text,
+   * such as the name of the airspace file that is being
+   * loaded. It is also reset to an empty string if
+   * SetText1 is called.
+   */
+  void slot_SetText2(const QString& text);
+
+  /**
+   * This slot is called to indicate progress. It is
+   * used to rotate the glider-icon to indicate to the
+   * user that something is in fact happening...
+   */
+  void slot_Progress(int stepsize=1);
+
+private:
+
+  QLabel* text1;
+  QLabel* text2;
+
+  QLabel* glider_label;
+
+  QPixmap gliders;
+  QPixmap glider;
+
+  /**
+   * Holds the current progress-value. Used to draw the
+   * glider icon in the correct rotation.
+   */
+  int progress;
+
+  int last_rot;
+  bool screen_usage;
   };
 
-#endif  //_MAIN_HPP
-/**
- * @}
- */
+#endif

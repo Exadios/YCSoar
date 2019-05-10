@@ -1,6 +1,6 @@
 /*
  * YCSoar Glide Computer.
- * Copyright (C) 2013-2015 Peter F Bradshaw
+ * Copyright (C) 2013-2018 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -28,55 +28,39 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * \addtogroup XCSoarThunk
- * @{
- */
-#ifndef __LOCALPATHTHUNK_HPP
-#define __LOCALPATHTHUNK_HPP
+#ifndef _SPLASH_HPP_
+#define _SPLASH_HPP_
 
-#include "LocalPath.hpp"
-#include "Util/NonCopyable.hpp"
-#include "windef.h"
-#include "tchar.h"
-
-class AllocatedPath;
-class QString;
+#include <QWidget>
+#include <QPixmap>
 
 /**
- * This class wraps and makes a singleton of XCSoar's LocalPathThunk.
+ * \class Splash
+ *
+ * \brief A splash screen for Cumulus.
+ *
+ * This widget loads a pixmap as background picture and
+ * is used as splash screen during startup of YCSoar.
  */
-class LocalPathThunk : public NonCopyable
+
+class Splash : public QWidget
   {
+  Q_OBJECT
+
 public:
-  /**
-   * Instantiate the singleton object of this type.
-   * @return The singleton;
-   */
-  static LocalPathThunk& Instance()
-    {
-    static LocalPathThunk self;
-    return self;
-    }
 
-  /**
-   * Give the local base data path.
-   * @return The device dependant data path for XCSoar's use.
-   */
-  QString primaryDataPath() const;
+  Splash( QWidget *parent = 0);
+  virtual ~Splash();
 
-  /**
-   * Give the cache data path.
-   * @return The device dependant data path for XCSoar's use.
-   */
-  AllocatedPath cacheDataPath() const;
+protected:
+
+  /** Handles the paint events of the widget */
+  void paintEvent(QPaintEvent *event);
 
 private:
-  LocalPathThunk();
 
+   /** Pixmap which contains the background picture */
+   QPixmap pixmap;
   };
 
-#endif  // __LOCALPATHTHUNK_HPP
-/**
- * @}
- */
+#endif  //_SPLASH_HPP_

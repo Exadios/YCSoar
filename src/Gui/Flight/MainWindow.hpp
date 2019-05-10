@@ -1,6 +1,6 @@
 /*
  * YCSoar Glide Computer.
- * Copyright (C) 2013-2018 Peter F Bradshaw
+ * Copyright (C) 2013-2019 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -27,24 +27,85 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+/**
+ * \addtogroup Flight
+ * @{
+ */
 
 #ifndef _MAINWINDOW_HPP_
 #define _MAINWINDOW_HPP_
 
 #include <QMainWindow>
+#include <QPointer>
+
+#include "Splash.hpp"
+#include "WaitScreen.hpp"
+
+class QGroupBox;
+class QVBoxLayout;
+class QStackedLayout;
+class QStackedWidget;
+class QFrame;
+class Map;
 
 /**
  * The main window.
  */
 class MainWindow : public QMainWindow
   {
+  Q_OBJECT
+
 public:
   /**
    * Ctor.
    */
   MainWindow();
 
+public slots:
 
+  /**
+   * Exits YCSoar if the disclaimer was rejected.
+   */
+  void slotDisclaimerQuit();
+
+private:
+  Q_DISABLE_COPY (MainWindow)
+
+  QVBoxLayout    *baseLayout;
+  QStackedLayout *activeLayout;
+  QStackedWidget *activeWidget;
+  QFrame         *cruiseFrame;
+  QFrame         *circlingFrame;
+  QFrame         *finalGlideFrame;
+  QFrame         *ppiFrame;
+  QFrame         *infoFrame;
+  Map            *map;              // The main map.
+  // Splash screen
+  QPointer<Splash> splash;
+  // Wait screen
+  QPointer<WaitScreen> ws;
+
+  bool           firstStartup;
+
+private slots:
+  /**
+   * Creates the disclaimer query widget.
+   */
+  void slotCreateDisclaimer();
+
+  /**
+   * Creates the splash screen.
+   */
+  void slotCreateSplash();
+
+  /**
+   * Creates the application widgets after the base initialization
+   * of the core application window.
+   */
+  void slotCreateApplicationWidgets();
   };
 
 #endif  // _MAINWINDOW_HPP_
+/**
+ * @}
+ */

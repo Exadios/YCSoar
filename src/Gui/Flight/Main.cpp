@@ -29,8 +29,11 @@ Copyright_License {
 #include <QCoreApplication>
 #include <QApplication>
 #include <QScopedPointer>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
 
 #include <iostream>
+#include <unistd.h>
 
 //------------------------------------------------------------------------------
 Main::Main(int argc, char *argv[])
@@ -48,9 +51,22 @@ Main::run()
   boost::thread xcsoarThread(xcsoar);
   
   QApplication app(this->argc, this->argv);
+  QCoreApplication::setApplicationName("YCSoar Flight");
+  QCoreApplication::setApplicationVersion("V0.00");
+  QCoreApplication::setOrganizationName("YCSoar");
+  QCoreApplication::setOrganizationDomain("https://github.com/Exadios/YCSoar");
+
+  QCommandLineParser parser;
+  parser.setApplicationDescription(QCoreApplication::applicationName());
+  parser.addHelpOption();
+  parser.addVersionOption();
+  parser.addPositionalArgument("file", "The file to open.");
+  parser.process(app);
+
   MainWindow mainWindow;
-  mainWindow.show();
+//  mainWindow->show();
   app.exec();
+//  delete mainWindow;
   this->xcsoarThread.join();
   }
 

@@ -1,6 +1,6 @@
 /*
  * YCSoar Glide Computer.
- * Copyright (C) 2013-2015 Peter F Bradshaw
+ * Copyright (C) 2013-2018 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -28,55 +28,29 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * \addtogroup XCSoarThunk
- * @{
- */
-#ifndef __LOCALPATHTHUNK_HPP
-#define __LOCALPATHTHUNK_HPP
+#ifndef _MAP_HPP_
+#define _MAP_HPP_
 
-#include "LocalPath.hpp"
-#include "Util/NonCopyable.hpp"
-#include "windef.h"
-#include "tchar.h"
+#include <QWidget>
 
-class AllocatedPath;
-class QString;
-
-/**
- * This class wraps and makes a singleton of XCSoar's LocalPathThunk.
- */
-class LocalPathThunk : public NonCopyable
+class Map : public QWidget
   {
+  Q_OBJECT
+
 public:
   /**
-   * Instantiate the singleton object of this type.
-   * @return The singleton;
+   * Ctor.
    */
-  static LocalPathThunk& Instance()
-    {
-    static LocalPathThunk self;
-    return self;
-    }
+  Map(QWidget* parent);
 
   /**
-   * Give the local base data path.
-   * @return The device dependant data path for XCSoar's use.
+   * Dtor.
    */
-  QString primaryDataPath() const;
-
-  /**
-   * Give the cache data path.
-   * @return The device dependant data path for XCSoar's use.
-   */
-  AllocatedPath cacheDataPath() const;
+  virtual ~Map();
 
 private:
-  LocalPathThunk();
-
+  Q_DISABLE_COPY (Map)
   };
 
-#endif  // __LOCALPATHTHUNK_HPP
-/**
- * @}
- */
+#endif  // _MAP_HPP_
+

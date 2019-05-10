@@ -2,7 +2,7 @@
 Copyright_License {
 
   YCSoar Glide Computer.
-  Copyright (C) 2013-2016 Peter F Bradshaw
+  Copyright (C) 2013-2019 Peter F Bradshaw
   A detailed list of copyright holders can be found in the file "AUTHORS".
 
   This program is free software; you can redistribute it and/or
@@ -26,8 +26,9 @@ Copyright_License {
 #include "Screen/Custom/Cache.hpp"
 #include "Screen/Bitmap.hpp"
 #include "Screen/Util.hpp"
-#include "Util/AllocatedArray.hpp"
+#include "Util/AllocatedArray.hxx"
 #include "Util/Macros.hpp"
+#include "Math/Angle.hpp"
 
 #ifdef UNICODE
 #include "Util/ConvertString.hpp"
@@ -48,21 +49,25 @@ Copyright_License {
 //#include <QColor>
 //#include <QPointF>
 
-AllocatedArray<RasterPoint> Canvas::vertex_buffer;
-
 //------------------------------------------------------------------------------
 Canvas::Canvas()
-  : QWidget(0),
-    offset(0, 0),
+  : QWidget(nullptr),
     size(0, 0),
     background_mode(OPAQUE)
   {
   }
 
 //------------------------------------------------------------------------------
-Canvas::Canvas(PixelSize size)
-  : QWidget(0),
-    offset(0, 0),
+Canvas::Canvas(QWidget *parent)
+  : QWidget(parent),
+    size(0, 0),
+    background_mode(OPAQUE)
+  {
+  }
+
+//------------------------------------------------------------------------------
+Canvas::Canvas(QWidget *parent, PixelSize size)
+  : QWidget(parent),
     size(size),
     background_mode(OPAQUE)
   {
@@ -368,7 +373,7 @@ Canvas::DrawRaisedEdge(PixelRect &rc)
 
 //------------------------------------------------------------------------------
 void
-Canvas::DrawPolyline(const RasterPoint *points, unsigned num_points)
+Canvas::DrawPolyline(const BulkPixelPoint *points, unsigned num_points)
   {
   unsigned i;
   QPainterPath p;
@@ -386,7 +391,7 @@ Canvas::DrawPolyline(const RasterPoint *points, unsigned num_points)
 
 //------------------------------------------------------------------------------
 void
-Canvas::DrawPolygon(const RasterPoint *points, unsigned num_points)
+Canvas::DrawPolygon(const BulkPixelPoint *points, unsigned num_points)
   {
   if (this->brush.IsHollow() && !this->pen.IsDefined())
     return;
@@ -407,7 +412,7 @@ Canvas::DrawPolygon(const RasterPoint *points, unsigned num_points)
 
 //------------------------------------------------------------------------------
 void
-Canvas::DrawTriangleFan(const RasterPoint *points, unsigned num_points)
+Canvas::DrawTriangleFan(const BulkPixelPoint *points, unsigned num_points)
   {
   /*
    * A Triangle Fan is an OpenGL construct consist of a number of contiguous
@@ -466,7 +471,7 @@ Canvas::DrawLine(int ax, int ay, int bx, int by)
 
 //------------------------------------------------------------------------------
 void
-Canvas::DrawLine(const RasterPoint a, const RasterPoint b)
+Canvas::DrawLine(PixelPoint a, PixelPoint b)
   {
   this->DrawLine(a.x, a.y, b.x, b.y);
   }
@@ -480,14 +485,14 @@ Canvas::DrawExactLine(int ax, int ay, int bx, int by)
 
 //------------------------------------------------------------------------------
 void
-Canvas::DrawExactLine(const RasterPoint a, const RasterPoint b)
+Canvas::DrawExactLine(const PixelPoint a, const PixelPoint b)
   {
   this->DrawExactLine(a.x, a.y, b.x, b.y);
   }
 
 //------------------------------------------------------------------------------
 void
-Canvas::DrawLinePiece(const RasterPoint a, const RasterPoint b)
+Canvas::DrawLinePiece(const PixelPoint a, const PixelPoint b)
   {
   this->DrawLine(a, b);
   }
@@ -502,9 +507,9 @@ Canvas::DrawTwoLines(int ax, int ay, int bx, int by, int cx, int cy)
 
 //------------------------------------------------------------------------------
 void
-Canvas::DrawTwoLines(const RasterPoint a,
-                     const RasterPoint b,
-                     const RasterPoint c)
+Canvas::DrawTwoLines(const PixelPoint a,
+                     const PixelPoint b,
+                     const PixelPoint c)
   {
   this->DrawTwoLines(a.x, a.y, b.x, b.y, c.x, c.y);
   }

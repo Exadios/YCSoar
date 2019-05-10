@@ -21,31 +21,44 @@ Copyright_License {
 }
 */
 
-#include "XCSoarThread.hpp"
-#include "XCSoar.hpp"
-#include <QMainWindow>
-#include <QApplication>
+#include <QtGui>
 
-#include <unistd.h>
-#include <iostream>
+#include "Splash.hpp"
 
-//------------------------------------------------------------------------------
-XCSoarThread::XCSoarThread()
+/** This widget loads a pixmap as background picture and
+ *  is used as splash screen during startup of YCSoar.
+ */
+Splash::Splash(QWidget *parent)
+  : QWidget(parent)
   {
+  setObjectName("Slash");
+  setAttribute(Qt::WA_DeleteOnClose);
+
+  if(parent)
+    {
+    resize(parent->size());
+    }
+  else
+    {
+    resize(800, 480);
+    }
+
+  // load background picture
+//  this->pixmap = GeneralConfig::instance()->loadPixmap("splash.png");
+  this->pixmap.load("splash.png");
   }
 
-//------------------------------------------------------------------------------
-XCSoarThread::~XCSoarThread()
+Splash::~Splash()
   {
-  this->xcsoar->stop();
+  // remove splash pixmap from global cache
+//  GeneralConfig::instance()->removePixmap("splash.png");
   }
 
-//------------------------------------------------------------------------------
-void
-XCSoarThread::operator()()
+/** Handles the paint events of the widget */
+void Splash::paintEvent(QPaintEvent * /* event */ )
   {
-  this->xcsoar = XCSoar::instance();
-  sleep(2);
-  this->xcsoar->run();
-  }
+  QPainter painter(this);
 
+  // draws the background picture
+  painter.drawPixmap(rect(), this->pixmap, this->pixmap.rect());
+  }

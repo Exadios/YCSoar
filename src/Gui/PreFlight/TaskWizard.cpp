@@ -107,7 +107,7 @@ TaskWizard::createFilePage()
   CommonInterface::SetComputerSettings().SetDefaults();
   CommonInterface::SetUIState().Clear();
   LocalPathThunk *lp = &LocalPathThunk::Instance();
-  FileCache *file_cache = new FileCache(lp->cacheDataPath().toUtf8().constData());
+  FileCache *file_cache = new FileCache(lp->cacheDataPath());
   VerboseOperationEnvironment operation;
   RasterTerrain *terrain = RasterTerrain::OpenTerrain(file_cache, operation);
   Waypoints waypoints;

@@ -2,7 +2,7 @@
 Copyright_License {
 
   YCSoar Glide Computer.
-  Copyright (C) 2013-2015 Peter F Bradshaw
+  Copyright (C) 2013-2018 Peter F Bradshaw
   A detailed list of copyright holders can be found in the file "AUTHORS".
 
   This program is free software; you can redistribute it and/or
@@ -21,31 +21,14 @@ Copyright_License {
 }
 */
 
-#include "LocalPathThunk.hpp"
-
-#include "OS/Path.hpp"
-
-#include <QString>
-
-extern TCHAR *gcc_restrict data_path;
-extern size_t data_path_length;
+#include "Frame.hpp"
 
 //------------------------------------------------------------------------------
-QString
-LocalPathThunk::primaryDataPath() const
+Frame::Frame()
   {
-  return QString(::GetPrimaryDataPath().ToUTF8().c_str());
   }
 
 //------------------------------------------------------------------------------
-AllocatedPath
-LocalPathThunk::cacheDataPath() const
+Frame::~Frame()
   {
-  return LocalPath("cache");
-  }
-
-//------------------------------------------------------------------------------
-LocalPathThunk::LocalPathThunk()
-  {
-  ::InitialiseDataPath();
   }

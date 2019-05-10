@@ -1,6 +1,6 @@
 /*
  * YCSoar Glide Computer.
- * Copyright (C) 2013-2016 Peter F Bradshaw
+ * Copyright (C) 2013-2019 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -35,6 +35,7 @@
 #include "Point.hpp"
 #include "PixelTraits.hpp"
 #include "Buffer.hpp"
+#include "BulkPoint.hpp"
 #include "ActivePixelTraits.hpp"
 #include "Features.hpp"
 #include "Brush.hpp"
@@ -71,15 +72,23 @@ class Canvas : public QWidget
 public:
   /**
    * Ctor. Create a Canvas object with zero size and zero offset with an
-   * opaque background.
+   * opaque background and no explicit parent.
    */
   Canvas();
 
   /**
+   * Ctor. Create a Canvas object with zero size and zero offset with an
+   * opaque background.
+   * @param The explicitly specified parent.
+   */
+  Canvas(QWidget *parent);
+
+  /**
    * Ctor. Create a Canvas object with a zero offset with an opaque background.
+   * @param The explicitly specified parent.
    * @param size The size of the canvas in pixels.
    */
-  Canvas(PixelSize size);
+  Canvas(QWidget *parent, PixelSize size);
 
   /**
    * Do not allow copying by any method.
@@ -344,14 +353,14 @@ public:
    * @param points The array of vertices.
    * @param num_points How many vertices.
    */
-  void DrawPolyline(const RasterPoint *points, unsigned num_points);
+  void DrawPolyline(const BulkPixelPoint *points, unsigned num_points);
 
   /**
    * Draw a polygon with the current pen.
    * @param  points The array of vertices.
    * @param num_points How many vertices.
    */
-  void DrawPolygon(const RasterPoint *points, unsigned num_points);
+  void DrawPolygon(const BulkPixelPoint *points, unsigned num_points);
 
   /**
    * Draw a triangle fan.
@@ -361,7 +370,7 @@ public:
    * @param points The vertices. The first point is the origin of the fan.
    * @param num_points How many vertices.
    */
-  void DrawTriangleFan(const RasterPoint *points, unsigned num_points);
+  void DrawTriangleFan(const BulkPixelPoint *points, unsigned num_points);
 
   /**
    * Draw a solid thin horizontal line.
@@ -386,7 +395,7 @@ public:
    * @param a
    * @param b
    */
-  void DrawLine(const RasterPoint a, const RasterPoint b);
+  void DrawLine(const PixelPoint a, const PixelPoint b);
 
   /**
    * Similar to DrawLine(), but force exact pixel coordinates.  This
@@ -406,7 +415,7 @@ public:
    * @param a
    * @param b
    */
-  void DrawExactLine(const RasterPoint a, const RasterPoint b);
+  void DrawExactLine(const PixelPoint a, const PixelPoint b);
 
   /**
    * Draw a line from a to b, using triangle caps if pen-size > 2 to hide
@@ -414,7 +423,7 @@ public:
    * @param a
    * @param b
    */
-  void DrawLinePiece(const RasterPoint a, const RasterPoint b);
+  void DrawLinePiece(const PixelPoint a, const PixelPoint b);
 
   /**
    * Draw a line from 'a' to 'b' to 'c' using the current pen.
@@ -433,9 +442,9 @@ public:
    * @param b
    * @param c
    */
-  void DrawTwoLines(const RasterPoint a,
-                    const RasterPoint b,
-                    const RasterPoint c);
+  void DrawTwoLines(const PixelPoint a,
+                    const PixelPoint b,
+                    const PixelPoint c);
 
   /**
    * @see DrawTwoLines(), DrawExactLine()
@@ -710,7 +719,6 @@ protected:
    */
   void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 
-  RasterPoint offset;
   PixelSize size;
 
   QImage pixmap;
@@ -726,11 +734,6 @@ protected:
     OPAQUE, TRANSPARENT
     }
   background_mode;
-
-  /**
-   * static buffer to store vertices of wide lines.
-   */
-  static AllocatedArray<RasterPoint> vertex_buffer;
 
   /**
    * @return true if the outline should be drawn after the area has

@@ -24,6 +24,7 @@ Copyright_License {
 #include "ProfileThunk.hpp"
 
 #include "Profile/Profile.hpp"
+#include "OS/Path.hpp"
 
 #include <QString>
 
@@ -37,5 +38,5 @@ ProfileThunk::ProfileThunk()
 QString
 ProfileThunk::Path() const
   {
-  return Profile::GetPath();
+  return QString(Profile::GetPath().ToUTF8().c_str());
   }

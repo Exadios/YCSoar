@@ -8,10 +8,9 @@
 
 int main(int argc, char *argv[])
   {
-  QCoreApplication app(argc, argv);
   Main program(argc, argv);
 
   program.run();
 
-  return app.exec();
+  return 0;
   }
