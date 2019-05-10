@@ -41,7 +41,6 @@ public:
 
   /**
    * Ctor
-   * param scheduler The scheduler in use.
    */
   Process();
 
