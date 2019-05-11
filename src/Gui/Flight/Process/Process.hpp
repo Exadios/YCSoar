@@ -45,6 +45,11 @@ public:
   Process();
 
   /**
+   * Dtor.
+   */
+  virtual ~Process();
+
+  /**
    * Initiate the process.
    */
   virtual void initiator() = 0;
