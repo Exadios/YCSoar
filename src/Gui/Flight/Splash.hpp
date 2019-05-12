@@ -27,7 +27,10 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+/**
+ * \addtogroup Flight
+ * @{
+ */
 #ifndef _SPLASH_HPP_
 #define _SPLASH_HPP_
 
@@ -37,7 +40,7 @@
 /**
  * \class Splash
  *
- * \brief A splash screen for Cumulus.
+ * \brief A splash screen for YCSoar.
  *
  * This widget loads a pixmap as background picture and
  * is used as splash screen during startup of YCSoar.
@@ -64,3 +67,6 @@ private:
   };
 
 #endif  //_SPLASH_HPP_
+/**
+ * @}
+ */

@@ -1,6 +1,6 @@
 /*
  * YCSoar Glide Computer.
- * Copyright (C) 2013-2018 Peter F Bradshaw
+ * Copyright (C) 2013-2016 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -27,36 +27,10 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 /**
- * \addtogroup Flight
- * @{
- */
-
-#ifndef _MAP_HPP_
-#define _MAP_HPP_
-
-#include <QWidget>
-
-class Map : public QWidget
-  {
-  Q_OBJECT
-
-public:
-  /**
-   * Ctor.
-   */
-  Map(QWidget* parent);
-
-  /**
-   * Dtor.
-   */
-  virtual ~Map();
-
-private:
-  Q_DISABLE_COPY (Map)
-  };
-
-#endif  // _MAP_HPP_
-/**
- * @}
+ * \defgroup Flight Flight
+ * \ingroup Gui
+ *
+ * The Flight components of YCSoar.
  */

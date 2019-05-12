@@ -27,7 +27,10 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+/**
+ * \addtogroup Process
+ * @{
+ */
 #ifndef _ONESECTICK_HPP_
 #define _ONESECTICK_HPP_
 
@@ -63,3 +66,6 @@ private:
   };
 
 #endif  // _ONESECTICK_HPP_
+/**
+ * @}
+ */
