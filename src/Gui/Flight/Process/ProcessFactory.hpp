@@ -42,14 +42,18 @@
 class Process;
 class OneSecTick;
 
-typedef std::unordered_map<std::string, std::shared_ptr<Process> > ProcessMap;
-
 /**
  * A class to produce various XCSoar processes.
+ *
+ * \todo Write the xcsoarMain and other necessary processes
  */
 class ProcessFactory
   {
 public:
+
+  typedef boost::asio::io_service Scheduler;
+  typedef std::shared_ptr<Process> ProcessPtr;
+
   /**
    * Get the global instance of the factory. If the global instance does
    * not yet exist then create it. This is the only way of creating an
@@ -62,14 +66,27 @@ public:
    * Give the scheduler.
    * @return The Boost Asio service.
    */
-  boost::asio::io_service &giveScheduler();
+  Scheduler &giveScheduler();
 
   /**
-   * Make a one second tick process.
+   * Make a one second tick process. If the process does not yet exist
+   * an attempt will be made to create it.
    * @return The base class of the process. This may be downcast using 
-   *         dynamic_cast.
+   *         dynamic_cast. This may be nullptr if the process does not
+   *         yet exist and cannot be created for some reason.
    */
-  std::shared_ptr<Process> oneSecTick();
+  ProcessPtr oneSecTick();
+
+#if 0
+  /**
+   * Make the main XCSoar process. If the process does not yet exist
+   * an attempt will be made to create it. (speculative at this time). 
+   * @return The base class of the process. This may be downcast using 
+   *         dynamic_cast. This may be nullptr if the process does not
+   *         yet exist and cannot be created for some reason.
+   */
+  ProcessPtr xcsoarMain();
+#endif
 
 private:
   /**
@@ -78,6 +95,8 @@ private:
   ProcessFactory();
   ProcessFactory(const ProcessFactory &);
   ProcessFactory operator=(const ProcessFactory &);
+
+  typedef std::unordered_map<std::string, std::shared_ptr<Process> > ProcessMap;
 
   struct ProcessEntry
     {
