@@ -31,6 +31,6 @@
 /**
  * \defgroup XCSoarThunk XCSoarThunk
  *
- * Various thunks used to connect several YCSoar elements with the appropiate
+ * Various thunks used to connect several YCSoar elements with the appropriate
  * XCSoar functionality.
  */
