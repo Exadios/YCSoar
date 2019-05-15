@@ -29,8 +29,8 @@
  */
 
 /**
- * \defgroup XCSoarThunk XCSoarThunk
+ * \defgroup Flight Flight
+ * \ingroup Gui
  *
- * Various thunks used to connect several YCSoar elements with the appropriate
- * XCSoar functionality.
+ * The Flight components of YCSoar.
  */

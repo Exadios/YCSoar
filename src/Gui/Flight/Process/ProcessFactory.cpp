@@ -46,14 +46,14 @@ ProcessFactory::instance()
   }
 
 //------------------------------------------------------------------------------
-boost::asio::io_service &
+ProcessFactory::Scheduler &
 ProcessFactory::giveScheduler()
   {
   return this->scheduler;
   }
 
 //------------------------------------------------------------------------------
-std::shared_ptr<Process>
+ProcessFactory::ProcessPtr
 ProcessFactory::oneSecTick()
   {
   auto f = this->processMap.find(std::string("OneSecTick"));
@@ -69,3 +69,24 @@ ProcessFactory::oneSecTick()
     }
   return f->second;
   }
+
+#if 0
+//------------------------------------------------------------------------------
+ProcessPtr
+ProcessFactory::xcsoarMain()
+  {
+  auto f = this->processMap.find(std::string("XCSoarMain"));
+  if (f == this->processMap.end())
+    {
+    auto p = new XCSoarMain;
+    ProcessPtr q(p);
+    auto r = this->processMap.insert({std::string("XCSoarMain"), q});
+    if (r.second == true)
+      return r.first->second;
+    else
+      return nullptr;
+    }
+  return f->second;
+  }
+#endif
+

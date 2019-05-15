@@ -42,7 +42,10 @@
  * \version $Id$
  *
 */
-
+/**
+ * \addtogroup Flight
+ * @{
+ */
 #ifndef _MESSAGE_WIDGET_HPP_
 #define _MESSAGE_WIDGET_HPP_
 
@@ -99,4 +102,6 @@ private:
   };
 
 #endif  // _MESSAGE_WIDGET_HPP_
-
+/**
+ * @}
+ */

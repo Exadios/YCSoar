@@ -29,8 +29,8 @@
  */
 
 /**
- * \defgroup XCSoarThunk XCSoarThunk
+ * \defgroup Process Process
+ * \ingroup Flight
  *
- * Various thunks used to connect several YCSoar elements with the appropriate
- * XCSoar functionality.
+ * The Process Control components of YCSoar.
  */

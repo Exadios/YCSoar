@@ -27,7 +27,10 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+/**
+ * \addtogroup Process
+ * @{
+ */
 #ifndef _PROCESS_HPP_
 #define _PROCESS_HPP_
 
@@ -64,3 +67,6 @@ protected:
 
 
 #endif  // _PROCESS_HPP_
+/**
+ * @}
+ */

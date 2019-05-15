@@ -27,6 +27,10 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+/**
+ * \addtogroup Flight
+ * @{
+ */
 
 #ifndef _MAP_HPP_
 #define _MAP_HPP_
@@ -53,4 +57,6 @@ private:
   };
 
 #endif  // _MAP_HPP_
-
+/**
+ * @}
+ */

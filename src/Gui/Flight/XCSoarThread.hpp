@@ -27,7 +27,10 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+/**
+ * \addtogroup Flight
+ * @{
+ */
 #ifndef _XCSOARTHREAD_HPP
 #define _XCSOARTHREAD_HPP
 
@@ -62,3 +65,6 @@ private:
   };
 
 #endif  // _XCSOARTHREAD_HPP
+/**
+ * @}
+ */
