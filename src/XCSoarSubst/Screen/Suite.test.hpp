@@ -28,6 +28,10 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * \addtogroup Screen
+ * @{
+ */
 #include <cxxtest/TestSuite.h>
 #include "Brush.hpp"
 #include "Pen.hpp"
@@ -165,3 +169,7 @@ public:
     app.exec();
     }
   };
+
+/**
+ * @}
+ */

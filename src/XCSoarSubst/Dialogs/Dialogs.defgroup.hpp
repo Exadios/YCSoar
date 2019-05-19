@@ -1,6 +1,6 @@
 /*
  * YCSoar Glide Computer.
- * Copyright (C) 2013-2016 Peter F Bradshaw
+ * Copyright (C) 2013-2019 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -31,5 +31,11 @@
 /**
  * \defgroup Dialogs Dialogs
  * \ingroup XCSoarSubst
+ *
+ * Substitution of various XCSoar classes for use by YCSoar.
+ *
+ * It is important that the headers of this module be included before XCSoar
+ * headers. Likewise it is importatant that the objects produced by this module
+ * be linked before the XCSoar objects are linked.
  */
 

@@ -28,6 +28,10 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * \addtogroup Screen
+ * @{
+ */
 #ifndef __CANVAS_HPP
 #define __CANVAS_HPP
 
@@ -783,3 +787,6 @@ private:
   };
 
 #endif  // __CANVAS_HPP
+/**
+ * @}
+ */

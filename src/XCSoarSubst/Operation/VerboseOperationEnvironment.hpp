@@ -28,6 +28,10 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * \addtogroup Operation
+ * @{
+ */
 #ifndef __VERBOSEOPERATIONENVIRONMENT_HPP
 #define __VERBOSEOPERATIONENVIRONMENT_HPP
 
@@ -49,3 +53,6 @@ class VerboseOperationEnvironment : public NullOperationEnvironment
   };
 
 #endif  // __VERBOSEOPERATIONENVIRONMENT_HPP
+/**
+ * @}
+ */

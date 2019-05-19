@@ -29,8 +29,8 @@
  */
 
 /**
- * \defgroup Manager Manager
- * \ingroup Task
+ * \defgroup Screen
+ * \ingroup XCSoarSubst
  *
  * Substitution of various XCSoar classes for use by YCSoar.
  *

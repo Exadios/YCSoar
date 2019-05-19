@@ -1,6 +1,6 @@
 /*
  * YCSoar Glide Computer.
- * Copyright (C) 2013-2016 Peter F Bradshaw
+ * Copyright (C) 2013-2019 Peter F Bradshaw
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -28,6 +28,10 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * \addtogroup Screen
+ * @{
+ */
 #ifndef __RENDEROBJECT_HPP
 #define __RENDEROBJECT_HPP
 
@@ -125,4 +129,6 @@ private:
   };
 
 #endif  // __RENDEROBJECT_HPP
-
+/**
+ * @}
+ */
