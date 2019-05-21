@@ -1,4 +1,4 @@
-set(XCSOAR ${CMAKE_HOME_DIRECTORY}/submodule/xcsoar-exp)
+set(XCSOAR ${CMAKE_HOME_DIRECTORY}/submodule/XCSoar-the-library)
 set(XCSOAR_SRC ${XCSOAR}/src)
 set(OUTPUT_INCLUDE ${YCSoar_BINARY_DIR}/include)
 add_subdirectory(linux-native-debug)

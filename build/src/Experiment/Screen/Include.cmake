@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 
 set(XCSOARTHUNK_BIN_DIR ${YCSoar_BINARY_DIR}/build/src/XCSoarThunk/${T})
 set(XCSOARSUBST_BIN_DIR ${YCSoar_BINARY_DIR}/build/src/XCSoarSubst/${T})
-set(XCSOAR_BIN_DIR ${YCSoar_BINARY_DIR}/build/submodule/xcsoar-exp/${T})
-set(XCSOAR_SRC_DIR ${YCSoar_SOURCE_DIR}/submodule/xcsoar-exp/src)
+set(XCSOAR_BIN_DIR ${YCSoar_BINARY_DIR}/build/submodule/XCSoar-the-library/${T})
+set(XCSOAR_SRC_DIR ${YCSoar_SOURCE_DIR}/submodule/XCSoar-the-library/src)
 set(XCSOARTHUNK_SRC_DIR ${YCSoar_SOURCE_DIR}/src/XCSoarThunk)
 set(XCSOARSUBST_SRC_DIR ${YCSoar_SOURCE_DIR}/src/XCSoarSubst)
 add_executable(experimentscreen-${T} EXCLUDE_FROM_ALL

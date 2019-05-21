@@ -1,4 +1,4 @@
-add_subdirectory(xcsoar-exp)
+add_subdirectory(XCSoar-the-library)
 
 set(SUBMODULE ${YCSoar_SOURCE_DIR}/submodule)
 set(OUTPUT_DIR ${YCSoar_SOURCE_DIR}/out/doc/xcsoar/)

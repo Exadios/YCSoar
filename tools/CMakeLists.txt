@@ -1,4 +1,4 @@
-set(XCSOAR ${CMAKE_HOME_DIRECTORY}/submodule/xcsoar-exp)
+set(XCSOAR ${CMAKE_HOME_DIRECTORY}/submodule/XCSoar-the-library)
 set(TOOLS_DIR ${XCSOAR}/tools)
 set(XCSOAR_SRC ${XCSOAR}/src)
 set(TOOLS_BIN ${YCSoar_BINARY_DIR}/tools)

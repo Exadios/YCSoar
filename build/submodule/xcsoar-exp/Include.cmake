@@ -1,4 +1,4 @@
-set(XCSOAR ${YCSoar_SOURCE_DIR}/submodule/xcsoar-exp)
+set(XCSOAR ${YCSoar_SOURCE_DIR}/submodule/XCSoar-the-library)
 set(XCSOAR_SRC ${XCSOAR}/src)
 set(OUTPUT_INCLUDE ${YCSoar_BINARY_DIR}/include)
 
